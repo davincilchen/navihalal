@@ -6,6 +6,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   after_validation :default_photo
+  acts_as_voter
   
   def admin?
     self.role == "admin"

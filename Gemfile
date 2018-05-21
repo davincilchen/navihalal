@@ -81,3 +81,6 @@ gem 'bootstrap4-kaminari-views'
 # google map
 gem 'gmaps4rails'
 gem 'geocoder'
+
+# vote like
+gem 'acts_as_votable'
