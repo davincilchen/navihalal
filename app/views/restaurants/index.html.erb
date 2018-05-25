@@ -128,7 +128,6 @@
     maximumAge: 0
   };
 
-
   function setCurrentPos(pos){
     userCurrentPos = {
       lat: pos.coords.latitude,
@@ -146,6 +145,7 @@
   function setCenter_byUserPos(){
     handler.getMap().setCenter(new google.maps.LatLng(userCurrentPos.lat, userCurrentPos.lng));
     handler.getMap().setZoom(14);
+    //handler.getMap().setZoom(2);
   }
 
   function displayGcpErrorMsg(err){
@@ -207,6 +207,7 @@
         restaurantMap[restaurants[i].id] = restaurants[i];
     }
     Gmaps.store = {}
+
     Gmaps.store.markers = markers.map(function(m) {
       marker = handler.addMarker(m);
       marker.serviceObject.set('id', m.id);
