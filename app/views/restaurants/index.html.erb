@@ -143,6 +143,12 @@
   }
 
   function setCenter_byUserPos(){
+    var marker = handler.addMarker({
+      lat: userCurrentPos.lat,
+      lng: userCurrentPos.lng
+    });
+    handler.map.centerOn(marker);
+
     handler.getMap().setCenter(new google.maps.LatLng(userCurrentPos.lat, userCurrentPos.lng));
     handler.getMap().setZoom(14);
     //handler.getMap().setZoom(2);
