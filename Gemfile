@@ -84,3 +84,8 @@ gem 'geocoder'
 
 # vote like
 gem 'acts_as_votable'
+
+# gem for search
+gem 'ransack', '~> 1.8', '>= 1.8.8'
+
+gem 'gon'

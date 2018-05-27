@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :photo, "Photo" %>
-    <%= image_tag @restaurant.photo, width: '300px' if @restaurant.photo? %>
+    <%= image_tag @restaurant.photo.url, width: '300px' if @restaurant.photo? %>
     <%= form.file_field :photo %>
   </div>
 

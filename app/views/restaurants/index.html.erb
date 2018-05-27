@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Restaurants</h1>
-
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+<div id="map-rwd" style='width: 100%;'>
+  <div id="map" style='width: 100%; height: 400px;'></div>
 </div>
 
 <table>
@@ -50,11 +49,236 @@
 
 <%= link_to 'New Restaurant', new_restaurant_path %>
 
+<!-- restaurant marker Modal -->
+<div class="modal fade" id="siteModalCenter" tabindex="-1" role="dialog" aria-labelledby="siteModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="siteModalLongTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <!-- <img id="siteModal-img" alt="Site Photo" width="600" height="600" class="border rounded"> -->
+          <img id="siteModal-img" alt="Site Photo" width="420" class="border rounded">
+        </div>
+        <div id="siteModal-content" style="font-size: 18px;" class="text-center"></div>
+        <div id="siteModal-disdur" style="font-size: 18px;" class="text-center"></div>
+        <div id="siteModal-availableTime" style="font-size: 18px;" class="text-center"></div>
+      </div>
+      <div class="modal-footer">
+        <a id="siteModal-directionurl" href="" target="_blank" class="btn btn-success" role="button" aria-disabled="true">導航</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- restaurant marker Modal -->
+<div class="modal modal-style fade" id="siteModalCenter__xx" tabindex="-1" role="dialog" aria-labelledby="siteModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title text-center" id="siteModalLongTitle"></h3>
+      </div>
+      <div class="modal-body">
+        <div>
+          <!-- <img id="siteModal-img" alt="Site Photo" width="600" height="600" class="border rounded"> -->
+          <img id="siteModal-img" alt="Site Photo" width="420" class="border rounded">
+        </div>
+        <div id="siteModal-content" style="font-size: 14px;" class="text-center"></div>
+        <div id="siteModal-disdur" style="font-size: 14px;" class="text-center"></div>
+        <div id="siteModal-availableTime" style="font-size: 14px;" class="text-center"></div>
+      </div>
+      <div class="modal-footer">
+        <div class="col-xs-4 col-xs-offset-1 text-center" >
+          <a id="siteModal-checkin" style="font-size: 16px;  padding: 8px; width:100px;" class="" rel="nofollow"></a>
+        </div>
+        <div class="col-xs-5 col-xs-offset-2 text-center">
+          <a id="siteModal-directionurl" style=" font-size: 16px; padding: 10px 35px;" class="btn btn-sm btn-main-1-outline" href="" target="_blank">導航</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type='text/javascript'>
+  var noninfiniteGeo = true;
+  var useDefaultCenter = true;
+  var handler = null; //google map handler
+  var restaurantMap = {};
+  var userCurrentPos = {
+    lat: 0.0,
+    lng: 0.0
+  };
+
+  var ha_options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  var la_options = {
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  function setCurrentPos(pos){
+    userCurrentPos = {
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude
+    };
+  }
+
+  function hasUserCurrentPos(){
+    if(userCurrentPos.lat!=0.0 && userCurrentPos.lng!=0.0){
+      return true;
+    }
+    return false;
+  }
+
+  function setCenter_byUserPos(){
+    var marker = handler.addMarker({
+      lat: userCurrentPos.lat,
+      lng: userCurrentPos.lng
+    });
+    handler.map.centerOn(marker);
+
+    handler.getMap().setCenter(new google.maps.LatLng(userCurrentPos.lat, userCurrentPos.lng));
+    handler.getMap().setZoom(14);
+
+  }
+
+  function displayGcpErrorMsg(err){
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+  }
+
+  function geo_success(pos) {
+    setCurrentPos(pos);
+    setCenter_byUserPos();
+  };
+
+  function getUserCurrentPosition(){
+    function error(err) {
+      displayGcpErrorMsg(err);
+    };
+
+    function geo_error(err) {
+      displayGcpErrorMsg(err);
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(geo_success, error, la_options);
+      }
+    };
+
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(geo_success, geo_error, ha_options);
+    }
+  };
+
+  function displayOnMap(position){
+    var marker = handler.addMarker({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    });
+    setCurrentPos(position);
+    handler.map.centerOn(marker);
+  };
+
+  // ---------------------------------------------- //
+  function createGoogleMapDirUrl(start, end){
+    return 'https://www.google.com/maps/dir/'+start+'/'+end;
+  }
+
+  function getDirectionUrl(destination){
+    if(hasUserCurrentPos()){
+      origin = userCurrentPos.lat+','+userCurrentPos.lng;
+      return createGoogleMapDirUrl(origin, destination);
+    }
+    else{
+      return createGoogleMapDirUrl('', destination);
+    }
+  }
+  // ---------------------------------------------- //
+
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers(<%=raw @hash.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
+    markers = <%= raw @hash.to_json %>
+    var restaurants = <%=raw @restaurants.to_json %>;
+    for (var i = 0; i < restaurants.length; i++) {
+        restaurantMap[restaurants[i].id] = restaurants[i];
+    }
+    Gmaps.store = {}
+
+    Gmaps.store.markers = markers.map(function(m) {
+      marker = handler.addMarker(m);
+      marker.serviceObject.set('id', m.id);
+      marker.serviceObject.set('intro', m.intro);
+      marker.serviceObject.set('photo', m.photo);
+      marker.serviceObject.set('infowindow', m.infowindow);
+      //console.log(m)
+      return marker;
+    });
+    handler.bounds.extendWith(Gmaps.store.markers);
+    //handler.fitMapToBounds(); //some PC can't work fine if don't mask this code
+    //handler.getMap().setCenter(new google.maps.LatLng(35.720969, 139.735877));
+
+    if(useDefaultCenter){
+      handler.getMap().setCenter(new google.maps.LatLng(22.997234, 120.211936)); //台南火車站
+      handler.getMap().setZoom(12);
+    }
+    else{
+      handler.getMap().setZoom(2);
+    }
+
+
+    if(navigator.geolocation){
+      if(noninfiniteGeo){
+        getUserCurrentPosition();
+      }
+      else{
+          navigator.geolocation.getCurrentPosition(displayOnMap);
+          handler.getMap().setZoom(14);
+      }
+    }
+
+
+    //console.log(Gmaps.store.markers);
+    if(0){
+      $.each(Gmaps.store.markers, function() {
+        //if (this.serviceObject.id == id) {
+         console.log(this.serviceObject)
+          infowindow = new google.maps.InfoWindow({
+            content: this.serviceObject.infowindow
+          });
+          infowindow.open(this.serviceObject.map, this.serviceObject);
+        //}
+      });
+    }
+
+
+    for (var i = 0; i < Gmaps.store.markers.length; i++) {
+      google.maps.event.addListener(Gmaps.store.markers[i].serviceObject, 'click', function(e) {
+        console.log(this.id);
+        console.log(this.title);
+        console.log(this.intro);
+        console.log(this.photo);
+        console.log("--------------");
+        console.log(userCurrentPos);
+        //console.log(this);
+        document.getElementById("siteModalLongTitle").innerHTML = "<a href=/restaurants/"+this.id+">"+ this.title + "</a>";
+        document.getElementById('siteModal-img').src = this.photo;
+        document.getElementById('siteModal-content').innerHTML = this.intro;
+        document.getElementById("siteModal-directionurl").href = getDirectionUrl(restaurantMap[this.id].latitude+','+restaurantMap[this.id].latitude);
+        $('#siteModalCenter').modal();
+
+      });
+    }
   });
+
+
 </script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_20_133028) do
+ActiveRecord::Schema.define(version: 2018_05_23_144833) do
 
   create_table "collects", force: :cascade do |t|
     t.integer "restaurant_id"
@@ -27,10 +27,19 @@ ActiveRecord::Schema.define(version: 2018_05_20_133028) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "gmaps", force: :cascade do |t|
-    t.float "latitude"
-    t.float "longitude"
-    t.string "address"
+  create_table "meals", force: :cascade do |t|
+    t.string "photo"
+    t.integer "price"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "type"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "meal_id"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

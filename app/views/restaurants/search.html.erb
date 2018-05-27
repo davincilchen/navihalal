@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-12">
+    <h1>Restaurants</h1>
+    <% @restaurants.each do |restaurant| %>
+      <p><%= link_to restaurant.name, restaurant %></p>
+    <% end %>
+  </div>
+</div>
