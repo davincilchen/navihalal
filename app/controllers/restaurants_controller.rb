@@ -14,6 +14,13 @@ class RestaurantsController < ApplicationController
       marker.json({ :id => restaurant.id })
       marker.json({ :intro => restaurant.intro })
       marker.json({ :photo => request.protocol + request.host_with_port + restaurant.photo.url })
+      marker.picture ({ #check assert pipeline
+                       #url: ActionController::Base.helpers.asset_path("/images/icons/ig_site.png"),
+                       #url: ActionController::Base.helpers.asset_path("ig_site.png"),
+                       url: ActionController::Base.helpers.asset_path("ig_site.svg"),
+                       width:  64,
+                       height:  64,
+                     })
     end
   end
 
