@@ -150,8 +150,8 @@
     handler.map.centerOn(marker);
 
     handler.getMap().setCenter(new google.maps.LatLng(userCurrentPos.lat, userCurrentPos.lng));
-    handler.getMap().setZoom(14);
-    //handler.getMap().setZoom(2);
+    //handler.getMap().setZoom(14);
+    handler.getMap().setZoom(2); //2018xxx
   }
 
   function displayGcpErrorMsg(err){
@@ -270,7 +270,7 @@
         console.log("--------------");
         console.log(userCurrentPos);
         //console.log(this);
-        document.getElementById("siteModalLongTitle").innerHTML += "<a href=/restaurants/"+this.id+">"+ this.title + "</a>";
+        document.getElementById("siteModalLongTitle").innerHTML = "<a href=/restaurants/"+this.id+">"+ this.title + "</a>";
         document.getElementById('siteModal-img').src = this.photo;
         document.getElementById('siteModal-content').innerHTML = this.intro;
         document.getElementById("siteModal-directionurl").href = getDirectionUrl(restaurantMap[this.id].latitude+','+restaurantMap[this.id].latitude);
