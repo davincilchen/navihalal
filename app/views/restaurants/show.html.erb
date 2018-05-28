@@ -1,20 +1,16 @@
 <br />
 <div class="rest-main row">
-  <div class="rest-img col-md-7">
-    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+  <div class="col-md-8">
 
-      <div class="carousel-inner" style="background-color: lightgray">
-        <div class="carousel-item active">
-          <%#= link_to event_path(feature) do%>
-            <%= image_tag @restaurant.photo.url, alt:@restaurant.name %>
-          <%# end %>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div id="carousel-img" class="carousel-item active">
+          <%= image_tag @restaurant.photo.url, alt:@restaurant.name, class:"img-fluid", style:'width:100%' %>
         </div>
         <% if !@meals.empty?%>
           <% @meals.each do |meal| %>
-            <div class="carousel-item text-center">
-              <%#= link_to event_path(feature) do%>
-                <%= image_tag meal.photo.url, alt:meal.name %>
-              <%# end %>
+            <div class="carousel-item">
+              <%= image_tag meal.photo.url, alt:meal.name %>
             </div>
           <% end %>
         <% end %>
@@ -32,95 +28,57 @@
     </div>
   </div>
 
-  <div class="rest-info col-md-5">
-    <div class="card card-inverse card-success">
-      <h4 class="card-title">Special title treatment</h4>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary text-right">Go somewhere</a>
+  <div class="col-md-4">
+    <div class="card text-success border-success" style="height: 100%">
+      <h3 class="card-header"><%= @restaurant.name %></h3>
+      <h5 class="card-title"><%= @restaurant.address %></h5>
+      <h5 class="card-text"><%= @restaurant.tel %></h5>
+      <p class="card-text">6 Favorites</p>
+      <p class="card-text">5 Check-ins</p>
+      <p class="card-text">6 Comments</p>
+      <p class="card-text">3 Muslim Tips</p>
+      <p class="card-text">2 Photos</p>
+      <a href="#" class="btn text-right"><i class="fas fa-camera-retro fa-3x text-success" ></i>
+      </a>
     </div>
   </div>
   
 </div>
-
 <br />
-
-<div class="blog-card">
-    <div class="photo photo1"></div>
-    <ul class="details">
-        <li class="author"><a href="#"><%= @restaurant.address %></a></li>
-        <li class="date"><%= @restaurant.tel %></li>
-        <li class="date"><%= @restaurant.open_hour %></li>
-        <li class="tags">
-            <ul>
-                <li><a href="#">Muslim Boss</a></li>
-                <li><a href="#">Sea Food</a></li>
-                <li><a href="#">Halal</a></li>
-            </ul>
-        </li>
-    </ul>
-    <div class="description">
-        <h1><%= @restaurant.name %></h1>
-        <h2>Opening a door to the future</h2>
-        <p class="summary"><%= @restaurant.intro %></p>
-        <a href="#">Take a picture</a>
+<div class="row text-success">
+  
+  <div class="col-md-5">
+    <div class="row">
+      <div class="col-auto mr-auto">Feed</div>
+      <div class="col-auto">(3<%#= @restaurant.comments.count %>)</div>
     </div>
+      <%# @restaurant.comments.each do |comment| %>
+        <%#= image_tag comment.user.url %>
+        <%#= comment.user.name %>
+        <%#= comment.content %>
+        <hr />
+      <%# end %>
+  </div>
+  <div class="col-md-5">
+    <div class="tips">
+      <p class="">Other Muslim Tips</p>
+        <%# @restaurant.hashtags do |tag| %>
+          <p class=""><%#=link_to tag.users.count  %>3 person says #sea_food<%#= tag.content %></p> 
+        <%# end %>
+    </div>
+    <hr />
+    <div class="meals">
+      <p class="">Other Muslim Meals</p>
+        <%# @restaurant.meals.each do |meal| %>
+          <p class=""><%#=link_to meal.users.count  %>12 person ordered egg roll<%#= meal.name %></p> 
+        <%# end %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <p class="btn btn-success">check in</p>
+    <p class="btn btn-success">Comment</p>
+  </div>
 </div>
-
-
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
-
-<p>
-  <strong>Intro:</strong>
-  <%= @restaurant.intro %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= image_tag @restaurant.photo.url, width: '600px' %>
-</p>
-
-<p>
-  <strong>Open hour:</strong>
-  <%= @restaurant.open_hour %>
-</p>
-
-<p>
-  <strong>Close hour:</strong>
-  <%= @restaurant.close_hour %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
-
-<p>
-  <strong>Tel:</strong>
-  <%= @restaurant.tel %>
-</p>
-
-<p>
-  <strong>Viewed count:</strong>
-  <%= @restaurant.viewed_count %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @restaurant.user_id %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @restaurant.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @restaurant.longitude %>
-</p>
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>
