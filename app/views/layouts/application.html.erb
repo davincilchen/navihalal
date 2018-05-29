@@ -26,13 +26,13 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </p>
-      <a class="navbar-brand text-success" href="<%= root_path %>">NaviHalal</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
-        <%= form.text_field :q, placeholder: "Search", data: { behavior: "autocomplete" }, class: "form-control" %>
-        <%= form.button "Search", class: "btn btn-outline-success" %>
+      <% if @page == "index" %>
+        <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
+          <%= form.text_field :q, placeholder: "Search", data: { behavior: "autocomplete" }, class: "form-control" %>
+          <%= form.button "Search", class: "btn btn-outline-success" %>
+        <% end %>
+      <% else %>
+        <a class="navbar-brand text-success" href="<%= root_path %>">NaviHalal</a>
       <% end %>
     </nav>
     <div class="sidebar collapse" id="collapseExample">
