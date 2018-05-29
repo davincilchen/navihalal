@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_142021) do
+ActiveRecord::Schema.define(version: 2018_05_29_080935) do
 
   create_table "collects", force: :cascade do |t|
     t.integer "restaurant_id"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(version: 2018_05_25_142021) do
     t.datetime "updated_at", null: false
     t.float "longitude"
     t.float "latitude"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name"
   end
 
   create_table "users", force: :cascade do |t|
