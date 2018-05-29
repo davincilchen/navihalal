@@ -86,8 +86,8 @@ class RestaurantsController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json {
-        @restaurants = @restaurants.limit(3)
-        @tags = @tags.limit(3)
+        @restaurants = @restaurants.limit(5)
+        @tags = @tags.limit(5)
       }
     end
   end
