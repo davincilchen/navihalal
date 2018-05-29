@@ -18,7 +18,7 @@
 }
 
 div.sidebar {
-    max-width: 30%;
+    max-width: 24%;
 }
 
 .sidebar {
@@ -29,6 +29,10 @@ div.sidebar {
         padding-bottom: 20px
     }
     .user-avatar {
+        a {
+            color: #E8AB0C;
+            text-decoration: none;
+        }
         .avatar-navi {
             float: left;
             width: 40%;
@@ -61,14 +65,24 @@ div.sidebar {
             padding-left: 0;
             li {
                 padding-bottom: 30px;
-                span {
-                    margin-right: 62px;
-                    i {
-                        width: 54px;
-                        vertical-align: middle;
+                a {
+                    color: #8CE4C4;
+                    text-decoration: none;
+                    span {
+                        margin-right: 62px;
+                        i {
+                            width: 54px;
+                            vertical-align: middle;
+                        }
                     }
                 }
             }
+        }
+    }
+    .user-control li {
+        padding: 0;
+        a {
+            padding: 0;
         }
     }
 }
