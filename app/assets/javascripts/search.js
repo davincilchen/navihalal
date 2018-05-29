@@ -10,6 +10,10 @@ document.addEventListener("turbolinks:load", function () {
       {
         listLocation: "restaurants",
         header: "<strong>Restaurants</strong>",
+      },
+      {
+        listLocation: "tags",
+        header: "<strong>Tags</strong>",
       }
     ],
     list: {
