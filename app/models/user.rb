@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   after_validation :default_photo
   
+  has_many :hashtags
+  has_many :tags, through: :hashtags
+  has_many :tag_restaurants, through: :hashtags, source: :restaurant
+
   def admin?
     self.role == "admin"
   end
