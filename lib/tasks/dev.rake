@@ -6,9 +6,15 @@ namespace :dev do
     Rake::Task['dev:fake_user'].execute
     # Rake::Task['dev:fake_friendship'].execute
     Rake::Task['dev:fake_restaurant'].execute
+    Rake::Task['dev:fake_tag'].execute
+    Rake::Task['dev:fake_hashtag'].execute
     # Rake::Task['dev:fake_comment'].execute
     # Rake::Task['dev:fake_collect'].execute
     # Rake::Task['dev:fake_sort'].execute
+  end
+
+  task fake_clean_user: :environment do
+    User.destroy_all
   end
 
   task fake_user: :environment do
@@ -50,6 +56,32 @@ namespace :dev do
     end
     puts 'have created fake restaurants'
     puts "now you have #{Restaurant.count} restaurants data"
+  end
+
+  task fake_tag: :environment do
+    Tag.destroy_all
+    Tag.create!( name: "清真")
+    Tag.create!( name: "穆斯林老闆")
+    Tag.create!( name: "海鮮")
+    Tag.create!( name: "素食")
+    puts 'have created fake tags'
+  end
+
+  task fake_hashtag: :environment do
+    Hashtag.destroy_all
+    count = 0
+    Tag.all.each do |tag|
+      x = rand 2..4
+      y = rand 1..5
+      User.all.sample(x).each do |user|
+        Restaurant.all.sample(y).each do |restaurant|
+          puts "#{user.name} tag #{tag.name} to #{restaurant.name}"
+          count+=1
+          tag.hashtags.create(user: user, restaurant: restaurant)
+        end
+      end
+    end
+    puts "have created #{count} fake hashtag relations"
   end
 
   task fake_sort: :environment do
