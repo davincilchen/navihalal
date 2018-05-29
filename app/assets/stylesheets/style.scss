@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
 }
 
-
+/* sidebar */
 .sidebar-button {
     margin: 0;
     button {
@@ -72,3 +72,17 @@ div.sidebar {
         }
     }
 }
+/* sidebar end */
+
+/* search */
+.form-inline {
+    margin-left: 20px;
+}
+input[type="text"] {
+    border-radius: 40px;
+}
+input[placeholder*=" "] {
+    color: #FF0013;
+    opacity: .8;
+}
+/* search end */
