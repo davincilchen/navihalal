@@ -77,6 +77,9 @@
   <div class="col-md-2">
     <p class="btn btn-success">check in</p>
     <p class="btn btn-success">Comment</p>
+    <br>
+    <p><%= link_to 'Collect', collect_restaurant_path(@restaurant), method: :post, class: "btn btn-warning" %></p>
+    <p><%= link_to 'UnCollect', uncollect_restaurant_path(@restaurant), method: :post, class: "btn btn-danger" %></p>
   </div>
 </div>
 
