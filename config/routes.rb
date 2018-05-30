@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'restaurants#index'
-  resources :restaurants
+  resources :restaurants do
+    member do
+      post :collect
+      post :uncollect
+    end
+  end
   get :search, controller: :restaurants
   resources :users do
     member do
