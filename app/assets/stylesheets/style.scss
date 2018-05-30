@@ -7,3 +7,96 @@
   background-position: center center;
   background-repeat: no-repeat;
 }
+
+/* sidebar */
+.sidebar-button {
+    margin: 0;
+    button {
+        background: transparent;
+        border: none;
+    }
+}
+
+div.sidebar {
+    max-width: 24%;
+}
+
+.sidebar {
+    position: absolute;
+    z-index: 10;
+    .user-profile {
+        border-bottom: 1px solid gray;
+        padding-bottom: 20px
+    }
+    .user-avatar {
+        a {
+            color: #E8AB0C;
+            text-decoration: none;
+        }
+        .avatar-navi {
+            float: left;
+            width: 40%;
+            margin-right: 0;
+        }
+        .user-name {
+            width: 60%;
+            margin-left: 40%;
+            padding: 3% 0 0 6%;
+            span {
+                float: right;
+                padding-top: 21%;
+            }
+            p {
+                font-size: 0.5em;
+            }
+            p:first-of-type {
+                margin-bottom: 0;
+                font-size: 1.2em;
+                font-weight: 700;
+                padding-left: 0;
+            }
+        }
+    }
+    .user-widgit, .user-control {
+        border-bottom: 1px solid gray;
+        ul {
+            list-style: none;
+            margin-top: 30px;
+            padding-left: 0;
+            li {
+                padding-bottom: 30px;
+                a {
+                    color: #8CE4C4;
+                    text-decoration: none;
+                    span {
+                        margin-right: 62px;
+                        i {
+                            width: 54px;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .user-control li {
+        padding: 0;
+        a {
+            padding: 0;
+        }
+    }
+}
+/* sidebar end */
+
+/* search */
+.form-inline, .navbar-brand {
+    margin-left: 20px;
+}
+input[type="text"] {
+    border-radius: 40px;
+}
+input[placeholder*=" "] {
+    color: #FF0013;
+    opacity: .8;
+}
+/* search end */
