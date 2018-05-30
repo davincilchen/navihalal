@@ -10,4 +10,6 @@ class Restaurant < ApplicationRecord
   has_many :hashtags, dependent: :destroy
   has_many :tags, through: :hashtags
   has_many :tag_users, through: :hashtags, source: :user
+
+
 end
