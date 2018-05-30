@@ -13,5 +13,6 @@ class Restaurant < ApplicationRecord
 
   has_many :collects, dependent: :destroy
   has_many :collected_users, through: :collects, source: :user
+  include RestaurantsHelper
 
 end
