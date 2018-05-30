@@ -4,9 +4,9 @@
 
 
 .restaurant-item {
-  border: 1px solid #ddd;
+  border: 2px solid #5cb85c;
   border-radius: 4px;
-  padding: 4px;
+  padding: 9px;
   margin-bottom: 20px;
   height: 360px;
 }
@@ -25,4 +25,9 @@
 
 .restaurant-item .caption {
   padding: 10px;
+}
+
+
+.restaurant-caption p{
+  //color: #5cb85c;
 }
