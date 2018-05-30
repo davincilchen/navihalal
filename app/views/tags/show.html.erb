@@ -1,6 +1,5 @@
-<br>
+
 <div class="container">
-  <h4><span class="badge badge-pill badge-success"><%=@tag.name%></span></h4>
   <br>
   <div class="row">
       <% @restaurants.each do |restaurant| %>
@@ -16,8 +15,13 @@
             <br>
             <br>
             <div class="restaurant-caption">
+              <h5>
+                <% restaurant.tags.each do |tag| %>
+                  <span class="badge badge-pill badge-success"><%=tag.name%></span>
+                <% end %>
+              </h5>
               <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-              <p><%= truncate(restaurant.intro, length: 140) %></p>
+              <p><%= truncate(restaurant.intro, length: 100) %></p>
             </div>
           </div>
         </div>
