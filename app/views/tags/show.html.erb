@@ -16,7 +16,7 @@
             <br>
             <div class="restaurant-caption">
               <h5>
-                <% restaurant.tags.each do |tag| %>
+                <% restaurant.tags.uniq.each do |tag| %>
                   <span class="badge badge-pill badge-success"><%=tag.name%></span>
                 <% end %>
               </h5>
