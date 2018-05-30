@@ -13,8 +13,14 @@ namespace :dev do
     # Rake::Task['dev:fake_sort'].execute
   end
 
-  task fake_clean_user: :environment do
+  task clean_user: :environment do
     User.destroy_all
+    puts "Clean all users"
+  end
+
+  task clean_restaurant: :environment do
+    Restaurant.destroy_all
+    puts "Clean all restaurants"
   end
 
   task fake_user: :environment do

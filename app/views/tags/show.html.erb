@@ -1,3 +1,30 @@
-<br>
-<h4><span class="badge badge-pill badge-success"><%=@tag.name%></span></h4>
 
+<div class="container">
+  <br>
+  <div class="row">
+      <% @restaurants.each do |restaurant| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="restaurant-item">
+            <div class="restaurant-image">
+              <% if restaurant.photo? %>
+                 <%= image_tag restaurant.photo.url, class: "img-responsive center-block" %>
+              <% else %>
+                 <span class="glyphicon glyphicon-picture"></span>
+              <% end %>
+            </div>
+            <br>
+            <br>
+            <div class="restaurant-caption">
+              <h5>
+                <% restaurant.tags.uniq.each do |tag| %>
+                  <span class="badge badge-pill badge-success"><%=tag.name%></span>
+                <% end %>
+              </h5>
+              <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+              <p><%= truncate(restaurant.intro, length: 100) %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
