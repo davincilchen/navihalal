@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :tags, through: :hashtags
   has_many :tag_restaurants, through: :hashtags, source: :restaurant
 
+  has_many :meals
+  has_many :user_meals, through: :meals, source: :restaurant
+  
   def admin?
     self.role == "admin"
   end
