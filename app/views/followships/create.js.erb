@@ -1,0 +1,2 @@
+<% html = j( render :partial => "shared/following", :locals => { :user => @user } ) %>
+$("#name-<%=@user.id%>").html("<%= html %>")
