@@ -36,8 +36,12 @@
       <p class="card-text">6 Favorites</p>
       <p class="card-text">5 Check-ins</p>
       <p class="card-text">6 Comments</p>
-      <p class="card-text">3 Muslim Tips</p>
       <p class="card-text">2 Photos</p>
+      <p class="card-text">Muslim Tips: 
+        <% @restaurant.tags.uniq.each do |tag| %> 
+          #<%= tag.name %>
+        <% end %>
+      </p>
       <a href="#" class="btn text-right"><i class="fas fa-camera-retro fa-3x text-success" ></i>
       </a>
     </div>
@@ -50,21 +54,28 @@
   <div class="col-md-5">
     <div class="row">
       <div class="col-auto mr-auto">Feed</div>
-      <div class="col-auto">(3<%#= @restaurant.comments.count %>)</div>
+      <div class="col-auto">(<%= @restaurant.hashtags.count %>)</div>
     </div>
-      <%# @restaurant.comments.each do |comment| %>
-        <%#= image_tag comment.user.url %>
-        <%#= comment.user.name %>
-        <%#= comment.content %>
+      <% @restaurant.hashtags.each do |hashtag| %>
         <hr />
-      <%# end %>
+        <div class="row">
+          <div class="col-md-3 text-right">
+            <%= image_tag hashtag.user.photo.url, width: "70px", class: "rounded" %>
+          </div>
+          <div class="col-md-9">
+            <h4><%=link_to hashtag.user.name, users_path(hashtag.user), class:"text-success" %></h4> 
+            <p>has tagged as #<%= hashtag.tag.name %></p>
+          </div>
+        </div>
+      <% end %>
   </div>
   <div class="col-md-5">
     <div class="tips">
       <p class="">Other Muslim Tips</p>
-        <%# @restaurant.hashtags do |tag| %>
-          <p class=""><%#=link_to tag.users.count  %>3 person says #sea_food<%#= tag.content %></p> 
-        <%# end %>
+        <% @restaurant.tags.uniq.each do |tag| %>
+        
+          <p class=""><%= @restaurant.hashtags.where(tag_id:tag).count %> person says <%= tag.name %></p> 
+        <% end %>
     </div>
     <hr />
     <div class="meals">
