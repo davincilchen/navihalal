@@ -63,14 +63,7 @@
             <%= image_tag hashtag.user.photo.url, width: "70px", class: "rounded" %>
           </div>
           <div class="col-md-9">
-            <h4><span><i class="fa fa-star fa-1x text-danger" ></i></span>
-              <%=link_to hashtag.user.name    , users_path(hashtag.user), class:"text-success" %>
-              <span><%= link_to followships_path(following_id: hashtag.user), method: :post do %>
-                <i class="fa fa-eye fa-1x text-success" ></i>
-                <span class="text-success">      ..<span>
-                <i class="fa fa-eye-slash fa-1x text-success" ></i>
-              <% end %></span>
-            </h4>
+            <%= render partial: "shared/following", locals: {user: hashtag.user}%>
             <p class="text-success">has tagged as #<%= hashtag.tag.name %></p>
           </div>
         </div>
