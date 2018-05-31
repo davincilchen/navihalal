@@ -86,3 +86,8 @@ gem 'gon'
 
 # gem for search
 gem 'ransack', '~> 1.8', '>= 1.8.8'
+
+# make notification of following user doing
+# and sort what the user do in restaurant
+gem 'public_activity'
+
