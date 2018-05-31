@@ -62,8 +62,8 @@
             <%= image_tag hashtag.user.photo.url, width: "70px", class: "rounded" %>
           </div>
           <div class="col-md-9">
-            <h4><%=link_to hashtag.user.name, users_path(hashtag.user), class:"text-success" %></h4> 
-            <p>has tagged as #<%= hashtag.tag.name %></p>
+            <%= render partial: "shared/following", locals: {user: hashtag.user}%>
+            <p class="text-success">has tagged as #<%= hashtag.tag.name %></p>
           </div>
         </div>
       <% end %>
@@ -86,6 +86,12 @@
   <div class="col-md-2">
     <p class="btn btn-success">check in</p>
     <p class="btn btn-success">Comment</p>
+    <br>
+    <% if @restaurant.is_collected?(current_user) %>
+      <p><%= link_to 'UnCollect', uncollect_restaurant_path(@restaurant), method: :post, class: "btn btn-outline-success" %></p>
+    <% else %>
+      <p><%= link_to 'Collect', collect_restaurant_path(@restaurant), method: :post, class: "btn btn-success" %></p>
+    <% end %>
   </div>
 </div>
 

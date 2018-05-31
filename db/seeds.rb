@@ -50,3 +50,13 @@ User.create(
   photo: File.new(Rails.root.join('app', 'assets', 'images', photo))
 )
 puts 'Default admin created!'
+
+
+
+
+Tag.destroy_all
+Tag.create!( name: "Halal")
+Tag.create!( name: "Muslim boss")
+Tag.create!( name: "Seafood")
+Tag.create!( name: "Vegan")
+puts "have created #{Tag.count} tags"

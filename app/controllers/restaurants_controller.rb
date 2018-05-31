@@ -1,11 +1,12 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search]
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :collect, :uncollect]
 
   # GET /restaurants
   # GET /restaurants.json
   def index
     @restaurants = Restaurant.all
+    @page = "index"
     @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
@@ -90,6 +91,17 @@ class RestaurantsController < ApplicationController
         @tags = @tags.limit(5)
       }
     end
+  end
+
+  def collect
+    @restaurant.collects.create!(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def uncollect
+    collects = Collect.where(restaurant: @restaurant, user: current_user)
+    collects.destroy_all
+    redirect_back(fallback_location: root_path)
   end
 
   private

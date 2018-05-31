@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     
@@ -20,34 +21,80 @@
   <body>
     <!-- 套用Bootstrap 4的navbar -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #77FFCC;">
-      <a class="navbar-brand text-success" href="<%= root_path %>">NaviHalal</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
-        <%= form.text_field :q, placeholder: "Search", data: { behavior: "autocomplete" }, class: "form-control" %>
-        <%= form.button "Search", class: "btn btn-outline-success" %>
+      <p class="sidebar-button">
+        <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </p>
+      <% if @page == "index" %>
+        <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
+          <%= form.text_field :q, placeholder: "🔍 Keyword eg: seafood", data: { behavior: "autocomplete" }, class: "form-control" %>
+        <% end %>
+      <% else %>
+        <a class="navbar-brand text-success" href="<%= root_path %>">NaviHalal</a>
       <% end %>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <% if current_user %>
-           <li><%= link_to '修改密碼', edit_user_registration_path, class: "nav-link" %></li>
-            <% if current_user.admin? %>
-              <li><%= link_to 'Admin', admin_users_path, class: "nav-link" %></li>
-            <% end %>
-            <li><%= link_to '登出', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
-            <%= link_to(user_path(current_user)) do %>
-              <div class="avatar-navi">
-                <%= image_tag current_user.photo.url, class: "img-fluid rounded", width: '50px' %>
-              </div>
-            <% end %>
-          <% else %>
-            <li><%= link_to '登入', new_user_session_path, class: "nav-link" %></li>
-          <% end %>
-        </ul>
-      </div>
     </nav>
+    <div class="sidebar collapse" id="collapseExample">
+      <div class="card card-body">
+        <% if current_user %>
+          <div class="user-profile">
+            <div class="user-avatar">
+              <%= link_to user_path(current_user) do %>
+                <div class="avatar-navi">
+                  <%= image_tag current_user.photo.url, class: "img-fluid rounded-circle" %>
+                </div>
+                <div class="user-name">
+                  <span><i class="fas fa-angle-right"></i></span>
+                  <p><%= current_user.name %></p>
+                  <p>Tap to view profile</p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="user-widgit">
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <%= link_to root_path do %>
+                  <span><i class="fas fa-user-friends"></i></span>Friends
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path do %>
+                  <span><i class="fas fa-heart"></i></span>Favorites
+                <% end %>
+              </li>
+              <li>
+                <%= link_to collection_user_path(current_user) do %>
+                  <span><i class="fas fa-truck-loading"></i></span>Collection
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path do %>
+                  <span><i class="fas fa-paper-plane"></i></span>Suggestion
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+          <div class="user-control">
+            <ul class="navbar-nav ml-auto">
+              <% if current_user %>
+                <li><%= link_to '修改密碼', edit_user_registration_path, class: "nav-link" %></li>
+                <% if current_user.admin? %>
+                  <li><%= link_to 'Admin', admin_users_path, class: "nav-link" %></li>
+                <% end %>
+                <li><%= link_to '登出', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+              <% else %>
+                <li>
+                  <%= link_to new_user_session_path do %>
+                    <span><i class="fas fa-sign-in-alt fa-3x"></i></span>登入
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+      </div>
+    </div>
 
     
 
