@@ -1,6 +1,10 @@
 //carousel#show weren't cropped
 @import 'tags';
 
+#dot{
+ color: #efefef;
+ }
+
 .carousel-item {
   border: 1px solid grey;
   max-height: 60vh;
