@@ -11,5 +11,8 @@ class Restaurant < ApplicationRecord
   has_many :tags, through: :hashtags
   has_many :tag_users, through: :hashtags, source: :user
 
+  has_many :collects, dependent: :destroy
+  has_many :collected_users, through: :collects, source: :user
+  include RestaurantsHelper
 
 end
