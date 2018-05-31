@@ -4,7 +4,7 @@ namespace :dev do
   task fake_all: :environment do
     # Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_user'].execute
-    # Rake::Task['dev:fake_friendship'].execute
+    Rake::Task['dev:fake_followship'].execute
     Rake::Task['dev:fake_restaurant'].execute
     Rake::Task['dev:fake_hashtag'].execute
     Rake::Task['dev:fake_meal'].execute
@@ -148,21 +148,20 @@ namespace :dev do
     puts "now you have #{Collect.count} collects data"
   end
 
-  # task fake_friendship: :environment do
-  #   User.all.each do |user|
-  #     rand_user = User.where.not(id: user).sample(5)
-  #     rand(5).times do |i|
-  #       user.friendships.create!(
-  #         user_id: user.id,
-  #         friend_id: rand_user[i].id,
-  #         accept: [true, false].sample
-  #       )
-  #     end
-  #   end
+  task fake_followship: :environment do
+    User.all.each do |user|
+      rand_user = User.where.not(id: user).sample(5)
+      rand(5).times do |i|
+        user.followships.create!(
+          user_id: user.id,
+          following_id: rand_user[i].id
+        )
+      end
+    end
 
-  #   puts 'have created fake friendship'
-  #   puts "now you have #{Friendship.count} friendships data"
-  # end
+    puts 'have created fake followship'
+    puts "now you have #{Followship.count} followships data"
+  end
 
   # task fake_p: :environment do
   #   uploaders = Restaurant.first(10).map(&:image)
