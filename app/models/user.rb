@@ -11,7 +11,14 @@ class User < ApplicationRecord
   has_many :tags, through: :hashtags
   has_many :tag_restaurants, through: :hashtags, source: :restaurant
 
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
+
   def admin?
     self.role == "admin"
+  end
+
+  def following?(user)
+    self.followings.include?(user)
   end
 end

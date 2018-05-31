@@ -63,8 +63,8 @@
             <%= image_tag hashtag.user.photo.url, width: "70px", class: "rounded" %>
           </div>
           <div class="col-md-9">
-            <h4><%=link_to hashtag.user.name, users_path(hashtag.user), class:"text-success" %></h4> 
-            <p>has tagged as #<%= hashtag.tag.name %></p>
+            <%= render partial: "shared/following", locals: {user: hashtag.user}%>
+            <p class="text-success">has tagged as #<%= hashtag.tag.name %></p>
           </div>
         </div>
       <% end %>
