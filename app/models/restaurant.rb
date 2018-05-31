@@ -6,7 +6,8 @@ class Restaurant < ApplicationRecord
 
   has_many :meals, dependent: :destroy
   accepts_nested_attributes_for :meals, :allow_destroy => true, :reject_if => :all_blankqui
-  
+  has_many :mealed_users, through: :meals, source: :user
+
   has_many :hashtags, dependent: :destroy
   has_many :tags, through: :hashtags
   has_many :tag_users, through: :hashtags, source: :user
