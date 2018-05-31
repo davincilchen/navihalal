@@ -10,7 +10,7 @@
         <% if !@meals.empty?%>
           <% @meals.each do |meal| %>
             <div class="carousel-item">
-              <%= image_tag meal.photo.url, alt:meal.name %>
+              <%= image_tag meal.photo.url, alt:meal.name, class:"img-fluid", style:'width:100%'  %>
             </div>
           <% end %>
         <% end %>
@@ -50,7 +50,6 @@
 </div>
 <br />
 <div class="row text-success">
-  
   <div class="col-md-5">
     <div class="row">
       <div class="col-auto mr-auto">Feed</div>
@@ -73,16 +72,15 @@
     <div class="tips">
       <p class="">Other Muslim Tips</p>
         <% @restaurant.tags.uniq.each do |tag| %>
-        
           <p class=""><%= @restaurant.hashtags.where(tag_id:tag).count %> person says <%= tag.name %></p> 
         <% end %>
     </div>
     <hr />
     <div class="meals">
       <p class="">Other Muslim Meals</p>
-        <%# @restaurant.meals.each do |meal| %>
-          <p class=""><%#=link_to meal.users.count  %>12 person ordered egg roll<%#= meal.name %></p> 
-        <%# end %>
+        <% @restaurant.meals.uniq.each do |meal| %>
+          <p class=""><%= @restaurant.meals.where(id: meal).count  %> person ordered <%= meal.name %></p> 
+        <% end %>
     </div>
   </div>
   <div class="col-md-2">
