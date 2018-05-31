@@ -67,6 +67,7 @@ gem 'devise'
 gem 'carrierwave'
 
 gem 'ffaker'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 gem 'kaminari'
 

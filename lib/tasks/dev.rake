@@ -8,6 +8,7 @@ namespace :dev do
     Rake::Task['dev:fake_restaurant'].execute
     Rake::Task['dev:fake_tag'].execute
     Rake::Task['dev:fake_hashtag'].execute
+    Rake::Task['dev:fake_meal'].execute
     # Rake::Task['dev:fake_comment'].execute
     # Rake::Task['dev:fake_collect'].execute
     # Rake::Task['dev:fake_sort'].execute
@@ -96,6 +97,25 @@ namespace :dev do
     end
     puts 'have created fake sorts'
     puts "now you have #{Sort.count} sorts data"
+  end
+
+  task fake_meal: :environment do
+    Meal.destroy_all
+    Restaurant.all.each do |restaurant|
+      rand(12).times do
+        file = File.new(Rails.root.join('app', 'assets', 'images', "meal_#{rand(81).to_s.rjust(3, '0')}.jpg"))
+        Meal.create!(
+          photo: file,
+          price: [60, 80, 100, 120 ,240 ,360].sample,
+          name: Faker::Food.dish,
+          sort: ["Exotic", "Thai", "Indian", "Chinese and Western", "sea food"].sample,
+          restaurant: restaurant,
+          user: User.all.sample
+        )
+      end
+    end
+    puts 'have created fake meals'
+    puts "now you have #{Meal.count} meals data"
   end
 
   task fake_comment: :environment do
