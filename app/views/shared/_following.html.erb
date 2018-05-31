@@ -8,7 +8,7 @@
     <%=link_to user.name    , users_path(user), class:"text-success" %>
     <span>
       <% if current_user.following?(user) %>
-        <%= link_to followships_path(following_id: user), method: :delete do %>
+        <%= link_to followship_path(user), method: :delete do %>
           <span class="text-success">      ..<span>
           <i class="fa fa-eye-slash fa-1x text-success" ></i>
         <% end %>

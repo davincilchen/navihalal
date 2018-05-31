@@ -10,4 +10,11 @@ def create
       redirect_back(fallback_location: root_path)
     end
   end
+
+   def destroy
+    @followship = current_user.followships.where(following_id: params[:id]).first
+    @followship.destroy
+    #flash[:alert] = "Followship destroyed"
+    redirect_back(fallback_location: root_path)
+  end
 end
