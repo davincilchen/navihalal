@@ -14,9 +14,7 @@ class RestaurantsController < ApplicationController
       marker.infowindow restaurant.name
       marker.json({ :id => restaurant.id })
       marker.json({ :intro => restaurant.intro })
-      marker.json({ open_hour: restaurant.open_hour.strftime("%H:%M")})
-      marker.json({ close_hour: restaurant.close_hour.strftime("%H:%M")})
-      marker.json({ rest_day: restaurant.rest_day})
+      marker.json({ business_hour: restaurant.business_hour})
       marker.json({ :photo => request.protocol + request.host_with_port + restaurant.photo.url })
       marker.picture ({ #check assert pipeline
                        #url: ActionController::Base.helpers.asset_path("/images/icons/ig_site.png"),
@@ -105,6 +103,11 @@ class RestaurantsController < ApplicationController
     collects = Collect.where(restaurant: @restaurant, user: current_user)
     collects.destroy_all
     redirect_back(fallback_location: root_path)
+  end
+
+  def import
+    Restaurant.import(params[:file])
+    redirect_to restaurants_path, notice: "Restaurant Added Successfully."
   end
 
   private
