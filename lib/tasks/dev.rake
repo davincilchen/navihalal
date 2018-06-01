@@ -56,8 +56,9 @@ namespace :dev do
         address: FFaker::Address.street_address,
         intro: FFaker::Lorem.sentence,
         user_id: User.all.sample.id,
-        open_hour: ['06:00' '10:00' '16:00' '22:00'].sample,
-        close_hour: ['11:00' '15:00' '21:00' '03:00'].sample
+        open_hour: ['06:00', '10:00', '16:00', '22:00'].sample,
+        close_hour: ['11:00', '15:00', '21:00', '03:00'].sample,
+        rest_day: ['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat'].sample
       )
     end
     puts 'have created fake restaurants'

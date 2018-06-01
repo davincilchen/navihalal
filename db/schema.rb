@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_135441) do
+ActiveRecord::Schema.define(version: 2018_06_01_091307) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 2018_05_31_135441) do
     t.string "name"
     t.text "intro"
     t.string "photo"
-    t.date "open_hour"
-    t.date "close_hour"
+    t.time "open_hour"
+    t.time "close_hour"
     t.string "address"
     t.string "tel"
     t.integer "viewed_count"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_135441) do
     t.datetime "updated_at", null: false
     t.float "longitude"
     t.float "latitude"
+    t.string "rest_day"
   end
 
   create_table "tags", force: :cascade do |t|

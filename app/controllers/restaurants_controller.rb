@@ -14,6 +14,9 @@ class RestaurantsController < ApplicationController
       marker.infowindow restaurant.name
       marker.json({ :id => restaurant.id })
       marker.json({ :intro => restaurant.intro })
+      marker.json({ open_hour: restaurant.open_hour.strftime("%H:%M")})
+      marker.json({ close_hour: restaurant.close_hour.strftime("%H:%M")})
+      marker.json({ rest_day: restaurant.rest_day})
       marker.json({ :photo => request.protocol + request.host_with_port + restaurant.photo.url })
       marker.picture ({ #check assert pipeline
                        #url: ActionController::Base.helpers.asset_path("/images/icons/ig_site.png"),

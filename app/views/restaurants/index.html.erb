@@ -63,9 +63,9 @@
           <!-- <img id="siteModal-img" alt="Site Photo" width="600" height="600" class="border rounded"> -->
           <img id="siteModal-img" alt="Site Photo" width="420" class="border rounded">
         </div>
+        <div id="siteModal-availableTime" style="font-size: 10px;" class="text-left"></div>
         <div id="siteModal-content" style="font-size: 18px;" class="text-center"></div>
         <div id="siteModal-disdur" style="font-size: 18px;" class="text-center"></div>
-        <div id="siteModal-availableTime" style="font-size: 18px;" class="text-center"></div>
       </div>
       <div class="modal-footer">
         <a id="siteModal-directionurl" href="" target="_blank" class="btn btn-success" role="button" aria-disabled="true">導航</a>
@@ -216,6 +216,9 @@
     Gmaps.store.markers = markers.map(function(m) {
       marker = handler.addMarker(m);
       marker.serviceObject.set('id', m.id);
+      marker.serviceObject.set('open_hour', m.open_hour)
+      marker.serviceObject.set('close_hour', m.close_hour)
+      marker.serviceObject.set('rest_day', m.rest_day)
       marker.serviceObject.set('intro', m.intro);
       marker.serviceObject.set('photo', m.photo);
       marker.serviceObject.set('infowindow', m.infowindow);
@@ -272,6 +275,7 @@
         document.getElementById("siteModalLongTitle").innerHTML = "<a href=/restaurants/"+this.id+">"+ this.title + "</a>";
         document.getElementById('siteModal-img').src = this.photo;
         document.getElementById('siteModal-content').innerHTML = this.intro;
+        document.getElementById('siteModal-availableTime').innerHTML = "Open at: " + this.open_hour + ", Close at: " + this.close_hour + ', Rest in: ' + this.rest_day;
         document.getElementById("siteModal-directionurl").href = getDirectionUrl(restaurantMap[this.id].latitude+','+restaurantMap[this.id].latitude);
         $('#siteModalCenter').modal();
 
