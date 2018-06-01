@@ -59,7 +59,7 @@ Tag.create!( name: "Vegan")
 puts "have created #{Tag.count} tags"
 
 # add halal restaurant by csv
-# Restaurant.destroy_all
+Restaurant.destroy_all
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'halal_restaurant.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
@@ -74,5 +74,5 @@ end
 
 puts "There are now #{Restaurant.count} rows in the restaurants table"
 
-# 自動運行geocoder 將地址轉換成經緯度 間隔1秒、查詢10筆、上限100筆
-# Rake::Task['geocode:all CLASS=Restaurant'].execute
+# 自動運行geocoder 將地址轉換成經緯度 間隔1秒、查詢10筆、上限100筆(目前不能跑 測試中)
+# Rake::Task['geocode:all CLASS=Restaurant SLEEP=1 BATCH=10 LIMIT=100'].execute
