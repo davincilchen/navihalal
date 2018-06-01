@@ -15,7 +15,7 @@
             <br>
             <br>
             <div class="restaurant-caption">
-              <h5>
+              <h5 class="tag-link">
                 <% restaurant.tags.uniq.each do |tag| %>
                   <%= link_to(tag) do %>
                     <span class="badge badge-pill badge-success"><%=tag.name%></span>
