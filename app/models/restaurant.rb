@@ -1,7 +1,4 @@
 class Restaurant < ApplicationRecord
-  include PublicActivity::Model
-  tracked
-  
   mount_uploader :photo, PhotoUploader
   geocoded_by :address        #從address欄位取出地址
   after_validation :geocode   #將取出的地址自動轉為經緯度分別存在 latitude、longitude 欄位
@@ -19,4 +16,9 @@ class Restaurant < ApplicationRecord
   has_many :collected_users, through: :collects, source: :user
   include RestaurantsHelper
 
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      Restaurant.create! row.to_hash
+    end
+  end
 end
