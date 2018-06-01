@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_01_091307) do
+ActiveRecord::Schema.define(version: 2018_06_01_144714) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2018_06_01_091307) do
     t.float "longitude"
     t.float "latitude"
     t.string "rest_day"
+    t.string "business_hour"
   end
 
   create_table "tags", force: :cascade do |t|
