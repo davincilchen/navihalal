@@ -4,12 +4,12 @@ namespace :dev do
   task fake_all: :environment do
     # Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_user'].execute
-    # Rake::Task['dev:fake_friendship'].execute
+    Rake::Task['dev:fake_followship'].execute
     Rake::Task['dev:fake_restaurant'].execute
     Rake::Task['dev:fake_hashtag'].execute
     Rake::Task['dev:fake_meal'].execute
     # Rake::Task['dev:fake_comment'].execute
-    # Rake::Task['dev:fake_collect'].execute
+    Rake::Task['dev:fake_collect'].execute
     # Rake::Task['dev:fake_sort'].execute
   end
 
@@ -56,8 +56,9 @@ namespace :dev do
         address: FFaker::Address.street_address,
         intro: FFaker::Lorem.sentence,
         user_id: User.all.sample.id,
-        open_hour: ['06:00' '10:00' '16:00' '22:00'].sample,
-        close_hour: ['11:00' '15:00' '21:00' '03:00'].sample
+        open_hour: ['06:00', '10:00', '16:00', '22:00'].sample,
+        close_hour: ['11:00', '15:00', '21:00', '03:00'].sample,
+        rest_day: ['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat'].sample
       )
     end
     puts 'have created fake restaurants'
@@ -82,19 +83,19 @@ namespace :dev do
     puts "have created #{count} fake hashtag relations"
   end
 
-  task fake_sort: :environment do
-    Sort.destroy_all
-    Post.all.each do |post|
-      categories = Category.all.sample(2)
-      rand(2).times do |i|
-        post.sorts.create!(
-          category_id: categories[i].id
-        )
-      end
-    end
-    puts 'have created fake sorts'
-    puts "now you have #{Sort.count} sorts data"
-  end
+  # task fake_sort: :environment do
+  #   Sort.destroy_all
+  #   restaurant.all.each do |restaurant|
+  #     categories = Category.all.sample(2)
+  #     rand(2).times do |i|
+  #       restaurant.sorts.create!(
+  #         category_id: categories[i].id
+  #       )
+  #     end
+  #   end
+  #   puts 'have created fake sorts'
+  #   puts "now you have #{Sort.count} sorts data"
+  # end
 
   task fake_meal: :environment do
     Meal.destroy_all
@@ -115,20 +116,20 @@ namespace :dev do
     puts "now you have #{Meal.count} meals data"
   end
 
-  task fake_comment: :environment do
-    Comment.destroy_all
-    Post.all.each do |post|
-      rand(6).times do
-        Comment.create!(
-          post: post,
-          content: FFaker::Lorem.paragraph,
-          user: User.all.sample
-        )
-      end
-    end
-    puts 'have created fake comments'
-    puts "now you have #{Comment.count} comments data"
-  end
+  # task fake_comment: :environment do
+  #   Comment.destroy_all
+  #   restaurant.all.each do |restaurant|
+  #     rand(6).times do
+  #       Comment.create!(
+  #         restaurant: restaurant,
+  #         content: FFaker::Lorem.paragraph,
+  #         user: User.all.sample
+  #       )
+  #     end
+  #   end
+  #   puts 'have created fake comments'
+  #   puts "now you have #{Comment.count} comments data"
+  # end
 
   task fake_collect: :environment do
     Collect.destroy_all
@@ -136,32 +137,31 @@ namespace :dev do
       rand(10).times do
         user.collects.create!(
           user_id: user.id,
-          post_id: Post.all.sample.id
+          restaurant_id: Restaurant.all.sample.id
         )
       end
     end
-    # Post.all.each do |post|
-    #   post.collects_count = Collect.where(post_id: post.id).count
-    #   post.save
+    # restaurant.all.each do |restaurant|
+    #   restaurant.collects_count = Collect.where(restaurant_id: restaurant.id).count
+    #   restaurant.save
     # end
     puts 'have created fake collects'
     puts "now you have #{Collect.count} collects data"
   end
 
-  task fake_friendship: :environment do
+  task fake_followship: :environment do
     User.all.each do |user|
       rand_user = User.where.not(id: user).sample(5)
       rand(5).times do |i|
-        user.friendships.create!(
+        user.followships.create!(
           user_id: user.id,
-          friend_id: rand_user[i].id,
-          accept: [true, false].sample
+          following_id: rand_user[i].id
         )
       end
     end
 
-    puts 'have created fake friendship'
-    puts "now you have #{Friendship.count} friendships data"
+    puts 'have created fake followship'
+    puts "now you have #{Followship.count} followships data"
   end
 
   # task fake_p: :environment do

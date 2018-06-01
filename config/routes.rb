@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'restaurants#index'
   resources :restaurants do
+    collection do
+      post :import
+    end
     member do
       post :collect
       post :uncollect
@@ -13,6 +16,7 @@ Rails.application.routes.draw do
       get :collection
     end
   end
+  resources :activities
   resources :tags, only: [:show]
   resources :followships, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

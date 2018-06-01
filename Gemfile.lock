@@ -170,6 +170,11 @@ GEM
     polyamorous (1.3.3)
       activerecord (>= 3.0)
     popper_js (1.12.9)
+    public_activity (1.5.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.5)
@@ -293,6 +298,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
+  public_activity
   puma (~> 3.11)
   rails (~> 5.2.0)
   ransack (~> 1.8, >= 1.8.8)
