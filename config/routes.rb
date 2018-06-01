@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'restaurants#index'
   resources :restaurants do
+    collection do
+      post :import
+    end
     member do
       post :collect
       post :uncollect
