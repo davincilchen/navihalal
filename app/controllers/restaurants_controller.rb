@@ -45,6 +45,12 @@ class RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    params[:restaurant][:tag_ids].each do |tag|
+      if !tag.empty?
+        @restaurant.hashtags.build(:tag_id => tag, :user_id => current_user.id)
+      end
+    end
+    @restaurant.user_id = current_user.id
 
     respond_to do |format|
       if @restaurant.save
@@ -60,6 +66,20 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
+    hashtags = @restaurant.hashtags.pluck(:tag_id).map! { |i| i.to_s}.insert(0, "")
+    form_hashtags = params[:restaurant][:tag_ids]
+    unless hashtags == form_hashtags
+      eliminate = hashtags - form_hashtags
+      eliminate.each do |el|
+        hashtag = @restaurant.hashtags.where(tag_id: el)
+        hashtag.destroy_all
+      end
+      add = form_hashtags - hashtags
+      add.each do |ad|
+        @restaurant.hashtags.build(:tag_id => ad, :user_id => current_user.id)
+      end
+    end
+    
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
