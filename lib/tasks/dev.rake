@@ -5,7 +5,7 @@ namespace :dev do
     # Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_user'].execute
     Rake::Task['dev:fake_followship'].execute
-    Rake::Task['dev:fake_restaurant'].execute
+    # Rake::Task['dev:fake_restaurant'].execute
     Rake::Task['dev:fake_hashtag'].execute
     Rake::Task['dev:fake_meal'].execute
     # Rake::Task['dev:fake_comment'].execute
