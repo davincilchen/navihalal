@@ -1,6 +1,6 @@
 <%= form_with(model: restaurant, local: true) do |form| %>
   <% if restaurant.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="form-inline">
       <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
 
       <ul>
@@ -11,63 +11,67 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-inline row">
+    <%= form.label :name, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, require: true, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :intro %>
-    <%= form.text_area :intro %>
+  <div class="form-inline row">
+    <%= form.label :address, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :address, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :photo, "Photo" %>
-    <%= image_tag @restaurant.photo.url, width: '300px' if @restaurant.photo? %>
-    <%= form.file_field :photo %>
+  <div class="form-inline row">
+    <div class="form-check form-check-inline">
+      Halal Tips:
+      <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name, {}, {multiple: true, class: "form-check-input"} do |check| %>
+        <%= check.label(class: "form-check-label") { check.check_box(class: "form-check-input") + check.text} %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :open_hour %>
-    <%= form.date_select :open_hour %>
+  <div class="form-inline row">
+    <%= form.label :intro, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_area :intro, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :close_hour %>
-    <%= form.date_select :close_hour %>
+  <div class="form-inline row">
+    <%= form.label :photo, "Photo", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= image_tag @restaurant.photo.url, width: '300px' if @restaurant.photo? %>
+      <br>
+      <%= form.file_field :photo, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+  <div class="form-inline row">
+    <%= form.label :open_hour, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.time_select :open_hour, {minute_step: 15, prompt: {hour: 'Choose hour', minute: 'Choose minute'}}, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :tel %>
-    <%= form.text_field :tel %>
+  <div class="form-inline row">
+    <%= form.label :close_hour, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.time_select :close_hour, {minute_step: 15, prompt: {hour: 'Choose hour', minute: 'Choose minute'}}, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :viewed_count %>
-    <%= form.number_field :viewed_count %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :latitude %>
-    <%= form.number_field :latitude %>
-  </div>
-
-  <div class="field">
-    <%= form.label :longitude %>
-    <%= form.number_field :longitude %>
+  <div class="form-inline row">
+    <%= form.label :tel, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :tel, class: "form-control" %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-outline-success" %>
   </div>
 <% end %>
