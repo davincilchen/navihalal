@@ -29,13 +29,6 @@
       </div>
 
       <div class="form-group row">
-        <%= form.label :address, class: "col-sm-2 col-form-label" %>
-        <div class="col-sm-10">
-          <%= form.text_field :address, class: "form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group row">
         <div class="col-sm-2">Halal Tips</div>
         <div class="col-sm-10">
           <div class="form-check">
@@ -83,6 +76,22 @@
         </div>
       </div>
 
+      <div id="to-show" style="display:none;">
+        <div class="form-group row">
+          <%= form.label :latitude, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+              <%= form.text_field :latitude, class: "form-control", id: "latitude" %>
+            </div>
+        </div>
+      
+        <div class="form-group row">
+          <%= form.label :longitude, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+              <%= form.text_field :longitude, class: "form-control", id: "longitude" %>
+            </div>
+        </div>
+      </div>
+
       <div class="actions">
         <%= form.submit class: "btn btn-outline-success" %>
       </div>
@@ -92,3 +101,78 @@
     <p>尚未建置</p>
   </div>
 </div>
+
+<script type='text/javascript'>
+/* 取得座標 */
+  var userCurrentPos = {
+    lat: 0.0,
+    lng: 0.0
+  };
+
+  var ha_options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  var la_options = {
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  function setCurrentPos(pos) {
+    userCurrentPos = {
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude
+    };
+  }
+
+  function hasUserCurrentPos() {
+    if (userCurrentPos.lat != 0.0 && userCurrentPos.lng != 0.0) {
+      return true;
+    }
+    return false;
+  }
+
+  function displayGcpErrorMsg(err) {
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+  }
+
+  function geo_success(pos) {
+    setCurrentPos(pos);
+  };
+
+  function getUserCurrentPosition() {
+    function error(err) {
+      displayGcpErrorMsg(err);
+    };
+
+    function geo_error(err) {
+      displayGcpErrorMsg(err);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(geo_success, error, la_options);
+      }
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(geo_success, geo_error, ha_options);
+    }
+  };
+  /* end */
+
+  $(function() {
+    do {
+      getUserCurrentPosition();
+      console.log(userCurrentPos);
+    } while (userCurrentPos.lat != 0 || userCurrentPos.lng != 0);
+    setTimeout(function() {
+      $('#latitude').val(userCurrentPos.lat);
+      $('#longitude').val(userCurrentPos.lng);
+      console.log(userCurrentPos);
+      $('.loader').css("display", "none");
+      $('#address').attr("placeholder", "We get your position and you can pass this")
+      return userCurrentPos;
+    }, 3000);
+  });
+</script>
