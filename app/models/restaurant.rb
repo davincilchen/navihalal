@@ -1,4 +1,7 @@
 class Restaurant < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
+
   mount_uploader :photo, PhotoUploader
   validates_uniqueness_of :name, :scope => :address
   geocoded_by :address        #從address欄位取出地址
