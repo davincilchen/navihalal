@@ -1,0 +1,6 @@
+collected the
+<% if activity.trackable %>
+  <%= link_to activity.trackable.restaurant.name, activity.trackable.restaurant %>
+<% else %>
+  restaurant has been removed.
+<% end %>

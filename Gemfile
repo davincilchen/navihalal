@@ -98,7 +98,7 @@ gem 'ransack', '~> 1.8', '>= 1.8.8'
 
 # make notification of following user doing
 # and sort what the user do in restaurant
-gem 'public_activity'
+gem 'public_activity', :git => "git://github.com/chaps-io/public_activity.git", :branch => "1-6-stable"
 
 gem 'omniauth-facebook'
 
