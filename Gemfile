@@ -100,3 +100,5 @@ gem 'ransack', '~> 1.8', '>= 1.8.8'
 # and sort what the user do in restaurant
 gem 'public_activity'
 
+gem 'omniauth-facebook'
+
