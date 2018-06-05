@@ -3,8 +3,9 @@
   <div class="form-row">
     <div class="col">
       <%= render 'form', restaurant: @restaurant %>
-      <hr>
-      <%= link_to 'Back', @restaurant, class:"btn btn-outline-success" %>
+      <div class="form-back">
+        <%= link_to 'Back', @restaurant, class:"btn btn-outline-success" %>
+      </div>
     </div>
   </div>
 </div>
