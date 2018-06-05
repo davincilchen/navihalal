@@ -242,7 +242,7 @@
         document.getElementById('siteModal-img').src = this.photo;
         document.getElementById('siteModal-content').innerHTML = this.intro;
         document.getElementById('siteModal-availableTime').innerHTML = "Business Hour: " + this.business_hour;
-        document.getElementById("siteModal-directionurl").href = getDirectionUrl(restaurantMap[this.id].latitude+','+restaurantMap[this.id].latitude);
+        document.getElementById("siteModal-directionurl").href = getDirectionUrl(restaurantMap[this.id].latitude+','+restaurantMap[this.id].longitude);
         $('#siteModalCenter').modal();
 
       });
