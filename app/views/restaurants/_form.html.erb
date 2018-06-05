@@ -76,16 +76,25 @@
         </div>
       </div>
 
-      <div class="form-group row">
-        <%= form.label :address, class: "col-sm-2 col-form-label" %>
-        <div class="col-sm-10">
-          <%= form.text_field :address, class: "form-control", id: "address" %>
-          <div class="loader">
-            <div class="loader-circle"></div>
-            <p>Getting Your Position...</p>
+      <% if @restaurant.address.present? %>
+        <div class="form-group row">
+          <%= form.label :address, class: "col-sm-2 col-form-label" %>
+          <div class="col-sm-10">
+            <%= form.text_field :address, class: "form-control", id: "address" %>
           </div>
         </div>
-      </div>
+      <% else %>
+        <div class="form-group row">
+          <%= form.label :raw_address, 'Address', class: "col-sm-2 col-form-label" %>
+          <div class="col-sm-10">
+            <%= form.text_field :raw_address, class: "form-control", id: "address" %>
+            <div class="loader">
+              <div class="loader-circle"></div>
+              <p>Getting Your Position...</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
       <div id="to-show" style="display:none;">
         <div class="form-group row">
@@ -171,6 +180,34 @@
     }
   };
   /* end */
+  
+  /* Automatically get user's lat and lng. Otherwise, getting address from lat and lng. */
+
+  var userLatLng = '';
+  var jsonAddress = '';
+  var locationAddress = $('#address').val();
+
+  function getUserAddress(userLatLng) {
+    $.ajax({
+      url: 'https://maps.googleapis.com/maps/api/geocode/json',
+      type: 'GET',
+      data: {
+        'latlng': userLatLng,
+        'key': 'AIzaSyCqt15ZiOseuuxQWksRFRCZuDnOOKCvzcY',
+        'language': 'en'
+      },
+      dataType: 'json',
+      success: function (result) {
+        jsonAddress = result.results[0].formatted_address;
+        console.log('success', result);
+      },
+      error: function (err) {
+        jsonAddress = null;
+        console.log('error', err);
+      }
+    });
+    ;
+  };
 
   $(function() {
     do {
@@ -181,9 +218,15 @@
       $('#latitude').val(userCurrentPos.lat);
       $('#longitude').val(userCurrentPos.lng);
       console.log(userCurrentPos);
-      $('.loader').css("display", "none");
-      $('#address').attr("placeholder", "We get your position and you can pass this")
-      return userCurrentPos;
+      userLatLng = userCurrentPos.lat + ',' + userCurrentPos.lng;
+      getUserAddress(userLatLng);
     }, 3000);
+    setTimeout(function() {
+      $('.loader').css("display", "none");
+      if (locationAddress == "") {
+        $('#address').val(jsonAddress);
+      };
+    }, 8000);
   });
+  /* end */
 </script>
