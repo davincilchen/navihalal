@@ -2,7 +2,23 @@ class Restaurant < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   validates_uniqueness_of :name, :scope => :address
   geocoded_by :address        #從address欄位取出地址
-  after_validation :geocode   #將取出的地址自動轉為經緯度分別存在 latitude、longitude 欄位
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  #將取出的地址自動轉為經緯度分別存在 latitude、longitude 欄位
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode, unless: ->(obj) { obj.address.present? },
+                   if: ->(obj){ obj.latitude.present? and obj.latitude_changed? and obj.longitude.present? and obj.longitude_changed? }
+
+  attr_accessor :raw_address
+
+  geocoded_by :raw_address
+  after_validation -> {
+    self.address = self.raw_address
+    geocode
+  }, if: ->(obj){ obj.raw_address.present? and obj.raw_address != obj.address }
+
+  after_validation :reverse_geocode, unless: ->(obj) { obj.raw_address.present? },
+                  if: ->(obj){ obj.latitude.present? and obj.latitude_changed? and obj.longitude.present? and obj.longitude_changed? }
+                    
   after_validation :default_photo
 
   has_many :meals, dependent: :destroy
