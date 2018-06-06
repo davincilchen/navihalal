@@ -1,4 +1,7 @@
 class Restaurant < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  
   mount_uploader :photo, PhotoUploader
   validates_uniqueness_of :name, :scope => :address
   validates :name, :address, :tel, presence: true
