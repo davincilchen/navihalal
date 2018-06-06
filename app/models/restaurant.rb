@@ -1,6 +1,7 @@
 class Restaurant < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   validates_uniqueness_of :name, :scope => :address
+  validates :name, :address, :tel, presence: true
   geocoded_by :address        #從address欄位取出地址
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
   #將取出的地址自動轉為經緯度分別存在 latitude、longitude 欄位
