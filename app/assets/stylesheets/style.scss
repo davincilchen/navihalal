@@ -154,4 +154,8 @@ input[placeholder*=" "] {
 .nav-tabs {
     border-bottom: none;
 }
+label.required:after {
+    content: "*";
+    color: red;
+}
 /* end */
