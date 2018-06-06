@@ -29,6 +29,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    #Tag.first.hashtags.create(user: current_user, restaurant: @restaurant) #fake
     @meals = @restaurant.meals
   end
 
