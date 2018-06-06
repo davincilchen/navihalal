@@ -77,25 +77,18 @@
         </div>
       </div>
 
-      <% if @restaurant.address.present? %>
-        <div class="form-group row">
-          <%= form.label :address, class: "col-sm-2 col-form-label" %>
-          <div class="col-sm-10">
-            <%= form.text_field :address, class: "form-control", id: "address" %>
-          </div>
-        </div>
-      <% else %>
-        <div class="form-group row">
-          <%= form.label :raw_address, 'Address', class: "col-sm-2 col-form-label" %>
-          <div class="col-sm-10">
-            <%= form.text_field :raw_address, class: "form-control", id: "address" %>
+      <div class="form-group row">
+        <%= form.label :address, 'Address', class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-10">
+          <%= form.text_field :address, class: "form-control", id: "address" %>
+          <% unless @restaurant.address.present? %>
             <div class="loader">
               <div class="loader-circle"></div>
               <p>Getting Your Position...</p>
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
 
       <div id="to-show" style="display:none;">
         <div class="form-group row">
@@ -207,7 +200,6 @@
         console.log('error', err);
       }
     });
-    ;
   };
 
   $(function() {
