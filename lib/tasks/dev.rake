@@ -27,11 +27,12 @@ namespace :dev do
     num = [*0..72].sample(30)
     30.times do |i|
       avatar = "pic1_#{num[i].to_s.rjust(3, '0')}.jpg"
+      userID = i+3
       User.create!(
-        id: i + 3,
+        id: userID,
         name: FFaker::Name.first_name,
         photo: File.new(Rails.root.join('app', 'assets', 'images', avatar)),
-        email: FFaker::Internet.email,
+        email: "#{userID}"+"@halal.com",
         intro: FFaker::Lorem.paragraph,
         password: '123123',
         role: 'normal',
