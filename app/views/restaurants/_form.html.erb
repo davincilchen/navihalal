@@ -226,6 +226,9 @@
       $('.loader').css("display", "none");
       if (locationAddress == "") {
         $('#address').val(jsonAddress);
+        if (userLatLng == '0,0') {
+          $('#address').attr("placeholder", "Position cannot be traced, place input address.")
+        };
       };
     }, 8000);
   });
