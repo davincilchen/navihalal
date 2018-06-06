@@ -1,6 +1,11 @@
-<h1>Editing Restaurant</h1>
-
-<%= render 'form', restaurant: @restaurant %>
-
-<%= link_to 'Show', @restaurant %> |
-<%= link_to 'Back', restaurants_path %>
+<div class="container">
+  <h1>Editing Location</h1>
+  <div class="form-row">
+    <div class="col">
+      <%= render 'form', restaurant: @restaurant %>
+      <div class="form-back">
+        <%= link_to 'Back', @restaurant, class:"btn btn-outline-success" %>
+      </div>
+    </div>
+  </div>
+</div>

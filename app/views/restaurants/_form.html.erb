@@ -1,73 +1,232 @@
-<%= form_with(model: restaurant, local: true) do |form| %>
-  <% if restaurant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Restaurant</a>
+  </li>
+  <!-- Waiting for Prayer Room
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Prayer Room</a>
+  </li>
+  -->
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <%= form_with(model: restaurant, local: true) do |form| %>
+      <% if restaurant.errors.any? %>
+        <div id="error_explanation" class="form-inline alert alert-danger">
+          <h2 class="alert-heading">There is some errors.</h2>
+          <h4 class="alert-heading"><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h4>
 
-      <ul>
-      <% restaurant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% restaurant.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+      <div class="form-group row">
+        <%= form.label :name, class: "col-sm-2 col-form-label required" %>
+        <div class="col-sm-10">
+          <%= form.text_field :name, require: true, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :intro %>
-    <%= form.text_area :intro %>
-  </div>
+      <div class="form-group row">
+        <div class="col-sm-2">Halal Tips</div>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name, {}, {multiple: true, class: "form-check-input"} do |check| %>
+              <%= check.label(class: "form-check-label") { check.check_box(class: "form-check-input") + check.text} %> <br>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :photo, "Photo" %>
-    <%= image_tag @restaurant.photo.url, width: '300px' if @restaurant.photo? %>
-    <%= form.file_field :photo %>
-  </div>
+      <div class="form-group row">
+        <%= form.label :intro, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-10">
+          <%= form.text_area :intro, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :open_hour %>
-    <%= form.date_select :open_hour %>
-  </div>
+      <div class="form-group row">
+        <%= form.label :photo, "Photo", class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-10">
+          <%= image_tag @restaurant.photo.url, width: '300px' if @restaurant.photo? %>
+          <br>
+          <%= form.file_field :photo, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :close_hour %>
-    <%= form.date_select :close_hour %>
-  </div>
+      <div class="form-group row">
+        <%= form.label :open_hour, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-10">
+          <%= form.time_select :open_hour, {minute_step: 15, prompt: {hour: 'Choose hour', minute: 'Choose minute'}}, class: "form-control", style: "display: inline; width:30%;" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+      <div class="form-group row">
+        <%= form.label :close_hour, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-10">
+          <%= form.time_select :close_hour, {minute_step: 15, prompt: {hour: 'Choose hour', minute: 'Choose minute'}}, class: "form-control", style: "display: inline; width:30%;" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :tel %>
-    <%= form.text_field :tel %>
-  </div>
+      <div class="form-group row">
+        <%= form.label :tel, class: "col-sm-2 col-form-label required" %>
+        <div class="col-sm-10">
+          <%= form.text_field :tel, class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :viewed_count %>
-    <%= form.number_field :viewed_count %>
-  </div>
+      <div class="form-group row">
+        <%= form.label :address, 'Address', class: "col-sm-2 col-form-label required" %>
+        <div class="col-sm-10">
+          <%= form.text_field :address, class: "form-control", id: "address" %>
+          <% unless @restaurant.address.present? %>
+            <div class="loader">
+              <div class="loader-circle"></div>
+              <p>Getting Your Position...</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
+      <div id="to-show" style="display:none;">
+        <div class="form-group row">
+          <%= form.label :latitude, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+              <%= form.text_field :latitude, class: "form-control", id: "latitude" %>
+            </div>
+        </div>
+      
+        <div class="form-group row">
+          <%= form.label :longitude, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+              <%= form.text_field :longitude, class: "form-control", id: "longitude" %>
+            </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :latitude %>
-    <%= form.number_field :latitude %>
+      <div class="actions">
+        <%= form.submit class: "btn btn-outline-success" %>
+      </div>
+    <% end %>
   </div>
+  <!-- Waiting for Prayer Room
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <p>尚未建置</p>
+  </div>
+  -->
+</div>
 
-  <div class="field">
-    <%= form.label :longitude %>
-    <%= form.number_field :longitude %>
-  </div>
+<script type='text/javascript'>
+/* 取得座標 */
+  var userCurrentPos = {
+    lat: 0.0,
+    lng: 0.0
+  };
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+  var ha_options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  var la_options = {
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  function setCurrentPos(pos) {
+    userCurrentPos = {
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude
+    };
+  }
+
+  function hasUserCurrentPos() {
+    if (userCurrentPos.lat != 0.0 && userCurrentPos.lng != 0.0) {
+      return true;
+    }
+    return false;
+  }
+
+  function displayGcpErrorMsg(err) {
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+  }
+
+  function geo_success(pos) {
+    setCurrentPos(pos);
+  };
+
+  function getUserCurrentPosition() {
+    function error(err) {
+      displayGcpErrorMsg(err);
+    };
+
+    function geo_error(err) {
+      displayGcpErrorMsg(err);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(geo_success, error, la_options);
+      }
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(geo_success, geo_error, ha_options);
+    }
+  };
+  /* end */
+  
+  /* Automatically get user's lat and lng. Otherwise, getting address from lat and lng. */
+
+  var userLatLng = '';
+  var jsonAddress = '';
+  var locationAddress = $('#address').val();
+
+  function getUserAddress(userLatLng) {
+    $.ajax({
+      url: 'https://maps.googleapis.com/maps/api/geocode/json',
+      type: 'GET',
+      data: {
+        'latlng': userLatLng,
+        'key': 'AIzaSyCqt15ZiOseuuxQWksRFRCZuDnOOKCvzcY',
+        'language': 'en'
+      },
+      dataType: 'json',
+      success: function (result) {
+        jsonAddress = result.results[0].formatted_address;
+        console.log('success', result);
+      },
+      error: function (err) {
+        jsonAddress = null;
+        console.log('error', err);
+      }
+    });
+  };
+
+  $(function() {
+    do {
+      getUserCurrentPosition();
+      console.log(userCurrentPos);
+    } while (userCurrentPos.lat != 0 || userCurrentPos.lng != 0);
+    setTimeout(function() {
+      $('#latitude').val(userCurrentPos.lat);
+      $('#longitude').val(userCurrentPos.lng);
+      console.log(userCurrentPos);
+      userLatLng = userCurrentPos.lat + ',' + userCurrentPos.lng;
+      getUserAddress(userLatLng);
+    }, 3000);
+    setTimeout(function() {
+      $('.loader').css("display", "none");
+      if (locationAddress == "") {
+        $('#address').val(jsonAddress);
+        if (userLatLng == '0,0') {
+          $('#address').attr("placeholder", "Position cannot be traced, place input address.")
+        };
+      };
+    }, 8000);
+  });
+  /* end */
+</script>
