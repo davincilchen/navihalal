@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root 'users#index'
+    resources :tags
     resources :restaurants
     resources :users
   end
