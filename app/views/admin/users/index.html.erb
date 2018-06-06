@@ -1,0 +1,49 @@
+<h1>NaviHalel後台</h1>
+
+<div>
+  <%= link_to 'Restaurants', admin_restaurants_path %>
+  |
+  <%= link_to 'Users', admin_users_path %>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>photo</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <%= link_to user_path(user) do %>
+              <td><%= user.name %></td>
+              <td>
+                <%= link_to(user_path(user)) do %>
+                  <div class="avatar-navi">
+                    <%= image_tag user.photo.url, class: "img-fluid rounded" %>
+                  </div>
+                <% end %>
+              </td>
+              <td><%= user.email %></td>
+            <% end %>
+              <td><%= form_for [:admin, user] do |f| %>
+                <%= f.select(:role, [['Admin', 'admin'], ['Normal', 'normal']], {prompt: true}) %>
+                <%= f.submit %>
+              <% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <!-- <div class="text-center">
+      <%#= paginate @users %>
+    </div> -->
+  </div>
+</div>
