@@ -1,6 +1,6 @@
 class Restaurant < ApplicationRecord
-  include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller &&controller.current_user }
+  #include PublicActivity::Model
+  #tracked only: :create, owner: Proc.new{ |controller, model| controller &&controller.current_user }
   #tracked owner: ->(controller, model) { controller && controller.current_user }
 
   mount_uploader :photo, PhotoUploader
