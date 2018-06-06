@@ -77,6 +77,18 @@
   $ rails db:migrate
 ```
 
+安裝內建的餐廳資料，與預設的使用者帳號。
+帳 123@123.123 密 123123
+
+```
+  $ rails db:seed
+```
+
+將餐廳的經緯度訊息補滿。
+
+```
+  $ rails geocode:all CLASS=Restaurant SLEEP=3 BATCH=10 LIMIT=100
+```
 <h2 id="B">B. Setting</h2>
 <h3 id="B.1">B.1 devise.rb</h3>
 
