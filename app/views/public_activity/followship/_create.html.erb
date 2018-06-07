@@ -1,0 +1,6 @@
+<% if activity.trackable %>
+  follow
+  <%= link_to activity.trackable.following.name, activity.trackable.following%>
+<% else %>
+   removed the followship.
+<% end %>

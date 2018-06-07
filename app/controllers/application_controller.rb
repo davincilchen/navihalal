@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController
 
   # enter admin should has role = admin
   def authenticate_admin

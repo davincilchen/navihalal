@@ -1,23 +1,25 @@
+<div id="name-<%=user.id%>">
 <h4>
   <% if user == current_user %>
-    <%=link_to user.name    , users_path(user), class:"text-success" %>
+    <%=link_to user.name  , user_path(user), class:"text-success" %>
   <% else %>
     <% if current_user.following?(user) %>
       <span><i class="fa fa-star fa-1x text-danger" ></i></span>
     <% end %>
-    <%=link_to user.name    , users_path(user), class:"text-success" %>
+    <%=link_to user.name  , user_path(user), class:"text-success" %>
     <span>
       <% if current_user.following?(user) %>
-        <span id="dot">.........<span>
-        <%= link_to followship_path(user), method: :delete do %>
+        <span id="dot">.........</span>
+        <%= link_to followship_path(user), remote: true, method: :delete do %>
           <i class="fa fa-eye-slash fa-1x text-success" ></i>
         <% end %>
       <% else %>
-        <span id="dot">.........<span>
-        <%= link_to followships_path(following_id: user), method: :post do %>
+        <span id="dot">.........</span>
+        <%= link_to followships_path(following_id: user), remote: true, method: :post do %>
           <i class="fa fa-eye fa-1x text-success" ></i>
         <% end %>
       <% end %>
     </span>
   <% end %>
 </h4>
+</div>

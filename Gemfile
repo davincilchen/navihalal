@@ -42,12 +42,21 @@ group :development, :test do
 end
 
 group :development do
+  # for deploy to GCP
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
+  
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+  # gem "pg"
+  gem 'mysql2', '< 0.5'
 end
 
 group :test do
@@ -89,5 +98,7 @@ gem 'ransack', '~> 1.8', '>= 1.8.8'
 
 # make notification of following user doing
 # and sort what the user do in restaurant
-gem 'public_activity'
+gem 'public_activity', :git => "git://github.com/chaps-io/public_activity.git", :branch => "1-6-stable"
+
+gem 'omniauth-facebook'
 

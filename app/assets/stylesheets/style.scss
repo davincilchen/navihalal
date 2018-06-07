@@ -1,8 +1,9 @@
 //carousel#show weren't cropped
 @import 'tags';
+@import 'devise';
 
 #dot{
- color: #efefef;
+ color: white;
  }
 
 .carousel-item {
@@ -135,3 +136,55 @@ input[placeholder*=" "] {
     opacity: .8;
 }
 /* search end */
+
+/* loading animation on form */
+.loader {
+	padding-top: 15px;
+	.loader-circle {
+		display: inline-block;
+		border: 10px solid #f3f3f3;
+		border-radius: 50%;
+		border-top: 10px solid #77FFCC;
+		width: 60px;
+		height: 60px;
+		-webkit-animation: spin 2s linear infinite; /* Safari */
+		animation: spin 2s linear infinite;
+	}
+	p {
+		color: #E0E0E0;
+		vertical-align: text-bottom;
+		display: inline-block;
+	}
+
+	/* Safari */
+	@-webkit-keyframes spin {
+		0% { -webkit-transform: rotate(0deg); }
+		100% { -webkit-transform: rotate(360deg); }
+	}
+
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
+	}
+}
+/* end */
+
+/* form */
+#myTabContent {
+    padding: 30px;
+    border: 1px solid #DEE2E6;
+    border-bottom: none;
+}
+.form-back {
+    border: 1px solid #DEE2E6;
+    padding: 0 0 15px 30px;
+    border-top: none;
+}
+.nav-tabs {
+    border-bottom: none;
+}
+label.required:after {
+    content: "*";
+    color: red;
+}
+/* end */

@@ -5,7 +5,7 @@ namespace :dev do
     # Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_user'].execute
     Rake::Task['dev:fake_followship'].execute
-    Rake::Task['dev:fake_restaurant'].execute
+    # Rake::Task['dev:fake_restaurant'].execute
     Rake::Task['dev:fake_hashtag'].execute
     Rake::Task['dev:fake_meal'].execute
     # Rake::Task['dev:fake_comment'].execute
@@ -27,11 +27,12 @@ namespace :dev do
     num = [*0..72].sample(30)
     30.times do |i|
       avatar = "pic1_#{num[i].to_s.rjust(3, '0')}.jpg"
+      userID = i+3
       User.create!(
-        id: i + 3,
+        id: userID,
         name: FFaker::Name.first_name,
         photo: File.new(Rails.root.join('app', 'assets', 'images', avatar)),
-        email: FFaker::Internet.email,
+        email: "#{userID}"+"@halal.com",
         intro: FFaker::Lorem.paragraph,
         password: '123123',
         role: 'normal',
