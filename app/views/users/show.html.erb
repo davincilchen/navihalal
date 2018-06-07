@@ -30,7 +30,10 @@
             Profile
           </li>
           <li class="list-group-item list-group-item-action">
-            <%= link_to "My Collection", collection_user_path(@user) %>
+            <%= link_to "Collection", collection_user_path(@user) %>
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <%= link_to "Followings", followings_user_path(@user) %>
           </li>
         </ul>
       </div>
