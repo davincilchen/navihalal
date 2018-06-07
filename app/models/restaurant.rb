@@ -5,6 +5,8 @@ class Restaurant < ApplicationRecord
   after_validation :geocode   #將取出的地址自動轉為經緯度分別存在 latitude、longitude 欄位
   after_validation :default_photo
 
+  belongs_to :user
+
   has_many :meals, dependent: :destroy
   accepts_nested_attributes_for :meals, :allow_destroy => true, :reject_if => :all_blankqui
   has_many :mealed_users, through: :meals, source: :user
