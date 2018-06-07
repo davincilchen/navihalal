@@ -31,6 +31,8 @@ class RestaurantsController < ApplicationController
   def show
     #Tag.first.hashtags.create(user: current_user, restaurant: @restaurant) #fake
     @meals = @restaurant.meals
+    # @activities = PublicActivity::Activity.all.order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User")
+    
   end
 
   # GET /restaurants/new
