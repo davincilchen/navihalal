@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def collection
+    @user = User.find(params[:id])
     @restaurants = current_user.collected_restaurants
   end
   

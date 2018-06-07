@@ -1,32 +1,75 @@
-<div class="container">
-  <br>
-  <div class="row">
-      <% @restaurants.each do |restaurant| %>
-        <div class="col-sm-6 col-md-4">
-          <div class="restaurant-item">
-            <div class="restaurant-image">
-              <% if restaurant.photo? %>
-                 <%= image_tag restaurant.photo.url, class: "img-responsive center-block" %>
-              <% else %>
-                 <span class="glyphicon glyphicon-picture"></span>
-              <% end %>
-            </div>
-            <br>
-            <br>
-            <div class="restaurant-caption">
-              <h5>
-                <span><%= link_to 'UnCollect', uncollect_restaurant_path(restaurant), method: :post, class: "btn btn-outline-success btn-sm" %></span>
-                <% restaurant.tags.uniq.each do |tag| %>
-                  <%= link_to(tag) do %>
-                    <span class="badge badge-pill badge-success"><%=tag.name%></span>
-                  <% end %>
-                <% end %>
-              </h5>
-              <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-              <p><%= truncate(restaurant.intro, length: 100) %></p>
-            </div>
-          </div>
+<div class="user-background">
+  <div class="container user-page">
+    <div class="row">
+      <div class="col-md-3">
+        <%= image_tag @user.photo.url, class: "img-fluid rounded"%>
+      </div>
+      <div class="col-md-6 row">
+        <div class="col-md-12">
+          <h2><%= @user.name %></h2>
+          <p class="intro"><%= @user.intro %></p>
+          <p class="residence">
+            <i class="fas fa-flag"></i>
+            <%= @user.residence %>, <span><%= @user.country %></span>
+          </p>
         </div>
-      <% end %>
+      </div>
+      <div class="col-md-3 user-contact">
+        <% if @user == current_user %>
+          <%= link_to "Update Profile", edit_user_path(@user), class: "btn btn-outline-success btn-sm" %>
+        <% else %>
+          <%= render partial: "shared/following", locals: {user: @user}%>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action">
+            <%= link_to 'Profile', user_path(@user) %>
+          </li>
+          <li class="list-group-item list-group-item-action list-group-item-success">
+            My Collection
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 user-content">
+        <h3>Your collection</h3>
+        <div class="row">
+          <% @restaurants.each do |restaurant| %>
+            <div class="col-12">
+              <div class="restaurant-item">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="restaurant-image">
+                      <% if restaurant.photo? %>
+                        <%= image_tag restaurant.photo.url, class: "img-responsive center-block" %>
+                      <% else %>
+                        <span class="glyphicon glyphicon-picture"></span>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="restaurant-caption">
+                      <h5>
+                        <span><%= link_to 'UnCollect', uncollect_restaurant_path(restaurant), method: :post, class: "btn btn-outline-success btn-sm" %></span>
+                        <% restaurant.tags.uniq.each do |tag| %>
+                          <%= link_to(tag) do %>
+                            <span class="badge badge-pill badge-success"><%=tag.name%></span>
+                          <% end %>
+                        <% end %>
+                      </h5>
+                      <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+                      <p><%= truncate(restaurant.intro, length: 100) %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

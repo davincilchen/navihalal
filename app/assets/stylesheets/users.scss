@@ -20,8 +20,13 @@
     }
     .user-content {
       h3 {color: #0CC;}
+      .restaurant-item {
+        height: auto;
+        border: none;
+        border-top: 2px solid #5cb85c;
+      }
     }
   }
 }
 
-.user-background {background: linear-gradient(to bottom, #FFFAFA 59%, #FFF 41%);}
+.user-background {background: linear-gradient(to bottom, #FFFAFA 50vh, #FFF 100%);}
