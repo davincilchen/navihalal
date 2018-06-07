@@ -2,9 +2,14 @@
 @import 'tags';
 @import 'devise';
 
+
 #dot{
  color: white;
- }
+}
+
+#notification-icon{
+  border: none;
+}
 
 .carousel-item {
   border: 1px solid grey;
