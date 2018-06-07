@@ -8,5 +8,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @restaurants = current_user.collected_restaurants
   end
+
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings
+  end
   
 end

@@ -1,0 +1,72 @@
+<div class="user-background">
+  <div class="container user-page">
+    <div class="row">
+      <div class="col-md-3">
+        <%= image_tag @user.photo.url, class: "img-fluid rounded"%>
+      </div>
+      <div class="col-md-6 row">
+        <div class="col-md-12">
+          <h2><%= @user.name %></h2>
+          <p class="intro"><%= @user.intro %></p>
+          <p class="residence">
+            <i class="fas fa-flag"></i>
+            <%= @user.residence %>, <span><%= @user.country %></span>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 user-contact">
+        <% if @user == current_user %>
+          <%= link_to "Update Profile", edit_user_path(@user), class: "btn btn-outline-success btn-sm" %>
+        <% else %>
+          <%= render partial: "shared/following", locals: {user: @user}%>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action">
+            <%= link_to 'Profile', user_path(@user) %>
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <%= link_to "Collection", collection_user_path(@user) %>
+          </li>
+          <li class="list-group-item list-group-item-action list-group-item-success">
+            Followings
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 user-content">
+        <h3>Your followings</h3>
+        <div class="row">
+          <% @followings.each do |following| %>
+            <div class="col-12">
+              <div class="restaurant-item">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="restaurant-image">
+                      <% if following.photo? %>
+                        <%= image_tag following.photo.url, class: "img-responsive center-block" %>
+                      <% else %>
+                        <span class="glyphicon glyphicon-picture"></span>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="restaurant-caption">
+                      <h5>
+                        <%= render partial: "shared/following", locals: {user: following}%>
+                      </h5>
+                      <p><%= truncate(following.intro, length: 100) %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
