@@ -1,3 +1,43 @@
-<p>This is user show</p>
-
-<%= link_to "Collection", collection_user_path %>
+<div class="user-background">
+  <div class="container user-page">
+    <div class="row">
+      <div class="col-md-3">
+        <%= image_tag @user.photo.url, class: "img-fluid rounded"%>
+      </div>
+      <div class="col-md-6 row">
+        <div class="col-md-12">
+          <h2><%= @user.name %></h2>
+          <p class="intro"><%= @user.intro %></p>
+          <p class="residence">
+            <i class="fas fa-flag"></i>
+            <%= @user.residence %>, <span><%= @user.country %></span>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 user-contact">
+        <% if @user == current_user %>
+          <%= link_to "Update Your Profile", edit_user_path(@user), class: "btn btn-outline-success btn-sm" %>
+        <% else %>
+          <%= render partial: "shared/following", locals: {user: @user}%>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action list-group-item-success">
+            Profile
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <%= link_to "My Collection", collection_user_path(@user) %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 user-content">
+        <h3>Recent Activity</h3>
+        <p>We don't have any recent activity for you right now.</p>
+      </div>
+    </div>
+  </div>
+</div>

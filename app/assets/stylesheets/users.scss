@@ -1,3 +1,27 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-page {
+  padding: 0 10vh;
+  .row {
+    padding-top: 3vh;
+    .intro {
+      margin: 0 auto;
+      width: fit-content;
+      margin-left: 0;
+      border: 2px solid #48FF89;
+    }
+    .residence {
+      margin: 4vh 0 0 0;
+      width: fit-content;
+      box-shadow: 2px 5px 10px #C0C0C0;
+      border-radius: 10px;
+      i {color: #E8A90F;}
+    }
+    .user-contact {
+      border-left: 1px solid #DEE2E6;
+    }
+    .user-content {
+      h3 {color: #0CC;}
+    }
+  }
+}
+
+.user-background {background: linear-gradient(to bottom, #FFFAFA 59%, #FFF 41%);}
