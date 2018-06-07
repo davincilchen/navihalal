@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-3 user-contact">
         <% if @user == current_user %>
-          <%= link_to "Update Your Profile", edit_user_path(@user), class: "btn btn-outline-success btn-sm" %>
+          <%= link_to "Update Profile", edit_user_path(@user), class: "btn btn-outline-success btn-sm" %>
         <% else %>
           <%= render partial: "shared/following", locals: {user: @user}%>
         <% end %>
