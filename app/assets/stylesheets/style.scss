@@ -135,7 +135,24 @@ input[placeholder*=" "] {
     color: #FF0013;
     opacity: .8;
 }
+.navi-search {
+    position: fixed;
+    left: 5%;
+    width: fit-content;
+}
 /* search end */
+
+/* Navi Logo */
+@media screen and (min-width: 960px) {
+    .navi-logo {
+        margin: 0 auto;
+        position: fixed;
+        left: 35%;
+        width: fit-content;
+        right: 35%;
+    }
+}
+/* end */
 
 /* loading animation on form */
 .loader {
