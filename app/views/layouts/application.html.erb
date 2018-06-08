@@ -147,18 +147,17 @@
     <div class="sidebar-right collapse" id="activitiy-sidebar">
       <div class="card card-body">
         <% if current_user %>
-          <div class="container">
-            <div class="row">
-              <div class="container-fluid">
+          <div class="xdrop-content">            
+
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right ml-auto">
                   
                     
                   <!-- end notify title -->
                   <!-- notify content -->
-                  <div class="xdrop-content">
+                  <div class="activity-content">
                     <% @activities.each do |activity| %>
                       <div class="activity-info">
                         <% if activity.trackable %>
@@ -211,15 +210,13 @@
                     </li>
                   </div>
                   <div class="notify-drop-footer text-center">
-                    <a href=""><i class="fa fa-eye"></i> all</a>
+                    <a href=""><i class="fa fa-eye"></i>  more</a>
                   </div>
                     
-                  
+
                 </ul>
-                
-              </div><!-- /.container-fluid -->
-              
-            </div>
+
+                          
           </div>
         <% end %>
       </div>
