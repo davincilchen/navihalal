@@ -48,34 +48,11 @@
           </span>
         </button>
       <% end %>
-      
-
-      
-      <!-- Create an icon wrapped by the fa-stack class -->
-      <span class="fa-stack">
-          <!-- The icon that will wrap the number -->
-          <span class="fa fa-bell fa-stack-2x text-success" style="font-size:250%;"></span>
-          <!-- a strong element with the custom content, in this case a number -->
-          <strong class="fa-stack-1x text-danger" style="font-size:80%;">
-              25%
-          </strong>
-      </span>
-
-      <span class="fa-stack">
-          <!-- The icon that will wrap the number -->
-          <span class="fa fa-bell fa-stack-2x text-success" style="font-size:250%;"></span>
-          <!-- a strong element with the custom content, in this case a number -->
-          <span class="fa fa-circle fa-stack-1x"></span>
-          <strong class="fa-layers-counter fa-stack-1x text-danger" style="font-size:80%;">
-              1,419
-          </strong>
-      </span>
-
-  
+    </nav>    
 
 
-      <!--  ============================================= -->
-    </nav>
+    <!--  ============================================= -->
+    
     <div class="sidebar collapse" id="collapseExample">
       <div class="card card-body">
         <% if current_user %>
@@ -162,53 +139,28 @@
                       <div class="activity-info">
                         <% if activity.trackable %>
                           <li>
-                            <div class="col-md-3 col-sm-3 col-xs-3">
+                            <div class="acitivy-event">
                               <div class="activity-owner-img">
+                                <%= link_to user_path(activity.owner) do %>
                                 <%= image_tag activity.owner.photo.url, class: "img-fluid rounded-circle" %>
+                                <% end %>
                               </div>
-                            </div>
-                            <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">  
-                              <div>
-                              <%= link_to activity.owner.name, activity.owner if activity.owner %>
-                              <%= render_activity activity %>
-                              </div>
-                            </div>
                             
+                              <div class="activity-text">  
+                              
+                                <%= link_to activity.owner.name, activity.owner if activity.owner %>
+                                <%= render_activity activity %>
+                              
+                              </div>
+                            </div>
                         </li>
+                        <hr>
                         <% end %>
                       </div> 
                     <% end %>
-
-                    <li>
-                      <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                      <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> tag <a href="">restaurant...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                      
-                      <hr>
-                      <p class="time">second</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                      <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> tag <a href="">restaurant...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                      <p>Lorem ipsum sit dolor amet consilium.</p>
-                      <p class="time">1 Saat once</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                      <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> tag <a href="">restaurant...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                      <p>Lorem ipsum sit dolor amet consilium.</p>
-                      <p class="time">29 Dakika once</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-                      <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> tag <a href="">restaurant...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-                      <p>Lorem ipsum sit dolor amet consilium.</p>
-                      <p class="time">13:18</p>
-                      </div>
-                    </li>
                   </div>
+
+                  
                   <div class="notify-drop-footer text-center">
                     <a href=""><i class="fa fa-eye"></i>  more</a>
                   </div>
