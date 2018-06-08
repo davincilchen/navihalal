@@ -26,6 +26,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </p>
+      <ul class="navbar-nav mr-auto">
       <% if @page == "index" %>
         <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
           <%= form.text_field :q, placeholder: "🔍 Keyword eg: seafood", data: { behavior: "autocomplete" }, class: "form-control" %>
@@ -33,8 +34,11 @@
       <% else %>
         <a class="navbar-brand text-success" href="<%= root_path %>">NaviHalal</a>
       <% end %>
+      </ul>
 
       <!--  ============================================= -->
+      
+        
       <% if current_user %>
         <button type="button" id="notification-icon" data-toggle="collapse" data-target="#activitiy-sidebar" aria-expanded="false" aria-controls="activitiy-sidebar" style="background-color: #77FFCC;" >
           <span class="fa-stack"> <!-- ok part -->
@@ -48,6 +52,8 @@
           </span>
         </button>
       <% end %>
+
+
     </nav>    
 
 
