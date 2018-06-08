@@ -3,7 +3,7 @@
 
 <% @activities.each do |activity| %>
 <%#= activity.inspect %>
-  <div class="activity">
+  <div class="activity-info">
     <% if activity.trackable %>
       <%= link_to activity.owner.name, activity.owner if activity.owner %>
       <%= render_activity activity %>
