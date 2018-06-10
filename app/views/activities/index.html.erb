@@ -4,7 +4,9 @@
 <% @activities.each do |activity| %>
 <%#= activity.inspect %>
   <div class="activity">
-    <%= link_to activity.owner.name, activity.owner if activity.owner %>
-    <%= render_activity activity %>
+    <% if activity.trackable %>
+      <%= link_to activity.owner.name, activity.owner if activity.owner %>
+      <%= render_activity activity %>
+    <% end %>
   </div> 
 <% end %>

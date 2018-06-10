@@ -6,7 +6,6 @@ class RestaurantsController < ApplicationController
   # GET /restaurants.json
   def index
     @restaurants = Restaurant.all
-    @page = "index"
     @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
@@ -29,6 +28,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    #Tag.first.hashtags.create(user: current_user, restaurant: @restaurant) #fake
     @meals = @restaurant.meals
   end
 
@@ -45,6 +45,12 @@ class RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    params[:restaurant][:tag_ids].each do |tag|
+      if !tag.empty?
+        @restaurant.hashtags.build(:tag_id => tag, :user_id => current_user.id)
+      end
+    end
+    @restaurant.user_id = current_user.id
 
     respond_to do |format|
       if @restaurant.save
@@ -60,6 +66,20 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
+    hashtags = @restaurant.hashtags.pluck(:tag_id).map! { |i| i.to_s}.insert(0, "")
+    form_hashtags = params[:restaurant][:tag_ids]
+    unless hashtags == form_hashtags
+      eliminate = hashtags - form_hashtags
+      eliminate.each do |el|
+        hashtag = @restaurant.hashtags.where(tag_id: el)
+        hashtag.destroy_all
+      end
+      add = form_hashtags - hashtags
+      add.each do |ad|
+        @restaurant.hashtags.build(:tag_id => ad, :user_id => current_user.id)
+      end
+    end
+    
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
@@ -84,12 +104,14 @@ class RestaurantsController < ApplicationController
   def search
     @restaurants = Restaurant.ransack(name_cont: params[:q]).result(distinct: true)
     @tags = Tag.ransack(name_cont: params[:q]).result(distinct: true)
+    @users = User.ransack(name_cont: params[:q]).result(distinct: true)
 
     respond_to do |format|
       format.html {}
       format.json {
         @restaurants = @restaurants.limit(5)
         @tags = @tags.limit(5)
+        @users = @users.limit(5)
       }
     end
   end
@@ -118,6 +140,6 @@ class RestaurantsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def restaurant_params
-    params.require(:restaurant).permit(:name, :intro, :photo, :open_hour, :close_hour, :address, :tel, :viewed_count, :user_id, :latitude, :longitube)
+    params.require(:restaurant).permit(:name, :intro, :photo, :open_hour, :close_hour, :address, :tel, :viewed_count, :user_id, :latitude, :longitude)
   end
 end
