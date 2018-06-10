@@ -175,11 +175,23 @@ input[placeholder*=" "] {
             &:hover {background-color: #B1DFBB;}
         }
         .tab-content {
-            width: 55vw;
+            width: 58vw;
             padding-left: 4vw;
             .row {
                 border-top: 2px solid #5cb85c;
                 img {max-width: 10vw;}
+                .search-follow {
+                    display: inline;
+                    .search-follow-child {
+                        display: inline;
+                        a {
+                            padding: 0.25rem 0.5rem;
+                            font-size: 0.875rem;
+                            line-height: 1.5;
+                            border-radius: 0.2rem;
+                        }
+                    }
+                }
                 .intro {
                     padding: 0 1vw;
                     margin: 0 auto;
@@ -196,7 +208,10 @@ input[placeholder*=" "] {
                     i {color: #E8A90F;}
                 }
             }
-            span {padding: 0 1vw;}
+            span {
+                padding: 0 1vw;
+                a {float: right;}
+            }
             .re-tel {margin-left: 5vw;}
             .search-link {
                 color: #70D941;
