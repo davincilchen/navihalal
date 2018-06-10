@@ -2,9 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   root 'restaurants#index'
   resources :restaurants do
-    collection do
-      post :import
-    end
     member do
       post :collect
       post :uncollect
@@ -24,7 +21,11 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'users#index'
     resources :tags
-    resources :restaurants
+    resources :restaurants do
+      collection do
+        post :import
+      end
+    end
     resources :users
   end
 end
