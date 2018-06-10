@@ -14,6 +14,10 @@ document.addEventListener("turbolinks:load", function () {
       {
         listLocation: "tags",
         header: "<strong></strong>",
+      },
+      {
+        listLocation: "users",
+        header: "<strong></strong>",
       }
     ],
     list: {

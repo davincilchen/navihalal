@@ -1,8 +1,77 @@
-<div class="row">
-  <div class="col-12">
-    <h1>Restaurants</h1>
-    <% @restaurants.each do |restaurant| %>
-      <p><%= link_to restaurant.name, restaurant %></p>
-    <% end %>
+<div class="container result">
+  <div class="row">
+    <div class="col-12">
+      <h1>Search Result</h1>
+    </div>
+  </div>
+  <div class="row result-main">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-restaurants-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Restaurants</a>
+      <a class="nav-link" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Tags</a>
+      <a class="nav-link" id="v-pills-users-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Users</a>
+    </div>
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-restaurants-tab">
+        <div class="col-md-12">
+          <% @restaurants.each do |restaurant| %>
+            <div class="row">
+              <div class="col-4">
+                <%= link_to restaurant do %>
+                  <%= image_tag restaurant.photo.url, class: "img-responsive center-block" %>
+                <% end %>
+              </div>
+              <div class="col-8">
+                <h4><%= link_to restaurant.name, restaurant, class: "search-link" %></h4>
+                <p><%= restaurant.address.slice(0..1) %><span><%= restaurant.tel %></span></p>
+                <p><%= restaurant.business_hour %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-tags-tab">
+        <div class="col-md-12">
+          <% @tags.each do |tag| %>
+            <h2><%= tag.name %></h2>
+            <% tag.restaurants.each do |tr| %>
+              <div class="row">
+                <div class="col-4">
+                  <%= link_to tr do %>
+                    <%= image_tag tr.photo.url, class: "img-responsive center-block" %>
+                  <% end %>
+                </div>
+                <div class="col-8">
+                  <h5><%= link_to tr.name, tr, class: "search-link" %></h5>
+                  <p><%= tr.address.slice(0..1) %><span class="re-tel"><%= tr.tel %></span></p>
+                  <p><%= tr.business_hour %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-users-tab">
+        <div class="col-md-12">
+          <% @users.each do |user| %>
+            <div class="row">
+              <div class="col-4">
+                <%= link_to user do %>
+                  <%= image_tag user.photo.url, class: "img-responsive center-block" %>
+                <% end %>
+              </div>
+              <div class="col-8">
+                <h4><%= link_to user.name, user, class: "search-link" %></h4>
+                <p class="intro"><%= user.intro.truncate(50) %></p>
+                <p class="residence">
+                  <i class="fas fa-flag"></i>
+                  <%= user.residence %>,<br> 
+                  <span><%= user.country %></span>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

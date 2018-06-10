@@ -142,6 +142,78 @@ input[placeholder*=" "] {
 }
 /* search end */
 
+/* search result page */
+.result {
+    padding: 0 10vh;
+    .row {padding: 4vh;}
+    h1 {
+        text-align: center;
+        font-weight: 800;
+        font-family: 'Courier New', Courier, monospace;
+        width: fit-content;
+        margin: 0 auto;
+        text-shadow: 2px 2px 19px #CCA64B;
+        color: #41B288;
+    }
+    .result-main {
+        border: 1px solid #DEE2E6;
+        border-radius: 2vw;
+        box-shadow: 0 15px 20px #DEE2E6;
+        padding: 4vh 4vh 4px 4vh;
+        .nav-link {
+            color: #2BB44A;
+            border: 1px solid;
+            &:hover {
+                background: #FFFFF0;
+                color: #3AF365;
+            }
+        }
+        .nav-link.active {
+            color: #FFF;
+            background: #3AF365;
+        }
+        .tab-content {
+            width: 55vw;
+            padding-left: 4vw;
+            .row {
+                border-top: 2px solid #5cb85c;
+                img {max-width: 10vw;}
+                .intro {
+                    padding-left: 1vw;
+                    margin: 0 auto;
+                    width: fit-content;
+                    margin-left: 0;
+                    border: 2px solid #48FF89;
+                }
+                .residence {
+                    font-size: 18px;
+                    margin: 4vh 0 0 0;
+                    width: fit-content;
+                    box-shadow: 2px 5px 10px #C0C0C0;
+                    border-radius: 10px;
+                    i {color: #E8A90F;}
+                }
+            }
+            span {padding: 0 1vw;}
+            .re-tel {margin-left: 5vw;}
+            .search-link {
+                color: #70D941;
+                &:hover {
+                    color: #228D3A;
+                    text-decoration: none;
+                    background: ghostwhite;
+                }
+            }
+        }
+    }
+    h2 {
+        font-weight: 700;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #70D997;
+    }
+}
+/* result end */
+
 /* Navi Logo */
 @media screen and (min-width: 960px) {
     .navi-logo {
