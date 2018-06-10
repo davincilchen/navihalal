@@ -35,7 +35,8 @@
                       <h5>
                         <%= render partial: "shared/following", locals: {user: following}%>
                       </h5>
-                      <p><%= truncate(following.intro, length: 100) %></p>
+                      <br>
+                      <p class="intro"><%= truncate(following.intro, length: 100) %></p>
                     </div>
                   </div>
                 </div>
