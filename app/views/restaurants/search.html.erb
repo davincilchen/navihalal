@@ -40,32 +40,52 @@
       </div>
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-tags-tab">
         <div class="col-md-12">
-          <% @tags.each do |tag| %>
-            <h2><%= tag.name %></h2>
-            <% tag.restaurants.each do |tr| %>
-              <div class="row">
-                <div class="col-3">
-                  <%= link_to tr do %>
-                    <%= image_tag tr.photo.url, class: "img-responsive center-block" %>
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <% @tags.each do |tt| %>
+              <% if tt == @tags[0] %>
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-<%=tt.name%>-tab" data-toggle="pill" href="#pills-<%=tt.name%>" role="tab" aria-controls="pills-<%=tt.name%>" aria-selected="true"><%=tt.name%></a>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-<%=tt.name%>-tab" data-toggle="pill" href="#pills-<%=tt.name%>" role="tab" aria-controls="pills-<%=tt.name%>" aria-selected="false"><%=tt.name%></a>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <% @tags.each do |tag| %>
+              <% if tag == @tags[0] %>
+                <div class="tab-pane fade show active" id="pills-<%= tag.name %>" role="tabpanel" aria-labelledby="pills-<%=tag.name%>-tab">
+              <% else %>
+                <div class="tab-pane fade" id="pills-<%= tag.name %>" role="tabpanel" aria-labelledby="pills-<%=tag.name%>-tab">
+              <% end %>
+                  <% tag.restaurants.each do |tr| %>
+                    <div class="row">
+                      <div class="col-3">
+                        <%= link_to tr do %>
+                          <%= image_tag tr.photo.url, class: "img-responsive center-block" %>
+                        <% end %>
+                      </div>
+                      <div class="col-9">
+                        <h5>
+                          <%= link_to tr.name, tr, class: "search-link" %>
+                          <span>
+                            <% if tr.is_collected?(current_user) %>
+                              <%= link_to 'UnCollect', uncollect_restaurant_path(tr), method: :post, class: "btn btn-outline-success btn-sm" %>
+                            <% else %>
+                              <%= link_to 'Collect', collect_restaurant_path(tr), method: :post, class: "btn btn-success btn-sm" %>
+                            <% end %>
+                          </span>
+                        </h5>
+                        <p><%= tr.address.slice(0..1) %><span class="re-tel"><%= tr.tel %></span></p>
+                        <p><%= tr.business_hour %></p>
+                      </div>
+                    </div>
                   <% end %>
                 </div>
-                <div class="col-9">
-                  <h5>
-                    <%= link_to tr.name, tr, class: "search-link" %>
-                    <span>
-                      <% if tr.is_collected?(current_user) %>
-                        <%= link_to 'UnCollect', uncollect_restaurant_path(tr), method: :post, class: "btn btn-outline-success btn-sm" %>
-                      <% else %>
-                        <%= link_to 'Collect', collect_restaurant_path(tr), method: :post, class: "btn btn-success btn-sm" %>
-                      <% end %>
-                    </span>
-                  </h5>
-                  <p><%= tr.address.slice(0..1) %><span class="re-tel"><%= tr.tel %></span></p>
-                  <p><%= tr.business_hour %></p>
-                </div>
-              </div>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
       <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-users-tab">

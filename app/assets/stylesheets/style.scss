@@ -176,7 +176,7 @@ input[placeholder*=" "] {
         }
         .tab-content {
             width: 58vw;
-            padding-left: 4vw;
+            padding-left: 2vw;
             .row {
                 border-top: 2px solid #5cb85c;
                 img {max-width: 10vw;}
@@ -211,6 +211,10 @@ input[placeholder*=" "] {
             span {
                 padding: 0 1vw;
                 a {float: right;}
+            }
+            #pills-tabContent {
+                padding-left: 0;
+                width: 56.5vw;
             }
             .re-tel {margin-left: 5vw;}
             .search-link {
