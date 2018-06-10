@@ -22,6 +22,10 @@ class ActivitiesController < ApplicationController
     user_check_activity
   end
 
+  def check
+    puts "----------check"
+    user_check_activity
+  end
 
   private
 
