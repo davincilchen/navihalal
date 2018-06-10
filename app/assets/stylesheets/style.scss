@@ -163,15 +163,16 @@ input[placeholder*=" "] {
         padding: 4vh 4vh 4px 4vh;
         .nav-link {
             color: #2BB44A;
-            border: 1px solid;
+            border: 1px solid rgba(0, 0, 0, 0.125);
             &:hover {
                 background: #FFFFF0;
                 color: #3AF365;
             }
         }
         .nav-link.active {
-            color: #FFF;
-            background: #3AF365;
+            color: #155724;
+            background: #C3E6CB;
+            &:hover {background-color: #B1DFBB;}
         }
         .tab-content {
             width: 55vw;
@@ -180,7 +181,7 @@ input[placeholder*=" "] {
                 border-top: 2px solid #5cb85c;
                 img {max-width: 10vw;}
                 .intro {
-                    padding-left: 0 1vw;
+                    padding: 0 1vw;
                     margin: 0 auto;
                     width: fit-content;
                     margin-left: 0;
