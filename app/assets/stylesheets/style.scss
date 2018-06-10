@@ -1,10 +1,11 @@
 //carousel#show weren't cropped
 @import 'tags';
 @import 'devise';
+@import 'users';
 
-#dot{
- color: white;
- }
+.follow-button {
+    margin-left: 2vw;
+}
 
 .carousel-item {
   border: 1px solid grey;
@@ -179,7 +180,7 @@ input[placeholder*=" "] {
                 border-top: 2px solid #5cb85c;
                 img {max-width: 10vw;}
                 .intro {
-                    padding-left: 1vw;
+                    padding-left: 0 1vw;
                     margin: 0 auto;
                     width: fit-content;
                     margin-left: 0;

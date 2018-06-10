@@ -1,32 +1,58 @@
-<div class="container">
-  <br>
-  <div class="row">
-      <% @restaurants.each do |restaurant| %>
-        <div class="col-sm-6 col-md-4">
-          <div class="restaurant-item">
-            <div class="restaurant-image">
-              <% if restaurant.photo? %>
-                 <%= image_tag restaurant.photo.url, class: "img-responsive center-block" %>
-              <% else %>
-                 <span class="glyphicon glyphicon-picture"></span>
-              <% end %>
+<div class="user-background">
+  <div class="container user-page">
+    <%= render "shared/user_profile", object: @user %>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action list-link">
+            <%= link_to 'Profile', user_path(@user) %>
+          </li>
+          <li class="list-group-item list-group-item-action list-group-item-success">
+            Collection
+          </li>
+          <li class="list-group-item list-group-item-action  list-link">
+            <%= link_to "Followings", followings_user_path(@user) %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 user-content">
+        <div class="row">
+          <% @restaurants.each do |restaurant| %>
+            <div class="col-12">
+              <div class="restaurant-item">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="restaurant-image">
+                      <% if restaurant.photo? %>
+                        <%= image_tag restaurant.photo.url, class: "img-responsive center-block" %>
+                      <% else %>
+                        <span class="glyphicon glyphicon-picture"></span>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="restaurant-caption">
+                      <h4>
+                        <%= link_to restaurant.name, restaurant_path(restaurant), class: "coll-link" %>
+                        <span><%= link_to 'UnCollect', uncollect_restaurant_path(restaurant), method: :post, class: "btn btn-outline-success btn-sm" %></span>
+                      </h4>
+                      <h5>
+                        <% restaurant.tags.uniq.each do |tag| %>
+                          <%= link_to(tag) do %>
+                            <span class="badge badge-pill badge-success"><%=tag.name%></span>
+                          <% end %>
+                        <% end %>
+                      </h5>
+                      <p><%= truncate(restaurant.intro, length: 100) %></p>
+                      <p><%= restaurant.address.slice(0..1) %><span class="coll-tel"><%= restaurant.tel %></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <br>
-            <br>
-            <div class="restaurant-caption">
-              <h5>
-                <span><%= link_to 'UnCollect', uncollect_restaurant_path(restaurant), method: :post, class: "btn btn-outline-success btn-sm" %></span>
-                <% restaurant.tags.uniq.each do |tag| %>
-                  <%= link_to(tag) do %>
-                    <span class="badge badge-pill badge-success"><%=tag.name%></span>
-                  <% end %>
-                <% end %>
-              </h5>
-              <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-              <p><%= truncate(restaurant.intro, length: 100) %></p>
-            </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
+    </div>
   </div>
 </div>

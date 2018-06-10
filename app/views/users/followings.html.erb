@@ -1,0 +1,50 @@
+<div class="user-background">
+  <div class="container user-page">
+    <%= render "shared/user_profile", object: @user %>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action list-link">
+            <%= link_to 'Profile', user_path(@user) %>
+          </li>
+          <li class="list-group-item list-group-item-action list-link">
+            <%= link_to "Collection", collection_user_path(@user) %>
+          </li>
+          <li class="list-group-item list-group-item-action list-group-item-success">
+            Followings
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 user-content">
+        <div class="row">
+          <% @followings.each do |following| %>
+            <div class="col-12">
+              <div class="restaurant-item">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="restaurant-image">
+                      <% if following.photo? %>
+                        <%= image_tag following.photo.url, class: "img-responsive center-block" %>
+                      <% else %>
+                        <span class="glyphicon glyphicon-picture"></span>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="restaurant-caption">
+                      <h5>
+                        <%= render partial: "shared/following", locals: {user: following}%>
+                      </h5>
+                      <br>
+                      <p class="intro"><%= truncate(following.intro, length: 100) %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
