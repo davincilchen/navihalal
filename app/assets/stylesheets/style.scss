@@ -135,3 +135,16 @@ input[placeholder*=" "] {
     opacity: .8;
 }
 /* search end */
+
+// footer
+
+#footer {
+    height: 56px;
+    width: 100%;
+    z-index: 20;
+    text-align: center;
+    background-color: #77FFCC;
+}
+#footer p{
+    padding: 18px;
+}
