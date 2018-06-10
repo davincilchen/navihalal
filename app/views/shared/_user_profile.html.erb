@@ -16,7 +16,9 @@
     <% if object == current_user %>
       <%= link_to "Update Profile", edit_user_path(object), class: "btn btn-outline-success btn-sm" %>
     <% else %>
+    <div style="float:left;">
       <%= render "shared/following_button", user: object%>
+    </div>
     <% end %>
   </div>
 </div>
