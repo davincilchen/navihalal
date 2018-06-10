@@ -17,22 +17,25 @@
 
   .acitivy-event{
 
+    .activity-owner-img {
+      height: 60px;
+      width: 60px;
+      /*margin: 0px,80px,-40px,80px;*/
+      display: inline-block;
+
+      image{
+        height: 100%;
+        width: 100%;
+        margin: auto;
+      }
+    }
+
+    .activity-text {
+    }
+
   }
 }
 
-
-.activity-owner-img {
-  height: 40px;
-  width: 40px;
-  /*margin: 0px,80px,-40px,80px;*/
-  display: block;
-}
-
-#activity-owner-img image{
-  height: 100%;
-  width: 100%;
-  margin: auto;
-}
 
 
 // admin user photo
