@@ -11,7 +11,9 @@
 
 
 .sidebar-right{
-  float:right;
+  position: absolute;
+  z-index: 10;
+  left: 74%;
 
   .acitivy-event{
 
