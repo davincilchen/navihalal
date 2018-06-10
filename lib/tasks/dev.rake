@@ -5,7 +5,7 @@ namespace :dev do
     # Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_user'].execute
     Rake::Task['dev:fake_followship'].execute
-    Rake::Task['dev:fake_restaurant'].execute
+    # Rake::Task['dev:fake_restaurant'].execute
     Rake::Task['dev:fake_hashtag'].execute
     Rake::Task['dev:fake_meal'].execute
     # Rake::Task['dev:fake_comment'].execute
@@ -44,7 +44,7 @@ namespace :dev do
   end
 
   task fake_restaurant: :environment do
-    Restaurant.destroy_all
+    # Restaurant.destroy_all
     20.times do |i|
       # photo = "pic1_#{rand(72).to_s.rjust(3, '0')}.jpg"
       file = File.new(Rails.root.join('app', 'assets', 'images', "pic_#{rand(72).to_s.rjust(3, '0')}.jpg"))
