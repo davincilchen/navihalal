@@ -40,16 +40,18 @@
       
         
       <% if current_user %>
-        <button type="button" id="notification-icon" data-toggle="collapse" data-target="#activitiy-sidebar" aria-expanded="false" aria-controls="activitiy-sidebar" style="background-color: #77FFCC;" >
-          <span class="fa-stack"> <!-- ok part -->
-            <!-- The icon that will wrap the number -->
-            <span class="fa fa-bell fa-stack-2x text-success" style="font-size:240%;"></span>
-            <% if @activities.size > 0 %>
-              <!-- a strong element with the custom content, in this case a number -->
-              <i class="fa fa-circle fa-stack-1x text-danger" style="font-size:110%;"></i>
-              <i class="fa fa-inverse fa-stack-1x" style="font-size:60%;"><%= @activities.size %></i>
-            <% end %>
-          </span>
+        <button type="button" id="notification-icon" data-toggle="collapse" data-target="#activitiy-sidebar" aria-expanded="false" aria-controls="activitiy-sidebar" style="background-color: #77FFCC;" onclick="onBellClick(this)">
+          <div id="notify-bell">
+            <span class="fa-stack"> <!-- ok part -->
+              <!-- The icon that will wrap the number -->
+              <span class="fa fa-bell fa-stack-2x text-success" style="font-size:240%;"></span>
+              <% if @activities.size > 0 %>
+                <!-- a strong element with the custom content, in this case a number -->
+                <i class="bell-num fa fa-circle fa-stack-1x text-danger" style="font-size:110%;"></i>
+                <i class="bell-num fa fa-inverse fa-stack-1x" style="font-size:60%;"><%= @activities.size %></i>
+              <% end %>
+            </span>
+          </div>
         </button>
       <% end %>
 
@@ -198,3 +200,13 @@
     <%= yield %>
   </body>
 </html>
+
+
+<script>
+  function onBellClick() {
+    var bellNum = document.getElementsByClassName("bell-num");
+    bellNum[0].innerHTML = "";
+    bellNum[0].style.fontSize = "0%";
+    bellNum[1].innerHTML = "";
+  }
+</script>
