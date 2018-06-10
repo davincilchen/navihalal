@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = PublicActivity::Activity.all.order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User")
+    @activities = PublicActivity::Activity.all.order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User").limit(30)
  
     puts "current_user id"
     puts "#{current_user.id}"
