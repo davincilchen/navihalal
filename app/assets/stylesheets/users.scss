@@ -19,6 +19,10 @@
     }
     .user-contact {
       border-left: 1px solid #DEE2E6;
+      .profile-follow {
+        position: absolute;
+        left: 0%;
+      }
     }
     .user-content {
       h3 {color: #0CC;}
