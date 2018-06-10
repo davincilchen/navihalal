@@ -1,28 +1,6 @@
 <div class="user-background">
   <div class="container user-page">
-    <div class="row">
-      <div class="col-md-3">
-        <%= image_tag @user.photo.url, class: "img-fluid rounded"%>
-      </div>
-      <div class="col-md-6 row">
-        <div class="col-md-12">
-          <h2><%= @user.name %></h2>
-          <p class="intro"><%= @user.intro %></p>
-          <p class="residence">
-            <i class="fas fa-flag"></i>
-            <%= @user.residence %>, <span><%= @user.country %></span>
-          </p>
-        </div>
-      </div>
-      <div class="col-md-3 user-contact" id="user-<%=@user.id%>">
-        <% if @user == current_user %>
-          <%= link_to "Update Profile", edit_user_path(@user), class: "btn btn-outline-success btn-sm" %>
-        <% else %>
-          <%= render "shared/following_button", user: @user%>
-        <% end %>
-      </div>
-    </div>
-    <hr>
+    <%= render "shared/user_profile", object: @user %>
     <div class="row">
       <div class="col-md-4">
         <ul class="list-group">

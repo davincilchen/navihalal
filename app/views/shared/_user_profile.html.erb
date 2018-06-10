@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= image_tag object.photo.url, class: "img-fluid rounded"%>
+  </div>
+  <div class="col-md-6 row">
+    <div class="col-md-12">
+      <h2><%= object.name %></h2>
+      <p class="intro"><%= object.intro %></p>
+      <p class="residence">
+        <i class="fas fa-flag"></i>
+        <%= object.residence %>, <span><%= object.country %></span>
+      </p>
+    </div>
+  </div>
+  <div class="col-md-3 user-contact" id="user-<%=object.id%>">
+    <% if object == current_user %>
+      <%= link_to "Update Profile", edit_user_path(object), class: "btn btn-outline-success btn-sm" %>
+    <% else %>
+      <%= render "shared/following_button", user: object%>
+    <% end %>
+  </div>
+</div>
+<hr>
