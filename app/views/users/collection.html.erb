@@ -2,7 +2,7 @@
   <div class="container user-page">
     <%= render "shared/user_profile", object: @user %>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <ul class="list-group">
           <li class="list-group-item list-group-item-action list-link">
             <%= link_to 'Profile', user_path(@user) %>
@@ -15,7 +15,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-8 user-content">
+      <div class="col-md-9 user-content">
         <div class="row">
           <% @restaurants.each do |restaurant| %>
             <div class="col-12">
