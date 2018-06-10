@@ -2,6 +2,11 @@
   padding: 0 10vh;
   .row {
     padding-top: 3vh;
+    .profile-name {
+      font-weight: 900;
+      color: #F0B697;
+      text-shadow: 3px 1px black;
+    }
     .intro {
       padding: 0 1vw;
       margin: 0 auto;
