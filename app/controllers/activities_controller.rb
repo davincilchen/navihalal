@@ -19,6 +19,16 @@ class ActivitiesController < ApplicationController
     end
 
     puts "#{ @activities.each.first}"
- 
+    user_check_activity
   end
+
+
+  private
+
+  def user_check_activity
+    if current_user
+        current_user.update(:activity_checked_at => Time.now)
+    end
+  end
+
 end

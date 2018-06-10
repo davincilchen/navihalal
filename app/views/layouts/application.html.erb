@@ -56,7 +56,7 @@
       <% end %>
 
 
-    </nav>    
+    </nav> <!-- end of nav -->
 
 
     <!--  ============================================= -->
@@ -134,51 +134,41 @@
         <% if current_user %>
           <div class="xdrop-content">            
 
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                
-                <ul class="nav navbar-nav navbar-right ml-auto">
-                  
-                    
-                  <!-- end notify title -->
-                  <!-- notify content -->
-                  <div class="activity-content">
-                    <% @activities.each do |activity| %>
-                      <div class="activity-info">
-                        <% if activity.trackable %>
-                          <li>
-                            <div class="acitivy-event">
-                              <!--
-                              <div class="activity-owner-img">
-                                <%= link_to user_path(activity.owner) do %>
-                                <%= image_tag activity.owner.photo.url, class: "img-fluid rounded-circle" %>
-                                <% end %>
-                              </div>
-                              -->
-                            
-                              <div class="activity-text">  
-                                <%= link_to activity.owner.name, activity.owner if activity.owner %>
-                                <%= render_activity activity %>
-                              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <ul class="nav navbar-nav navbar-right ml-auto">
+                <!-- end notify title -->
+                <!-- notify content -->
+                <div class="activity-content">
+                  <% @activities.each do |activity| %>
+                    <div class="activity-info">
+                      <% if activity.trackable %>
+                        <li>
+                          <div class="acitivy-event">
+                            <!--
+                            <div class="activity-owner-img">
+                              <%= link_to user_path(activity.owner) do %>
+                              <%= image_tag activity.owner.photo.url, class: "img-fluid rounded-circle" %>
+                              <% end %>
                             </div>
-                        </li>
-                        <hr>
-                        <% end %>
-                      </div> 
-                    <% end %>
-                  </div>
-
-                  
-                  <div class="notify-drop-footer text-center">
-                    <%= link_to activities_path do%>
-                      <i class="fa fa-eye"></i>  more</a>
-                    <% end %>
-                  </div>
-                    
-
-                </ul>
-
+                            -->
                           
+                            <div class="activity-text">
+                              <%= link_to activity.owner.name, activity.owner if activity.owner %>
+                              <%= render_activity activity %>
+                            </div>
+                          </div>
+                      </li>
+                      <hr>
+                      <% end %>
+                    </div> 
+                  <% end %>
+                </div>
+                <div class="notify-drop-footer text-center">
+                  <%= link_to activities_path do%>
+                    <i class="fa fa-eye"></i>  more</a>
+                  <% end %>
+                </div>
+              </ul>
           </div>
         <% end %>
       </div>
