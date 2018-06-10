@@ -14,11 +14,11 @@
           </p>
         </div>
       </div>
-      <div class="col-md-3 user-contact">
+      <div class="col-md-3 user-contact" id="user-<%=@user.id%>">
         <% if @user == current_user %>
           <%= link_to "Update Profile", edit_user_path(@user), class: "btn btn-outline-success btn-sm" %>
         <% else %>
-          <%= render partial: "shared/following", locals: {user: @user}%>
+          <%= render "shared/following_button", user: @user%>
         <% end %>
       </div>
     </div>
