@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
 
   def get_activities
     if current_user
-      @activities = PublicActivity::Activity.all.order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User")
+      #Polymorphic Associations
+      @activities = PublicActivity::Activity.includes(:trackable).order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User")
     end
   end
 end
