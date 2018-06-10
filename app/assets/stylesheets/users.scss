@@ -3,12 +3,14 @@
   .row {
     padding-top: 3vh;
     .intro {
+      padding: 0 1vw;
       margin: 0 auto;
       width: fit-content;
       margin-left: 0;
       border: 2px solid #48FF89;
     }
     .residence {
+      font-size: 18px;
       margin: 4vh 0 0 0;
       width: fit-content;
       box-shadow: 2px 5px 10px #C0C0C0;
@@ -26,6 +28,26 @@
         border-top: 2px solid #5cb85c;
       }
     }
+    .list-link {
+      a {
+        color: #2BB44A;
+        &:hover {
+          background: #FFFFF0;
+          color: #3AF365;
+        }
+      }
+      &:hover {background: #FFFFF0;}
+    }
+    .coll-link {
+      color: #70D941;
+      &:hover {
+          color: #228D3A;
+          text-decoration: none;
+          background: ghostwhite;
+      }
+    }
+    span > a {float: right;}
+    .coll-tel {margin-left: 5vw;}
   }
 }
 
