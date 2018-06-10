@@ -36,6 +36,11 @@ class Admin::RestaurantsController < ApplicationController
     redirect_to admin_restaurants_path
   end
 
+  def import
+    Restaurant.import(params[:file])
+    redirect_to restaurants_path, notice: "Restaurant Added Successfully."
+  end
+  
   # def update
   #   @restaurant = Restaurant.find(params[:id])
   #   if @restaurant.update(restaurant_params)

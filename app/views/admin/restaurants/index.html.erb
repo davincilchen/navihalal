@@ -8,6 +8,11 @@
   <%= link_to 'Users', admin_users_path %>
 </div>
 
+<%= form_tag import_restaurants_path, multipart: true do%>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload Restaurants"%>
+<% end %>
+
 <div class="row">
   <div class="col-md-12">
     <br>
