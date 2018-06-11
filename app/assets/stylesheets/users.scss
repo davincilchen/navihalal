@@ -1,3 +1,65 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-page {
+  padding: 0 10vh;
+  .row {
+    padding-top: 3vh;
+    .profile-name {
+      font-weight: 900;
+      color: #F0B697;
+      text-shadow: 3px 1px black;
+    }
+    .intro {
+      padding: 0 1vw;
+      margin: 0 auto;
+      width: fit-content;
+      margin-left: 0;
+      border: 2px solid #48FF89;
+    }
+    .residence {
+      font-size: 18px;
+      margin: 4vh 0 0 0;
+      width: fit-content;
+      box-shadow: 2px 5px 10px #C0C0C0;
+      border-radius: 10px;
+      i {color: #E8A90F;}
+    }
+    .user-contact {
+      border-left: 1px solid #DEE2E6;
+      padding-top: 5vh;
+      .profile-follow {
+        position: absolute;
+        left: 0%;
+      }
+    }
+    .user-content {
+      h3 {color: #0CC;}
+      .restaurant-item {
+        height: auto;
+        border: none;
+        border-top: 2px solid #5cb85c;
+      }
+    }
+    .list-link {
+      a {
+        color: #2BB44A;
+        &:hover {
+          background: #FFFFF0;
+          color: #3AF365;
+          text-decoration: none;
+        }
+      }
+      &:hover {background: #FFFFF0;}
+    }
+    .coll-link {
+      color: #70D941;
+      &:hover {
+          color: #228D3A;
+          text-decoration: none;
+          background: ghostwhite;
+      }
+    }
+    span > a {float: right;}
+    .coll-tel {margin-left: 5vw;}
+  }
+}
+
+.user-background {background: linear-gradient(to bottom, #FFFAFA 50vh, #FFF 100%);}

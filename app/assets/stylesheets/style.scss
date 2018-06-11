@@ -1,6 +1,12 @@
 //carousel#show weren't cropped
 @import 'tags';
 @import 'devise';
+@import 'users';
+
+
+.follow-button {
+    margin-left: 2vw;
+}
 
 
 /* application.html */
@@ -175,7 +181,116 @@ input[placeholder*=" "] {
     color: #FF0013;
     opacity: .8;
 }
+.navi-search {
+    position: fixed;
+    left: 5%;
+    width: fit-content;
+}
 /* search end */
+
+/* search result page */
+.result {
+    padding: 0 10vh;
+    .row {padding: 4vh;}
+    h1 {
+        text-align: center;
+        font-weight: 800;
+        font-family: 'Courier New', Courier, monospace;
+        width: fit-content;
+        margin: 0 auto;
+        text-shadow: 2px 2px 19px #CCA64B;
+        color: #41B288;
+    }
+    .result-main {
+        border: 1px solid #DEE2E6;
+        border-radius: 2vw;
+        box-shadow: 0 15px 20px #DEE2E6;
+        padding: 4vh 4vh 4px 4vh;
+        .nav-link {
+            color: #2BB44A;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            &:hover {
+                background: #FFFFF0;
+                color: #3AF365;
+            }
+        }
+        .nav-link.active {
+            color: #155724;
+            background: #C3E6CB;
+            &:hover {background-color: #B1DFBB;}
+        }
+        .tab-content {
+            width: 58vw;
+            padding-left: 2vw;
+            .row {
+                border-top: 2px solid #5cb85c;
+                img {max-width: 10vw;}
+                .search-follow {
+                    display: inline;
+                    .search-follow-child {
+                        display: inline;
+                        a {
+                            padding: 0.25rem 0.5rem;
+                            font-size: 0.875rem;
+                            line-height: 1.5;
+                            border-radius: 0.2rem;
+                        }
+                    }
+                }
+                .intro {
+                    padding: 0 1vw;
+                    margin: 0 auto;
+                    width: fit-content;
+                    margin-left: 0;
+                    border: 2px solid #48FF89;
+                }
+                .residence {
+                    font-size: 18px;
+                    margin: 4vh 0 0 0;
+                    width: fit-content;
+                    box-shadow: 2px 5px 10px #C0C0C0;
+                    border-radius: 10px;
+                    i {color: #E8A90F;}
+                }
+            }
+            span {
+                padding: 0 1vw;
+                a {float: right;}
+            }
+            #pills-tabContent {
+                padding-left: 0;
+                width: 56.5vw;
+            }
+            .re-tel {margin-left: 5vw;}
+            .search-link {
+                color: #70D941;
+                &:hover {
+                    color: #228D3A;
+                    text-decoration: none;
+                    background: ghostwhite;
+                }
+            }
+        }
+    }
+    h2 {
+        font-weight: 700;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #70D997;
+    }
+}
+/* result end */
+
+/* Navi Logo */
+@media screen and (min-width: 960px) {
+    .navi-logo {
+        margin: 0 auto;
+        position: fixed;
+        left: 35%;
+        width: fit-content;
+        right: 35%;
+    }
+}
+/* end */
 
 /* loading animation on form */
 .loader {

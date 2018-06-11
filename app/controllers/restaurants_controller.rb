@@ -6,7 +6,6 @@ class RestaurantsController < ApplicationController
   # GET /restaurants.json
   def index
     @restaurants = Restaurant.all
-    @page = "index"
     @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
@@ -105,12 +104,14 @@ class RestaurantsController < ApplicationController
   def search
     @restaurants = Restaurant.ransack(name_cont: params[:q]).result(distinct: true)
     @tags = Tag.ransack(name_cont: params[:q]).result(distinct: true)
+    @users = User.ransack(name_cont: params[:q]).result(distinct: true)
 
     respond_to do |format|
       format.html {}
       format.json {
         @restaurants = @restaurants.limit(5)
         @tags = @tags.limit(5)
+        @users = @users.limit(5)
       }
     end
   end

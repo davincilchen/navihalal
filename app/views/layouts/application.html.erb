@@ -20,24 +20,21 @@
 
   <body>
     <!-- 套用Bootstrap 4的navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #77FFCC;">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top " style="background-color: #77FFCC;">
       <p class="sidebar-button">
         <button type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
           <span class="navbar-toggler-icon"></span>
         </button>
       </p>
-      <ul class="navbar-nav mr-auto">
-      <% if @page == "index" %>
-        <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
-          <%= form.text_field :q, placeholder: "🔍 Keyword eg: seafood", data: { behavior: "autocomplete" }, class: "form-control" %>
-        <% end %>
-      <% else %>
-        <a class="navbar-brand text-success" href="<%= root_path %>">NaviHalal</a>
+
+    <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline navi-search " } do |form| %>
+        <%= form.text_field :q, placeholder: "🔍 Keyword eg: seafood", data: { behavior: "autocomplete" }, class: "form-control" %>
       <% end %>
-      </ul>
+      <a class="navbar-brand p-0 text-success navi-logo " href="<%= root_path %>">NaviHalal</a>
 
       <!--  ============================================= -->
-      
+      <ul class="mr-auto">
+      </ul>
         
       <% if current_user %>
         <%= form_for(current_user, url: check_activities_path, html: { method: :patch })  do |f|%>
@@ -63,7 +60,6 @@
 
 
     <!--  ============================================= -->
-    
     <div class="sidebar collapse" id="collapseExample">
       <div class="card card-body">
         <% if current_user %>
