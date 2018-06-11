@@ -1,7 +1,9 @@
 <span>
-  <% if current_user.following?(user) %>
-    <%= link_to 'UnFollow',followship_path(user), remote: true, method: :delete, class: "btn btn-outline-success follow-button" %>
-  <% else %>
-    <%= link_to 'Follow',followships_path(following_id: user), remote: true, method: :post, class: "btn btn-success follow-button" %>
+  <% if current_user %>
+    <% if current_user.following?(user) %>
+      <%= link_to 'UnFollow',followship_path(user), remote: true, method: :delete, class: "btn btn-outline-success follow-button" %>
+    <% else %>
+      <%= link_to 'Follow',followships_path(following_id: user), remote: true, method: :post, class: "btn btn-success follow-button" %>
+    <% end %>
   <% end %>
 </span>
