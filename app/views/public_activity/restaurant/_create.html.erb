@@ -1,6 +1,6 @@
 <% if activity.trackable %>
-  create
-  <%= link_to activity.trackable.restaurant.name, activity.trackable.restaurant %>
+  create restaurant
+  <%= link_to activity.trackable.name, activity.trackable %>
 <% else %>
   restaurant has been removed.
 <% end %>

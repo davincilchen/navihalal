@@ -3,18 +3,46 @@
 @import 'devise';
 @import 'users';
 
+
 .follow-button {
     margin-left: 2vw;
 }
 
-.carousel-item {
-  border: 1px solid grey;
-  max-height: 60vh;
-  max-width: 100vmax;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+
+/* application.html */
+
+#notification-icon{
+  border: none;
 }
+
+
+.sidebar-right{
+  position: absolute;
+  z-index: 10;
+  right: 0%;
+
+  .acitivy-event{
+
+    .activity-owner-img {
+      height: 60px;
+      width: 60px;
+      /*margin: 0px,80px,-40px,80px;*/
+      display: inline-block;
+
+      image{
+        height: 100%;
+        width: 100%;
+        margin: auto;
+      }
+    }
+
+    .activity-text {
+    }
+
+  }
+}
+
+
 
 // admin user photo
 .box{
@@ -124,6 +152,23 @@ div.sidebar {
     }
 }
 /* sidebar end */
+
+
+/* restaurant show.html */
+
+#dot{
+ color: white;
+}
+
+
+.carousel-item {
+  border: 1px solid grey;
+  max-height: 60vh;
+  max-width: 100vmax;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
 
 /* search */
 .form-inline, .navbar-brand {
