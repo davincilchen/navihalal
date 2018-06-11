@@ -40,21 +40,22 @@
       
         
       <% if current_user %>
-        <button type="button" id="notification-icon" data-toggle="collapse" data-target="#activitiy-sidebar" aria-expanded="false" aria-controls="activitiy-sidebar" style="background-color: #77FFCC;" onclick="onBellClick(this)">
-          <div id="notify-bell">
-            <span class="fa-stack"> <!-- ok part -->
-              <!-- The icon that will wrap the number -->
-              <% unless current_page?(activities_path)%>
-                <span class="fa fa-bell fa-stack-2x text-success" style="font-size:240%;"></span>
+        <%= form_for(current_user, url: check_activities_path, html: { method: :patch })  do |f|%>
+          <button type="button" id="notification-icon" data-toggle="collapse" data-target="#activitiy-sidebar" aria-expanded="false" aria-controls="activitiy-sidebar"  style="background-color: #77FFCC;" onclick="onBellClick(this) ">
+            <div id="notify-bell">
+              <span class="fa-stack"> <!-- ok part -->
+                <!-- The icon that will wrap the number -->
+                <% unless current_page?(activities_path)%>
+                  <span class="fa fa-bell fa-stack-2x text-success" style="font-size:240%;"></span>
                   <% if @activities.size > 0 %>
                     <!-- a strong element with the custom content, in this case a number -->
                     <i class="bell-num fa fa-circle fa-stack-1x text-danger" style="font-size:110%;"></i>
                     <i class="bell-num fa fa-inverse fa-stack-1x" style="font-size:60%;"><%= @activities.size %></i>
                   <% end %>
-              </span>
-            <% end %>
-          </div>
-        </button>
+                <% end %>   
+              </span>            
+            </div>
+        <% end %>
       <% end %>
 
 
@@ -109,11 +110,11 @@
             <ul class="navbar-nav ml-auto">
               <% if current_user %>
                 <li><%= link_to 'Add Restaurant', new_restaurant_path, class: "nav-link" %></li>
-                <li><%= link_to '修改密碼', edit_user_registration_path, class: "nav-link" %></li>
+                <li><%= link_to 'Change password', edit_user_registration_path, class: "nav-link" %></li>
                 <% if current_user.admin? %>
                   <li><%= link_to 'Admin', admin_users_path, class: "nav-link" %></li>
                 <% end %>
-                <li><%= link_to '登出', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+                <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
               <% else %>
                 <li>
                   <%= link_to new_user_session_path do %>

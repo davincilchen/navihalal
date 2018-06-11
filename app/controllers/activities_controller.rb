@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+    #protect_from_forgery :except => :check
+
   def index
     @activities = PublicActivity::Activity.all.order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User").limit(30)
  
@@ -25,9 +27,14 @@ class ActivitiesController < ApplicationController
   def check
     puts "----------check"
     user_check_activity
+
+    puts "----------check---------------"
   end
 
+
+
   private
+
 
   def user_check_activity
     if current_user
