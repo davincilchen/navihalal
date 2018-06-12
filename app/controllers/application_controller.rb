@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   before_action :get_activities
+  before_action :authenticate_user!
 
     
   # enter admin should has role = admin
