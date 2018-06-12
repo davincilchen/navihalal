@@ -1,6 +1,7 @@
 <% if activity.trackable %>
   tag
   <%= link_to activity.trackable.restaurant.name, activity.trackable.restaurant%>
+  as
   <%= link_to activity.trackable.tag.name, activity.trackable.tag%>
 <% else %>
   hashtag has been removed.
