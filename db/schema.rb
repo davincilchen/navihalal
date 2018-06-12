@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2018_06_10_114152) do
     t.datetime "updated_at", null: false
     t.string "fb_uid"
     t.string "fb_token"
-    t.datetime "activity_checked_at", default: "2018-06-12 07:38:26"
+    t.datetime "activity_checked_at", default: "2018-06-12 12:28:12"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
