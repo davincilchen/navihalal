@@ -37,8 +37,13 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def import
-    Restaurant.import(params[:file])
-    redirect_to restaurants_path, notice: "Restaurant Added Successfully."
+    if Restaurant.import(params[:file])
+      redirect_to restaurants_path, notice: "Restaurant Added Successfully."
+    else
+      flash[:notice] = "#{@restaurant.name} created fail"
+      @restaurants = Restaurant.all
+      redirect_back(fallback_location: root_path)
+    end
   end
   
   # def update
