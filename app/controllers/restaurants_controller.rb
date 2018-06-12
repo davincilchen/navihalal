@@ -119,14 +119,22 @@ class RestaurantsController < ApplicationController
   end
 
   def collect
-    @restaurant.collects.create!(user: current_user)
-    redirect_back(fallback_location: root_path)
+    @collect = @restaurant.collects.create!(user: current_user)
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js
+    end
   end
 
   def uncollect
     collects = Collect.where(restaurant: @restaurant, user: current_user)
     collects.destroy_all
-    redirect_back(fallback_location: root_path)
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js
+    end
   end
 
   private

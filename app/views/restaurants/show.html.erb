@@ -92,11 +92,7 @@
     <p class="btn btn-success">Check in</p>
     <p class="btn btn-success">Comment</p>
     <br>
-    <% if @restaurant.is_collected?(current_user) %>
-      <p><%= link_to 'UnCollect', uncollect_restaurant_path(@restaurant), method: :post, class: "btn btn-outline-success" %></p>
-    <% else %>
-      <p><%= link_to 'Collect', collect_restaurant_path(@restaurant), method: :post, class: "btn btn-success" %></p>
-    <% end %>
+    <%= render 'shared/collect', restaurant: @restaurant %>
   </div>
 </div>
 

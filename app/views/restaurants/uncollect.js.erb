@@ -1,0 +1,2 @@
+<% html = j( render :partial => "shared/collect", :locals => { :restaurant => @restaurant } ) %>
+$("#collect-<%=@restaurant.id%>").html("<%= html %>")

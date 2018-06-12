@@ -34,7 +34,7 @@
                     <div class="restaurant-caption">
                       <h5>
                         <%= link_to restaurant.name, restaurant_path(restaurant), class: "coll-link" %>
-                        <span><%= link_to 'UnCollect', uncollect_restaurant_path(restaurant), method: :post, class: "btn btn-outline-success btn-sm" %></span>
+                        <%= render 'shared/collect', restaurant: restaurant %>
                       </h5>
                       <h5>
                         <% restaurant.tags.uniq.each do |tag| %>

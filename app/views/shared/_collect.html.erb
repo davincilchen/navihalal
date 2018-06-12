@@ -1,0 +1,9 @@
+<div id="collect-<%=restaurant.id%>">
+  <span>
+  <% if restaurant.is_collected?(current_user) %>
+    <%= link_to 'UnCollect', uncollect_restaurant_path(restaurant), remote: true, method: :post, class: "btn btn-outline-success" %>
+  <% else %>
+    <%= link_to 'Collect', collect_restaurant_path(restaurant), remote: true, method: :post, class: "btn btn-success" %>
+  <% end %>
+  </span>
+</div>
