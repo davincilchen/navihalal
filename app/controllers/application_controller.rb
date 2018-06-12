@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   before_action :get_activities
   before_action :authenticate_user!
+  before_action :is_name?
 
     
   # enter admin should has role = admin
@@ -21,4 +22,11 @@ class ApplicationController < ActionController::Base
       @activities = PublicActivity::Activity.includes(:trackable).order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User").where("created_at > :user_check", :user_check => current_user.activity_checked_at)
     end
   end
+
+  def is_name?
+    if user_signed_in? && current_user.name.nil?
+      current_user.update!(name: current_user.email.split('@').first)
+    end
+  end
+
 end
