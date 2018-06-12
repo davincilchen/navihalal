@@ -68,6 +68,7 @@ csv.each do |row|
   t.tel = row['tel']
   t.address = row['address']
   t.business_hour = row['business_hour']
+  t.user_id = "1"
   t.save
   puts "#{t.name} saved"
 end

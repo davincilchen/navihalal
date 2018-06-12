@@ -30,6 +30,8 @@ class RestaurantsController < ApplicationController
   def show
     #Tag.first.hashtags.create(user: current_user, restaurant: @restaurant) #fake
     @meals = @restaurant.meals
+    # @activities = PublicActivity::Activity.all.order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User")
+    
   end
 
   # GET /restaurants/new
@@ -125,11 +127,6 @@ class RestaurantsController < ApplicationController
     collects = Collect.where(restaurant: @restaurant, user: current_user)
     collects.destroy_all
     redirect_back(fallback_location: root_path)
-  end
-
-  def import
-    Restaurant.import(params[:file])
-    redirect_to restaurants_path, notice: "Restaurant Added Successfully."
   end
 
   private
