@@ -1,38 +1,33 @@
-
-<div class="container">
-  <br>
-  <h3 class="tag-link">
-    <%= link_to(@tag) do %>
-      <span class="badge badge-pill badge-success"><%=@tag.name%></span>
-    <% end %>
-  </h3>
-  <br>
-  <div class="row">
-      <% @restaurants.each do |restaurant| %>
-        <div class="col-sm-6 col-md-4">
-          <div class="restaurant-item">
-            <div class="restaurant-image">
-              <% if restaurant.photo? %>
-                 <%= image_tag restaurant.photo.url, class: "img-responsive center-block" %>
-              <% else %>
-                 <span class="glyphicon glyphicon-picture"></span>
-              <% end %>
-            </div>
-            <br>
-            <br>
-            <div class="restaurant-caption">
-              <h5 class="tag-link">
-                <% restaurant.tags.uniq.each do |tag| %>
-                  <%= link_to(tag) do %>
-                    <span class="badge badge-pill badge-success"><%=tag.name%></span>
+<div class="container result tag">
+   <div class="row result-main">
+     <div class="tab-content tag-content" id="v-pills-tabContent">
+        <div class="col-md-12">
+          <h2><%= @tag.name %></h2>
+          <% @tag.restaurants.each do |tr| %>
+            <div class="row">
+              <div class="col-3">
+                  <%= link_to tr do %>
+                    <%= image_tag tr.photo.url, class: "img-responsive center-block" %>
                   <% end %>
-                <% end %>
-              </h5>
-              <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-              <p><%= truncate(restaurant.intro, length: 100) %></p>
+              </div>
+              <div class="col-9">
+                <h5>
+                  <%= link_to tr.name, tr, class: "search-link" %>
+                  <%= render 'shared/collect', restaurant: tr %>
+                </h5>
+                <h5 class="tag-link">
+                  <% tr.tags.uniq.each do |tag| %>
+                    <%= link_to(tag) do %>
+                      <span class="badge badge-pill badge-success"><%=tag.name%></span>
+                    <% end %>
+                  <% end %>
+                </h5>
+                <p><%= tr.address.slice(0..1) %><span class="re-tel"><%= tr.tel %></span></p>
+                <p><%= tr.business_hour %></p>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
-  </div>
-</div>
+     </div>
+   </div>
+ </div>
