@@ -14,18 +14,19 @@
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Intro</th>
-          <th>Photo</th>
-          <th>Open</th>
-          <th>Close</th>
-          <th>Provider</th>
-          <th>Address</th>
-          <th>Tel</th>
-          <th>lat</th>
-          <th>lon</th>
-          <th>Rest</th>
-          <th>Business_hour</th>
+          <th style="width: 10%">Name</th>
+          <th style="width: 10%">Intro</th>
+          <th style="width: 3%">Photo</th>
+          <th style="width: 5%">Open</th>
+          <th style="width: 5%">Close</th>
+          <th style="width: 3%">Provider</th>
+          <th style="width: 16%">Address</th>
+          <th style="width: 10%">Tel</th>
+          <th style="width: 1%">lat</th>
+          <th style="width: 1%">lon</th>
+          <th style="width: 3%">Rest</th>
+          <th style="width: 12%">Business_hour</th>
+          <th>  </th>
         </tr>
       </thead>
 
@@ -44,18 +45,29 @@
               </td>
               <td><%= restaurant.open_hour %></td>
               <td><%= restaurant.close_hour %></td>
-              <td><%= "admin" %></td>
+              <td>
+                <% if restaurant.user%>
+                  <%= restaurant.user.name%>
+                <% else %>
+                  <%= "seed" %>
+                <% end %>
+              </td>
               <td><%= restaurant.address %></td>
               <td><%= restaurant.tel %></td>
-              <td><%= restaurant.latitude %></td>
-              <td><%= restaurant.longitude %></td>
+              <td><%= restaurant.latitude.round(3) %></td>
+              <td><%= restaurant.longitude.round(3) %></td>
               <td><%= restaurant.rest_day %></td>
               <td><%= restaurant.business_hour %></td>
             <%# end %>
-              <td><%#= form_for [:admin, restaurant] do |f| %>
-                <%#= f.select(:role, [['Admin', 'admin'], ['Normal', 'normal']], {prompt: true}) %>
-                <%#= f.submit %>
-              <%# end %></td>
+              <td>
+                <%= link_to admin_restaurants_path(id: restaurant.id) do%>
+                  <%= icon 'far', 'edit' %>
+                <% end %>
+                  | 
+                <%= link_to admin_restaurant_path(restaurant), method: :delete, data: {confirm: "Are you sure?"} do %>
+                  <%= icon 'far', 'trash-alt' %>
+                <% end %>
+              </td>
           </tr>
         <% end %>
       </tbody>

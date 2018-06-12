@@ -33,16 +33,19 @@
       <h3 class="card-header"><%= @restaurant.name %></h3>
       <h5 class="card-title"><%= @restaurant.address %></h5>
       <h5 class="card-text"><%= @restaurant.tel %></h5>
-      <p class="card-text">6 Favorites</p>
-      <p class="card-text">5 Check-ins</p>
-      <p class="card-text">6 Comments</p>
-      <p class="card-text">2 Photos</p>
+      <%# <p class="card-text">6 Favorites</p> %>
+      <%# <p class="card-text">5 Check-ins</p> %>
+      <%# <p class="card-text"><%= @restaurant.comments.count Comments</p> %>
+      <p class="card-text" style="padding: 0;"><%= @restaurant.collected_users.count %> users collected</p>
+      <p class="card-text"><%= @restaurant.meals.count + 1 %> Photos</p>
       <p class="card-text">Muslim Tips: 
         <% @restaurant.tags.uniq.each do |tag| %> 
-          #<%= tag.name %>
+          <%= link_to(tag) do %>
+            <span class="badge badge-pill badge-success"><%= tag.name %></span>
+          <% end %>
         <% end %>
       </p>
-      <a href="#" class="btn text-right"><i class="fas fa-camera-retro fa-3x text-success" ></i>
+      <%# <a href="#" class="btn text-right"><i class="fas fa-camera-retro fa-3x text-success" ></i> %>
       </a>
     </div>
   </div>
@@ -63,7 +66,9 @@
           </div>
           <div class="col-md-9">
             <%= render partial: "shared/following", locals: {user: hashtag.user}%>
-            <p class="text-success">has tagged as #<%= hashtag.tag.name %></p>
+            <p class="text-success">has tagged as 
+              <span class="badge badge-pill badge-success"><%= hashtag.tag.name %></span>
+            </p>
           </div>
         </div>
       <% end %>

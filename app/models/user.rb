@@ -8,6 +8,8 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   after_validation :default_photo
+
+  has_many :restaurant
   
   has_many :hashtags, dependent: :destroy
   has_many :tags, through: :hashtags
