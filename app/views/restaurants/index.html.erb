@@ -2,62 +2,10 @@
   <div id="map" style='width: 100%; height: 90vh;'></div>
 </div>
 
-<<<<<<< HEAD
-<h1>Find your favorite restaurant</h1>
-
-<h3>Import restaurant</h3>
-<%= form_tag import_restaurants_path, multipart: true do%>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Upload Restaurants"%>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Intro</th>
-      <th>Photo</th>
-      <th>Open hour</th>
-      <th>Close hour</th>
-      <th>Address</th>
-      <th>Tel</th>
-      <th>Viewed count</th>
-      <th>User</th>
-      <th>Latitude</th>
-      <th>longitude</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= restaurant.name %></td>
-        <td><%= restaurant.intro %></td>
-        <td><%= image_tag restaurant.photo.url, width:'100px' %></td>
-        <td><%= restaurant.open_hour %></td>
-        <td><%= restaurant.close_hour %></td>
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.tel %></td>
-        <td><%= restaurant.viewed_count %></td>
-        <td><%= restaurant.user_id %></td>
-        <td><%= restaurant.latitude %></td>
-        <td><%= restaurant.longitude %></td>
-        <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-=======
 <%# <h1>Find your favorite restaurant</h1> %>
 
 <%#= link_to 'New Restaurant', new_restaurant_path %>
 
->>>>>>> admin
 
 <!-- restaurant marker Modal -->
 <div class="modal fade" id="siteModalCenter" tabindex="-1" role="dialog" aria-labelledby="siteModalLongTitle" aria-hidden="true">
