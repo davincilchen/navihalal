@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_06_10_114152) do
+=======
+ActiveRecord::Schema.define(version: 2018_06_02_135625) do
+>>>>>>> admin
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -127,7 +131,10 @@ ActiveRecord::Schema.define(version: 2018_06_10_114152) do
     t.datetime "updated_at", null: false
     t.string "fb_uid"
     t.string "fb_token"
+<<<<<<< HEAD
     t.datetime "activity_checked_at", default: "2018-06-12 12:28:12"
+=======
+>>>>>>> admin
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

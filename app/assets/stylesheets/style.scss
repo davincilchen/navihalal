@@ -188,6 +188,7 @@ input[placeholder*=" "] {
 }
 /* search end */
 
+<<<<<<< HEAD
 /* search result page */
 .result {
     padding: 0 10vh;
@@ -343,3 +344,17 @@ label.required:after {
     color: red;
 }
 /* end */
+=======
+// footer
+
+#footer {
+    height: 56px;
+    width: 100%;
+    z-index: 20;
+    text-align: center;
+    background-color: #77FFCC;
+}
+#footer p{
+    padding: 18px;
+}
+>>>>>>> admin

@@ -129,11 +129,6 @@ class RestaurantsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def import
-    Restaurant.import(params[:file])
-    redirect_to restaurants_path, notice: "Restaurant Added Successfully."
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_restaurant
