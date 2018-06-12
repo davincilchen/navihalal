@@ -32,10 +32,10 @@
                   </div>
                   <div class="col-8">
                     <div class="restaurant-caption">
-                      <h4>
+                      <h5>
                         <%= link_to restaurant.name, restaurant_path(restaurant), class: "coll-link" %>
                         <span><%= link_to 'UnCollect', uncollect_restaurant_path(restaurant), method: :post, class: "btn btn-outline-success btn-sm" %></span>
-                      </h4>
+                      </h5>
                       <h5>
                         <% restaurant.tags.uniq.each do |tag| %>
                           <%= link_to(tag) do %>
