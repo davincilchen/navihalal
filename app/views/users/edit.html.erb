@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Profile</h1>
+    </div>
+  </div>
+  <div class="row user-edit">
+    <div class="col-12">
+      <%= form_with(model: @user, local: true) do |form| %>
+
+        <% if @user.errors.any? %>
+          <div id="error_explanation" class="form-inline alert alert-danger">
+            <h2 class="alert-heading">There is some errors.</h2>
+            <h4 class="alert-heading"><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+
+            <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <div class="offset-sm-2"></div>
+              <div class="col-sm-4 user-edit-avatar">
+                <%= form.label :photo, "Your Profile Photo", class: "col-form-label" %>
+                <br>
+                <button>
+                  <i class="fas fa-upload"></i>
+                  <%= form.file_field :photo %>
+                </button>
+              </div>
+                <div class="col-sm-6">
+                  <%= image_tag @user.photo.url if @user.photo? %>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group row">
+              <%= form.label :name, class: "col-sm-12 col-form-label required" %>
+                <div class="col-sm-12">
+                  <%= form.text_field :name, require: true, class: "form-control" %>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group row">
+              <%= form.label :birthday, class: "col-sm-12 col-form-label" %>
+                <div class="col-sm-12">
+                  <%= form.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }} %>
+                </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12">
+            <div class="form-group row">
+              <%= form.label :intro, class: "col-sm-12 col-form-label" %>
+                <div class="col-sm-12">
+                  <%= form.text_area :intro, class: "form-control" %>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group row">
+              <%= form.label :country, class: "col-sm-12 col-form-label required" %>
+                <div class="col-sm-12">
+                  <%= form.text_field :country, class: "form-control" %>
+                </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form-group row">
+              <%= form.label :residence, class: "col-sm-12 col-form-label required" %>
+                <div class="col-sm-12">
+                  <%= form.text_field :residence, class: "form-control" %>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 user-edit-submit">
+            <div class="actions">
+              <%= form.submit class: "btn btn-outline-success" %>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+

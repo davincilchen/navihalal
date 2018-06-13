@@ -8,6 +8,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to @user, notice: "Profile successfully updated!"
+    else
+      render 'edit', alert: "Profile was failed to update."
+    end
   end
 
   def collection
@@ -22,6 +27,10 @@ class UsersController < ApplicationController
   
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:photo, :name, :birthday, :intro, :residence, :country)
   end
   
 end
