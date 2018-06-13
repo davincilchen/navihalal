@@ -190,7 +190,7 @@ input[placeholder*=" "] {
 
 /* search result page */
 .result {
-    padding: 0 10vh;
+    padding: 0 10vh 6vh 10vh;
     .row {padding: 4vh;}
     h1 {
         text-align: center;
@@ -280,6 +280,17 @@ input[placeholder*=" "] {
 }
 /* result end */
 
+/* tag */
+.tag {
+    padding-top: 8vh;
+    .tag-content {
+        width: 70vw !important;
+        .search-tag {display: inline;}
+    }
+}
+
+/* end */
+
 /* Navi Logo */
 @media screen and (min-width: 960px) {
     .navi-logo {
@@ -343,3 +354,20 @@ label.required:after {
     color: red;
 }
 /* end */
+
+/* sign-in or sign-up */
+.sign-up {margin-left: 57.3vw;}
+/* end */
+
+// footer
+
+#footer {
+    height: 56px;
+    width: 100%;
+    z-index: 20;
+    text-align: center;
+    background-color: #77FFCC;
+}
+#footer p{
+    padding: 18px;
+}

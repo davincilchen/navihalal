@@ -45,7 +45,7 @@ namespace :dev do
   end
 
   task fake_restaurant: :environment do
-    Restaurant.destroy_all
+    # Restaurant.destroy_all
     20.times do |i|
       # photo = "pic1_#{rand(72).to_s.rjust(3, '0')}.jpg"
       file = File.new(Rails.root.join('app', 'assets', 'images', "pic_#{rand(72).to_s.rjust(3, '0')}.jpg"))

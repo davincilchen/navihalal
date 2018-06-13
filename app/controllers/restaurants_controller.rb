@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :search]
+  skip_before_action :authenticate_user!, only: [:index, :search]
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :collect, :uncollect]
 
   # GET /restaurants
@@ -30,6 +30,8 @@ class RestaurantsController < ApplicationController
   def show
     #Tag.first.hashtags.create(user: current_user, restaurant: @restaurant) #fake
     @meals = @restaurant.meals
+    # @activities = PublicActivity::Activity.all.order("created_at desc").where(owner_id: current_user.following_ids, owner_type: "User")
+    
   end
 
   # GET /restaurants/new
@@ -117,19 +119,22 @@ class RestaurantsController < ApplicationController
   end
 
   def collect
-    @restaurant.collects.create!(user: current_user)
-    redirect_back(fallback_location: root_path)
+    @collect = @restaurant.collects.create!(user: current_user)
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js
+    end
   end
 
   def uncollect
     collects = Collect.where(restaurant: @restaurant, user: current_user)
     collects.destroy_all
-    redirect_back(fallback_location: root_path)
-  end
 
-  def import
-    Restaurant.import(params[:file])
-    redirect_to restaurants_path, notice: "Restaurant Added Successfully."
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js
+    end
   end
 
   private

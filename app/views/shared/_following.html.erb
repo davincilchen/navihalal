@@ -3,11 +3,13 @@
   <% if user == current_user %>
     <%=link_to user.name  , user_path(user), class:"text-success" %>
   <% else %>
-    <% if current_user.following?(user) %>
-      <span><i class="fa fa-star fa-1x text-danger" ></i></span>
+    <% if current_user %>
+      <% if current_user.following?(user) %>
+        <span><i class="fa fa-star fa-1x text-danger" ></i></span>
+      <% end %>
+      <%=link_to user.name  , user_path(user), class:"text-success" %>
+      <%= render  "shared/following_button", user: user %>
     <% end %>
-    <%=link_to user.name  , user_path(user), class:"text-success" %>
-    <%= render  "shared/following_button", user: user %>
   <% end %>
 </h4>
 </div>

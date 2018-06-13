@@ -14,6 +14,8 @@ class Restaurant < ApplicationRecord
 
   after_validation :default_photo
 
+  belongs_to :user
+
   has_many :meals, dependent: :destroy
   accepts_nested_attributes_for :meals, :allow_destroy => true, :reject_if => :all_blankqui
   has_many :mealed_users, through: :meals, source: :user
