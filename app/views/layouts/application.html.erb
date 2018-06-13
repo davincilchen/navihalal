@@ -118,12 +118,12 @@
                   <% end %>
                 </li>
               <% else %>
-                <li>
+                <li class="user-sign">
                   <%= link_to new_user_session_path, class: "nav-link" do %>
                     Sign In <span><i class="fas fa-sign-in-alt"></i></span>
                   <% end %>
                 </li>
-                <li>
+                <li class="user-sign">
                   <%= link_to user_facebook_omniauth_authorize_path, class: "nav-link" do %>
                      Sign in with <span><i class="fab fa-facebook-square"></i></span>
                   <% end %>

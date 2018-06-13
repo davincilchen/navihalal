@@ -146,11 +146,12 @@ div.sidebar {
             a {
                 border: 1px solid;
                 border-radius: 10px;
-                padding-right: 10px;
+                padding-right: 7px;
                 margin-right: 0px;
                 &:hover {color:#FFF;}
             }
         }
+        .user-sign {width: 16vw;}
     }
 }
 /* sidebar end */
