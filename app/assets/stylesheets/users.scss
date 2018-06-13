@@ -135,8 +135,12 @@
   }
   textarea {min-height: 25vh;}
   .user-edit-submit {
-    left: 44%;
-    max-width: 12vw;
+    padding: 0 40%;
+  }
+  @media screen and (min-width: 990px) {
+   .user-edit-submit {
+      padding: 0 44.5%;
+    } 
   }
   /* Edit Password */
   em {
