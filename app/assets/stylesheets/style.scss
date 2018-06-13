@@ -90,8 +90,8 @@ div.sidebar {
     position: absolute;
     z-index: 10;
     .user-profile {
-        border-bottom: 1px solid gray;
-        padding-bottom: 20px
+        border-bottom: 2px solid #DCDCDC;
+        padding-bottom: 2.3vh;
     }
     .user-avatar {
         a {
@@ -123,31 +123,32 @@ div.sidebar {
         }
     }
     .user-widgit, .user-control {
-        border-bottom: 1px solid gray;
+        border-bottom: 2px solid #DCDCDC;
         ul {
             list-style: none;
-            margin-top: 30px;
-            padding-left: 0;
             li {
-                padding-bottom: 30px;
                 a {
                     color: #8CE4C4;
                     text-decoration: none;
+                    margin-right: 1vw;
                     span {
-                        margin-right: 62px;
-                        i {
-                            width: 54px;
-                            vertical-align: middle;
-                        }
+                        float: right;
+                        i {vertical-align: middle;}
                     }
+                    &:hover {color: #8F8181;}
                 }
+                &:hover {background: #FFFAFA;}
             }
         }
-    }
-    .user-control li {
-        padding: 0;
-        a {
-            padding: 0;
+        .add-restaurant {
+            margin-top: 2vh;
+            a {
+                border: 1px solid;
+                border-radius: 10px;
+                padding-right: 10px;
+                margin-right: 0px;
+                &:hover {color:#FFF;}
+            }
         }
     }
 }
