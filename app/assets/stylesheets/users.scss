@@ -110,8 +110,18 @@
   }
   textarea {min-height: 25vh;}
   .user-edit-submit {
-    left: 40%;
-    right: 40%;
+    left: 44%;
+    max-width: 12vw;
   }
+  /* Edit Password */
+  em {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: lowercase;
+    margin: 0 auto;
+    color: #f79a9a;
+  }
+  /* end */
 }
 /* end */
