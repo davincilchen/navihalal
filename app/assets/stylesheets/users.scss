@@ -65,6 +65,21 @@
 .user-background {background: linear-gradient(to bottom, #FFFAFA 50vh, #FFF 100%);}
 
 /* user-edit */
+.user-edit-container {
+  margin-top: 3vh;
+  .nav-link {
+      color: #2BB44A;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      &:hover {
+          background: #FFFFF0;
+          color: #3AF365;
+      }
+  }
+  .nav-link.active {
+      color: #FFF;
+      background: #BCE8B6;
+  }
+}
 .user-edit {
   border: 1px solid #DEECE0;
   border-radius: 10px;

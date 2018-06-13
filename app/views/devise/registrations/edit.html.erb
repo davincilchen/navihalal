@@ -1,7 +1,14 @@
-<div class="container">
+<div class="container user-edit-container">
   <div class="row">
     <div class="col-12">
-      <h2>Change Your Password</h2>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <%= link_to "Profile", edit_user_path(@user), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active">Password</a>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="row user-edit">
