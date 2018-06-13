@@ -88,9 +88,18 @@
   margin-bottom: 3vh;
   .col-form-label {
     text-align: center;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 800;
     text-transform: uppercase;
+  }
+  .form-label-test {
+    border: 1px solid;
+    border-bottom: none;
+    border-radius: 5px;
+    max-width: 10vw;
+    color: #FFF;
+    background: #BCE8B6;
+    margin: 0 auto;
   }
   .user-edit-avatar {
     position: relative;
@@ -100,7 +109,7 @@
       border: 2px solid gray;
       border-radius: 8px;
       padding: 8px 20px;
-      margin-left: 3vw;
+      margin-left: 7vw;
       color: gray;
       background-color: white;
       font-size: 20px;
