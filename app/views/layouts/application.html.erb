@@ -78,48 +78,54 @@
             </div>
           </div>
           <div class="user-widgit">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav">
               <li>
-                <%= link_to root_path do %>
-                  <span><i class="fas fa-user-friends"></i></span>Friends
+                <%= link_to collection_user_path(current_user), class: "nav-link" do %>
+                  Collection <span><i class="fas fa-truck-loading"></i></span>
                 <% end %>
               </li>
               <li>
-                <%= link_to root_path do %>
-                  <span><i class="fas fa-heart"></i></span>Favorites
+                <%= link_to followings_user_path(current_user), class: "nav-link" do %>
+                  Following <span><i class="fas fa-heart"></i></span>
                 <% end %>
               </li>
               <li>
-                <%= link_to collection_user_path(current_user) do %>
-                  <span><i class="fas fa-truck-loading"></i></span>Collection
-                <% end %>
-              </li>
-              <li>
-                <%= link_to root_path do %>
-                  <span><i class="fas fa-paper-plane"></i></span>Suggestion
+                <%= link_to edit_user_registration_path, class: "nav-link" do %>
+                  Setting<span><i class="fas fa-sliders-h"></i></span>
                 <% end %>
               </li>
             </ul>
           </div>
         <% end %>
           <div class="user-control">
-            <ul class="navbar-nav ml-auto">
-              <% if current_user %>
-                <li><%= link_to 'Add Restaurant', new_restaurant_path, class: "nav-link" %></li>
-                <li><%= link_to 'Change password', edit_user_registration_path, class: "nav-link" %></li>
+            <ul class="navbar-nav">
+              <% if user_signed_in? %>
+                <li class="add-restaurant">
+                  <%= link_to new_restaurant_path, class: "nav-link btn btn-outline-success" do %>
+                    Add Restaurant <span><i class="fas fa-plus-circle"></i></span>
+                  <% end %>
+                </li>
                 <% if current_user.admin? %>
-                  <li><%= link_to 'Admin', admin_users_path, class: "nav-link" %></li>
+                  <li>
+                    <%= link_to admin_users_path, class: "nav-link" do %>
+                      Admin <span><i class="fas fa-user-shield"></i></span>
+                    <% end %>
+                  </li>
                 <% end %>
-                <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                    Sign Out <span><i class="fas fa-sign-out-alt"></i></span>
+                  <% end %>
+                </li>
               <% else %>
                 <li>
-                  <%= link_to new_user_session_path do %>
-                    <span><i class="fas fa-sign-in-alt fa-3x"></i></span>Sign in
+                  <%= link_to new_user_session_path, class: "nav-link" do %>
+                    Sign In <span><i class="fas fa-sign-in-alt"></i></span>
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to user_facebook_omniauth_authorize_path do %>
-                    <span><i class="fas fa-sign-in-alt fa-3x"></i></span>Sign in with Facebook
+                  <%= link_to user_facebook_omniauth_authorize_path, class: "nav-link" do %>
+                     Sign in with <span><i class="fab fa-facebook-square"></i></span>
                   <% end %>
                 </li>
               <% end %>
