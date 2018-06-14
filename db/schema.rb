@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_130059) do
+ActiveRecord::Schema.define(version: 2018_06_14_094456) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 2018_06_13_130059) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content", limit: 160, null: false
+    t.integer "restaurant_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_comments_on_restaurant_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "followships", force: :cascade do |t|
@@ -127,7 +137,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_130059) do
     t.datetime "updated_at", null: false
     t.string "fb_uid"
     t.string "fb_token"
-    t.datetime "activity_checked_at", default: "2018-06-13 11:07:49"
+    t.datetime "activity_checked_at", default: "2018-06-14 09:00:56"
     t.float "longitude", default: 0.0
     t.float "latitude", default: 0.0
     t.index ["email"], name: "index_users_on_email", unique: true
