@@ -90,7 +90,7 @@
   </div>
   <div class="col-md-2">
     <p class="btn btn-success">Check in</p>
-    <p class="btn btn-success">Comment</p>
+    <p><%= link_to 'Comment', restaurant_comments_path(@restaurant), class: "btn btn-success" %></p>
     <br>
     <%= render 'shared/collect', restaurant: @restaurant %>
   </div>
