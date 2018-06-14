@@ -15,7 +15,23 @@ class UsersController < ApplicationController
   end
 
   def position
+    puts "------position------"
+    puts"#{params[:position][:latitude]}"
+    puts"#{params[:position][:longitude]}"
 
+    if current_user
+      latitude = params[:position][:latitude]
+      longitude = params[:position][:longitude]
+
+      puts"#{latitude}"
+      puts"#{longitude}"
+      if latitude>=0.0 && latitude <= 180.0
+        if longitude>=0.0 && longitude <= 180.0
+           current_user.update(:latitude => latitude, :longitude=>longitude)
+           puts "------position save------"
+        end
+      end
+    end
   end
   
 end
