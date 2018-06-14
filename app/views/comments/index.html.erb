@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-sm-0">
+      <div class="row">
+        <div class="col-12">
+          <%= image_tag @restaurant.photo.url %>
+        </div>
+        <div class="col-12">
+          <%= @restaurant.name %>
+        </div>
+        <div class="col-12">
+          <% @restaurant.tags.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        </div>
+        <div class="col-12">
+          <%= @restaurant.address.slice(0..1) %>
+        </div>
+        <div class="col-12">
+          <%= @restaurant.tel %>
+        </div>
+        <div class="col-12">
+          <%= link_to "Back", restaurant_path(@restaurant) %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-sm-12">
+      <div class="comment-create">
+        <div class="row">
+          <div class="col-12">
+            <h5>Tell us what you want to say</h5>
+          </div>
+          <div class="col-12">
+            <%= form_with(model: [@restaurant, @comment], local: true) do |f| %>
+              <% if @comment.errors.any? %>
+                <div id="error_explanation" class="form-inline alert alert-danger">
+                  <h2 class="alert-heading">There is some errors.</h2>
+                  <h4 class="alert-heading">
+                    <%= pluralize(@comment.errors.count, "error") %> prohibited this user from being saved:
+                  </h4>
+                  <ul>
+                    <% @comment.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <div class="form-group">
+                <%= f.text_area :content, placeholder: 'Type your comment!', class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.submit 'Send', class: "btn btn-outline-success" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-12 comment-show">
+            <h6><%= @restaurant.comments_count %> </h6>
+            <% @comments.each do |cs| %>
+              <div class="row">
+                <div class="col-3">
+                  <div class="row">
+                    <div class="col-4">
+                      <p><%= cs.user.name.first %></p>
+                    </div>
+                    <div class="col-8">
+                      <p><%= cs.user.name %></p>
+                      <p><%= cs.updated_at.strftime("%b %d, %Y") %></p>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="offset-7 col-2">
+                  <i class="far fa-thumbs-up"></i>
+                </div>
+                <div class="col-12">
+                  <%= cs.content %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
