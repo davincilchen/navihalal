@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       post :collect
       post :uncollect
     end
+    resources :comments, except: [:show, :new]
   end
   get :search, controller: :restaurants
   resources :users do
