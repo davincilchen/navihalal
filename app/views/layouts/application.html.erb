@@ -62,75 +62,85 @@
     <!--  ============================================= -->
     <div class="sidebar collapse" id="collapseExample">
       <div class="card card-body">
-        <% if current_user %>
-          <div class="user-profile">
-            <div class="user-avatar">
-              <%= link_to user_path(current_user) do %>
-                <div class="avatar-navi">
-                  <%= image_tag current_user.photo.url, class: "img-fluid rounded-circle" %>
-                </div>
-                <div class="user-name">
-                  <span><i class="fas fa-angle-right"></i></span>
-                  <p><%= current_user.name %></p>
-                  <p>Tap to view profile</p>
-                </div>
-              <% end %>
+        <div class="row">
+          <% if current_user %>
+            <div class="col-12">
+              <div class="user-profile">
+                <%= link_to user_path(current_user), class: "row" do %>
+                  <div class="col-4">
+                    <%= image_tag current_user.photo.url, class: "rounded-circle" %>
+                  </div>
+                  <div class="col-8">
+                    <p>
+                      <%= current_user.name %>
+                      <span>
+                        <i class="fas fa-angle-right"></i>
+                      </span>
+                    </p>
+                    <p>Tap to view profile</p>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div class="user-widgit">
-            <ul class="navbar-nav">
-              <li>
-                <%= link_to collection_user_path(current_user), class: "nav-link" do %>
-                  Collection <span><i class="fas fa-truck-loading"></i></span>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to followings_user_path(current_user), class: "nav-link" do %>
-                  Following <span><i class="fas fa-heart"></i></span>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to edit_user_registration_path, class: "nav-link" do %>
-                  Setting<span><i class="fas fa-sliders-h"></i></span>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        <% end %>
-          <div class="user-control">
-            <ul class="navbar-nav">
-              <% if user_signed_in? %>
-                <li class="add-restaurant">
-                  <%= link_to new_restaurant_path, class: "nav-link btn btn-outline-success" do %>
-                    Add Restaurant <span><i class="fas fa-plus-circle"></i></span>
-                  <% end %>
-                </li>
-                <% if current_user.admin? %>
+            <div class="col-12">
+              <div class="user-widgit">
+                <ul class="navbar-nav">
                   <li>
-                    <%= link_to admin_users_path, class: "nav-link" do %>
-                      Admin <span><i class="fas fa-user-shield"></i></span>
+                    <%= link_to collection_user_path(current_user), class: "nav-link" do %>
+                      Collection <span><i class="fas fa-truck-loading"></i></span>
                     <% end %>
                   </li>
-                <% end %>
-                <li>
-                  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-                    Sign Out <span><i class="fas fa-sign-out-alt"></i></span>
+                  <li>
+                    <%= link_to followings_user_path(current_user), class: "nav-link" do %>
+                      Following <span><i class="fas fa-heart"></i></span>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to edit_user_registration_path, class: "nav-link" do %>
+                      Setting<span><i class="fas fa-sliders-h"></i></span>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+          <div class="col-12">
+             <div class="user-control">
+                <ul class="navbar-nav">
+                  <% if user_signed_in? %>
+                    <li class="add-restaurant">
+                      <%= link_to new_restaurant_path, class: "nav-link btn btn-outline-success" do %>
+                        Add Restaurant <span><i class="fas fa-plus-circle"></i></span>
+                      <% end %>
+                    </li>
+                    <% if current_user.admin? %>
+                      <li>
+                        <%= link_to admin_users_path, class: "nav-link" do %>
+                          Admin <span><i class="fas fa-user-shield"></i></span>
+                        <% end %>
+                      </li>
+                    <% end %>
+                    <li>
+                      <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                        Sign Out <span><i class="fas fa-sign-out-alt"></i></span>
+                      <% end %>
+                    </li>
+                  <% else %>
+                    <li>
+                      <%= link_to new_user_session_path, class: "nav-link" do %>
+                        Sign In <span><i class="fas fa-sign-in-alt"></i></span>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to user_facebook_omniauth_authorize_path, class: "nav-link" do %>
+                        Sign in with <span><i class="fab fa-facebook-square"></i></span>
+                      <% end %>
+                    </li>
                   <% end %>
-                </li>
-              <% else %>
-                <li>
-                  <%= link_to new_user_session_path, class: "nav-link" do %>
-                    Sign In <span><i class="fas fa-sign-in-alt"></i></span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to user_facebook_omniauth_authorize_path, class: "nav-link" do %>
-                     Sign in with <span><i class="fab fa-facebook-square"></i></span>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
+                </ul>
+              </div>
           </div>
+        </div>
       </div>
     </div>
     <!--  ============================================= -->
