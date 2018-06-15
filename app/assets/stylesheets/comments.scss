@@ -1,3 +1,78 @@
-// Place all the styles related to the Comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.comment {
+  background-color: rgb(242, 242, 242);
+  padding: 3vh 2vw;
+  .btn {background: white;}
+}
+.btn-outline-primary:hover {background: #007bff;}
+.btn-outline-success:hover {background: #28a745;}
+.comment-restaurant {
+  img {max-width: 20vw;}
+  h5 {
+    margin: 2vh 0px;
+    font-weight: 800;
+    color: #70D941;
+  }
+  a {border: 1px solid;}
+  p:only-child {
+    font-size: 18px;
+    font-family: monospace;
+    text-transform: uppercase;
+    color: #797979;
+  }
+  a.comment-coll-users {
+    border: none;
+    &:hover {text-decoration: none;}
+    img {
+      width: 4vw;
+      border-radius: 30px;
+    }
+  }
+  .col-12:last-child {margin-top: 2vh;}
+}
+.comment-create {
+  form {box-shadow: 0 0 1px black;}
+  textarea {height: 18vh;}
+  input[type="submit"] {
+    float: right;
+    width: 9vw;
+    height: 4vh;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 20px;
+    letter-spacing: 2px;
+  }
+  h6 {
+    color: #797979;
+    font-size: 20px;
+    margin-left: 2vw;
+    margin-bottom: 4px;
+    font-weight: 300;
+  }
+}
+.comment-create .col-12:first-child {margin-bottom: 3vh;}
+.comment-show {
+  border: 1px solid #DEECE0;
+  box-shadow: 0 0 1px black;
+  padding: 5px;
+  background-color: white;
+}
+.comment-user {
+  border-bottom: 2px solid #DEECE0;
+  padding: 2vh 0;
+  margin: .2rem .2rem;
+  img {
+    width: 4vw;
+    border-radius: 30px;
+  }
+  p {text-align: center;}
+  p:nth-child(1) {margin: 0 auto;}
+  p:nth-child(2) {
+    margin: 0 auto;
+    font-size: 0.5rem;
+    color: #c7bbbb;
+  }
+  .col-12 {margin-top: 2vh;}
+}
+.comment-user:last-child {
+  border-bottom: none;
+}
