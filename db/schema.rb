@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_130059) do
     t.datetime "updated_at", null: false
     t.string "fb_uid"
     t.string "fb_token"
-    t.datetime "activity_checked_at", default: "2018-06-10 11:47:06"
+    t.datetime "activity_checked_at", default: "2018-06-15 15:52:31"
     t.float "longitude", default: 0.0
     t.float "latitude", default: 0.0
     t.index ["email"], name: "index_users_on_email", unique: true
