@@ -35,12 +35,19 @@
         <script>
           function countChar(val) {
             var len = val.value.length;
-            if (len >= 160) {
+            if (len > 160) {
               val.value = val.value.substring(0, 160);
             } else {
               $('#charNum').text(160 - len + ' characters left');
             }
           };
+          $('body').click(function (evt) {
+            if (evt.target.id != "field" && evt.target.id != "charNum" ) {
+              $('#charNum').hide();
+            } else {
+              $('#charNum').show();
+            };
+          });
         </script>
         <div class="col-12 first-text">
           <%= form_with(model: [@restaurant, @comment], local: true) do |f| %>
