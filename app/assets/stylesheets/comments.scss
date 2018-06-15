@@ -40,10 +40,17 @@
     float: right;
     width: 9vw;
     height: 4vh;
+    margin-top: 1vh;
     font-size: 16px;
     font-weight: 500;
     border-radius: 20px;
     letter-spacing: 2px;
+  }
+  #form-text {margin-bottom: 0px;}
+  #charNum {
+    color: #d09898;
+    background-color: white;
+    padding-left: 30px;
   }
   h6 {
     color: #797979;

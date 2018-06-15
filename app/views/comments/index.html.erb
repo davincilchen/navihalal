@@ -32,6 +32,16 @@
     </div>
     <div class="col-md-7 col-sm-12">
       <div class="comment-create row">
+        <script>
+          function countChar(val) {
+            var len = val.value.length;
+            if (len >= 160) {
+              val.value = val.value.substring(0, 160);
+            } else {
+              $('#charNum').text(160 - len + ' characters left');
+            }
+          };
+        </script>
         <div class="col-12">
           <%= form_with(model: [@restaurant, @comment], local: true) do |f| %>
             <% if @comment.errors.any? %>
@@ -47,9 +57,10 @@
                 </ul>
               </div>
             <% end %>
-            <div class="form-group">
-              <%= f.text_area :content, placeholder: 'Type your comment!', class: "form-control" %>
+            <div class="form-group" id="form-text">
+              <%= f.text_area :content, placeholder: 'Type your comment!', class: "form-control", id: "field", onkeyup: "countChar(this)" %>
             </div>
+            <div id="charNum"></div>
             <div class="form-group">
               <% if params[:id] %>
                 <%= f.submit 'Update', class: "btn btn-outline-success btn-sm" %>
