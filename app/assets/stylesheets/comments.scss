@@ -51,6 +51,9 @@
     color: #d09898;
     background-color: white;
     padding-left: 30px;
+    border: 1px solid #ced4da;
+    border-top: none;
+    border-bottom: none;
   }
   h6 {
     color: #797979;
@@ -60,7 +63,10 @@
     font-weight: 300;
   }
 }
-.comment-create .col-12:first-child {margin-bottom: 3vh;}
+.first-text {
+  padding: 1px;
+  margin-bottom: 3vh;
+}
 .comment-show {
   h3 {
     text-align: center;

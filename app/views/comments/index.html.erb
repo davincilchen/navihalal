@@ -42,7 +42,7 @@
             }
           };
         </script>
-        <div class="col-12">
+        <div class="col-12 first-text">
           <%= form_with(model: [@restaurant, @comment], local: true) do |f| %>
             <% if @comment.errors.any? %>
               <div id="error_explanation" class="form-inline alert alert-danger">
