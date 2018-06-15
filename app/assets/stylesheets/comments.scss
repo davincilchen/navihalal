@@ -5,6 +5,7 @@
 }
 .btn-outline-primary:hover {background: #007bff;}
 .btn-outline-success:hover {background: #28a745;}
+.btn-outline-danger:hover {background: #dc3545;}
 .comment-restaurant {
   img {max-width: 20vw;}
   h5 {
@@ -31,7 +32,10 @@
 }
 .comment-create {
   form {box-shadow: 0 0 1px black;}
-  textarea {height: 18vh;}
+  textarea {
+    height: 18vh;
+    border-radius: 0px; 
+  }
   input[type="submit"] {
     float: right;
     width: 9vw;

@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
   before_action :set_restaurant
+  before_action :set_comment, except: [:index, :create]
   
   def index
     if params[:id]
-      @comment = Comment.find(params[:id])
+      set_comment
     else
       @comment = Comment.new
     end
@@ -18,13 +19,17 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       redirect_to restaurant_comments_path, notice: "Comment was successfully updated!"
     else
       @comments = @restaurant.comments
       render 'index'
     end
+  end
+
+  def destroy
+    @comment.destroy
+    redirect_to restaurant_comments_path(@restaurant), alert: "Comment was successfully deleted."
   end
 
   private
@@ -35,6 +40,10 @@ class CommentsController < ApplicationController
 
   def set_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
   
 end
