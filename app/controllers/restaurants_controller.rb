@@ -5,6 +5,16 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
+
+    gon.is_login = false
+    gon.latitude = 0.0
+    gon.longitude = 0.0
+    if current_user
+      gon.is_login = true
+      gon.latitude = current_user.latitude
+      gon.longitude = current_user.longitude
+    end
+
     @restaurants = Restaurant.all
     @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude

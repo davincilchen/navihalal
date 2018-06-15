@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   #devise_for :users
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks",
+    registrations: 'registrations'
+  }
   root 'restaurants#index'
   resources :restaurants do
     member do
@@ -19,6 +22,9 @@ Rails.application.routes.draw do
     member do
       get :collection
       get :followings
+    end
+    collection  do
+      patch :position
     end
   end
   

@@ -4,6 +4,7 @@
     <title>Halal</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= Gon::Base.render_data %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     
@@ -52,6 +53,7 @@
                 <% end %>   
               </span>            
             </div>
+          </button>
         <% end %>
       <% end %>
 
@@ -105,40 +107,40 @@
             </div>
           <% end %>
           <div class="col-12">
-             <div class="user-control">
-                <ul class="navbar-nav">
-                  <% if user_signed_in? %>
-                    <li class="add-restaurant">
-                      <%= link_to new_restaurant_path, class: "nav-link btn btn-outline-success" do %>
-                        Add Restaurant <span><i class="fas fa-plus-circle"></i></span>
-                      <% end %>
-                    </li>
-                    <% if current_user.admin? %>
-                      <li>
-                        <%= link_to admin_users_path, class: "nav-link" do %>
-                          Admin <span><i class="fas fa-user-shield"></i></span>
-                        <% end %>
-                      </li>
+            <div class="user-control">
+              <ul class="navbar-nav">
+                <% if user_signed_in? %>
+                  <li class="add-restaurant">
+                    <%= link_to new_restaurant_path, class: "nav-link btn btn-outline-success" do %>
+                      Add Restaurant <span><i class="fas fa-plus-circle"></i></span>
                     <% end %>
+                  </li>
+                  <% if current_user.admin? %>
                     <li>
-                      <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-                        Sign Out <span><i class="fas fa-sign-out-alt"></i></span>
-                      <% end %>
-                    </li>
-                  <% else %>
-                    <li>
-                      <%= link_to new_user_session_path, class: "nav-link" do %>
-                        Sign In <span><i class="fas fa-sign-in-alt"></i></span>
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to user_facebook_omniauth_authorize_path, class: "nav-link" do %>
-                        Sign in with <span><i class="fab fa-facebook-square"></i></span>
+                      <%= link_to admin_users_path, class: "nav-link" do %>
+                        Admin <span><i class="fas fa-user-shield"></i></span>
                       <% end %>
                     </li>
                   <% end %>
-                </ul>
-              </div>
+                  <li>
+                    <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                      Sign Out <span><i class="fas fa-sign-out-alt"></i></span>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="user-sign">
+                    <%= link_to new_user_session_path, class: "nav-link" do %>
+                      Sign In <span><i class="fas fa-sign-in-alt"></i></span>
+                    <% end %>
+                  </li>
+                  <li class="user-sign">
+                    <%= link_to user_facebook_omniauth_authorize_path, class: "nav-link" do %>
+                      Sign in with <span><i class="fab fa-facebook-square"></i></span>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -216,7 +218,47 @@
 
 
 <script>
+  $.ajaxSetup({
+    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
+  });
+  var bClick = false;
+
+
   function onBellClick() {
+
+    if(!bClick){
+     $.ajax({
+        url: '/activities/check',
+        method: "PATCH",
+        dataType: "json",
+        success: function(data){
+          //console.log("Success patch activities check ");
+          //alert("Success: can not getCheckinStatus!");
+        },
+
+        error: function() {
+          //console.log("ERROR can not patch activities check ");
+          //alert("ERROR: can not getCheckinStatus!");
+        }
+
+      });
+      bClick = true;
+    }
+
+    /*
+    $.ajax({
+      type: "PATCH",
+      dataType: "script",
+      url: '/activities/check',
+      contentType: 'application/json',
+      data: JSON.stringify({ resource:{pos_y:45,pos_x:50}, _method:'patch' })
+      }).done(function( msg )
+      {
+        //alert( "Data Saved: " + msg ); //aync callback
+      });
+    */
+
+    
     var bellNum = document.getElementsByClassName("bell-num");
     bellNum[0].innerHTML = "";
     bellNum[0].style.fontSize = "0%";
