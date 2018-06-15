@@ -126,6 +126,7 @@ div.sidebar {
         border-bottom: 2px solid #DCDCDC;
         ul {
             list-style: none;
+            margin-top: 1vh;
             li {
                 a {
                     color: #8CE4C4;
@@ -145,11 +146,12 @@ div.sidebar {
             a {
                 border: 1px solid;
                 border-radius: 10px;
-                padding-right: 10px;
+                padding-right: 7px;
                 margin-right: 0px;
                 &:hover {color:#FFF;}
             }
         }
+        .user-sign {width: 16vw;}
     }
 }
 /* sidebar end */
