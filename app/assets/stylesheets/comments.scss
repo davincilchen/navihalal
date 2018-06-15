@@ -7,6 +7,9 @@
 .btn-outline-success:hover {background: #28a745;}
 .btn-outline-danger:hover {background: #dc3545;}
 .comment-restaurant {
+  background: white;
+  padding: 1px 0.2vw 2vh 0.2vw;
+  margin-right: .2vw;
   img {max-width: 20vw;}
   h5 {
     margin: 2vh 0px;
@@ -94,6 +97,10 @@
     color: #c7bbbb;
   }
   .col-12 {margin-top: 2vh;}
+  .comment-button {
+    a:first-child {color: #2900FF;}
+    a:last-child {color: #000000A8;}
+  }
 }
 .comment-user:last-child {
   border-bottom: none;

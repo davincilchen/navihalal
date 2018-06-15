@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     else
       @comment = Comment.new
     end
-    @comments = @restaurant.comments
+    @comments = @restaurant.comments.order(updated_at: :desc)
   end
 
   def create
@@ -30,6 +30,16 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     redirect_to restaurant_comments_path(@restaurant), alert: "Comment was successfully deleted."
+  end
+
+  def upvote
+    @comment.upvote_by current_user
+    redirect_back(fallback_location: root_path)
+  end
+
+  def downvote
+    @comment.downvote_by current_user
+    redirect_back(fallback_location: root_path)
   end
 
   private

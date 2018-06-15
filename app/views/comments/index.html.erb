@@ -91,8 +91,15 @@
                       </div>
                     </div>
                   </div>
-                  <div class="offset-7 col-2">
-                    <i class="far fa-thumbs-up"></i>
+                  <div class="offset-6 col-3 comment-button">
+                      <%= link_to like_restaurant_comment_path(restaurant_id: cs.restaurant, id: cs), method: :put, class: "btn btn-sm" do %>
+                        <span><i class="far fa-thumbs-up"></i></span>
+                        <%= cs.get_upvotes.size %>
+                      <% end %>
+                      <%= link_to dislike_restaurant_comment_path(restaurant_id: cs.restaurant, id: cs), method: :put, class: "btn btn-sm" do %>
+                        <span><i class="far fa-thumbs-down"></i></span>
+                        <%= cs.get_downvotes.size %>
+                      <% end %>
                   </div>
                   <div class="col-12">
                     <%= cs.content %>
