@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       get :collection
       get :followings
     end
+    collection  do
+      patch :position
+    end
   end
   
   resources :activities do

@@ -89,7 +89,21 @@
 
   function geo_success(pos) {
     setCurrentPos(pos);
-    setCenter_byUserPos();
+    if (gon.latitude != userCurrentPos.lat && gon.longitude != userCurrentPos.lng){
+      setCenter_byUserPos();
+      if (gon.is_login) {
+        $.ajax({
+          type: "PATCH",
+          dataType: "script",
+          url: '/users/position',
+          contentType: 'application/json',
+          data: JSON.stringify({ position:{latitude:pos.coords.latitude
+                                          ,longitude:pos.coords.longitude}, _method:'patch' })
+          }).done(function( msg ){
+            //alert( "Data Saved: " + msg ); //aync callback
+        });
+      }
+    }
   };
 
   function getUserCurrentPosition(){
@@ -186,8 +200,20 @@
     //handler.getMap().setCenter(new google.maps.LatLng(35.720969, 139.735877));
 
     if(useDefaultCenter){
-      handler.getMap().setCenter(new google.maps.LatLng(22.997234, 120.211936)); //台南火車站
-      handler.getMap().setZoom(12);
+      if(gon.latitude != 0.0 && gon.longitude != 0.0){
+        var marker = handler.addMarker({
+          lat: gon.latitude,
+          lng: gon.longitude
+        });
+        handler.map.centerOn(marker);
+        handler.getMap().setCenter(new google.maps.LatLng(gon.latitude, gon.longitude));
+        handler.getMap().setZoom(14);
+       }
+      else{
+        handler.getMap().setCenter(new google.maps.LatLng(22.997234, 120.211936)); //台南火車站
+        handler.getMap().setZoom(12);
+      }
+      
     }
     else{
       handler.getMap().setZoom(2);

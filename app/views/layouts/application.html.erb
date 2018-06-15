@@ -4,6 +4,7 @@
     <title>Halal</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= Gon::Base.render_data %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     
@@ -52,6 +53,7 @@
                 <% end %>   
               </span>            
             </div>
+          </button>
         <% end %>
       <% end %>
 
@@ -206,7 +208,47 @@
 
 
 <script>
+  $.ajaxSetup({
+    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
+  });
+  var bClick = false;
+
+
   function onBellClick() {
+
+    if(!bClick){
+     $.ajax({
+        url: '/activities/check',
+        method: "PATCH",
+        dataType: "json",
+        success: function(data){
+          //console.log("Success patch activities check ");
+          //alert("Success: can not getCheckinStatus!");
+        },
+
+        error: function() {
+          //console.log("ERROR can not patch activities check ");
+          //alert("ERROR: can not getCheckinStatus!");
+        }
+
+      });
+      bClick = true;
+    }
+
+    /*
+    $.ajax({
+      type: "PATCH",
+      dataType: "script",
+      url: '/activities/check',
+      contentType: 'application/json',
+      data: JSON.stringify({ resource:{pos_y:45,pos_x:50}, _method:'patch' })
+      }).done(function( msg )
+      {
+        //alert( "Data Saved: " + msg ); //aync callback
+      });
+    */
+
+    
     var bellNum = document.getElementsByClassName("bell-num");
     bellNum[0].innerHTML = "";
     bellNum[0].style.fontSize = "0%";
