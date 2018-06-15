@@ -19,7 +19,7 @@
           <p>Collection: <%= @restaurant.collected_users.size %></p>
         </div>
         <div class="col-12">
-          <% @restaurant.collected_users.shuffle.each do |cu| %>
+          <% @restaurant.collected_users.uniq.shuffle.each do |cu| %>
             <%= link_to user_path(cu), class: "comment-coll-users" do %>
               <%= image_tag cu.photo.url, title: "#{cu.name}" %>
             <% end %>
