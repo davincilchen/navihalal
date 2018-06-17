@@ -28,8 +28,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    redirect_to restaurant_comments_path(@restaurant), alert: "Comment was successfully deleted."
+    @comment.destroy && set_restaurant
   end
 
   def upvote
