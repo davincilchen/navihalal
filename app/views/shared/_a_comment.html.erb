@@ -21,7 +21,7 @@
       <% end %>
   </div>
   <div class="col-12" id="comment-content-<%= object.id %>">
-    <%= object.content %>
+    <p class="comment-content"><%= object.content %></p>
   </div>
   <% if object.user == current_user || current_user.admin? %>
     <div class="col-12">
