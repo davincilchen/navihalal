@@ -14,8 +14,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @restaurant.comments.build(comment_params)
     @comment.user = current_user
-    @comment.save!
-    redirect_to restaurant_comments_path(@restaurant)
+    @comment.save! && set_restaurant
   end
 
   def update
