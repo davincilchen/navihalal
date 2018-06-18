@@ -28,6 +28,9 @@ class Restaurant < ApplicationRecord
   has_many :collected_users, through: :collects, source: :user
   include RestaurantsHelper
 
+  has_many :comments, dependent: :destroy
+  has_many :commented_users, through: :comments
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       Restaurant.create! row.to_hash

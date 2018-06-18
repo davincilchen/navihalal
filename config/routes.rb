@@ -10,6 +10,12 @@ Rails.application.routes.draw do
       post :collect
       post :uncollect
     end
+    resources :comments, except: [:show, :new] do
+      member do
+      put "like",    to: "comments#upvote"
+      put "dislike", to: "comments#downvote"
+    end
+    end
   end
   get :search, controller: :restaurants
   resources :users do
