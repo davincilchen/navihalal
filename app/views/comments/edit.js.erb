@@ -1,0 +1,2 @@
+<% html = j( render :partial => "form", :locals => { :restaurant => @restaurant, :comment => @comment } ) %>
+$("#comment-content-<%= @comment.id %>").html("<%= html %>");

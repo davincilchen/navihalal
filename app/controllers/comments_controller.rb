@@ -3,11 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, except: [:index, :create]
   
   def index
-    if params[:id]
-      set_comment
-    else
-      @comment = Comment.new
-    end
+    @comment = Comment.new
     @comments = @restaurant.comments.order(updated_at: :desc)
   end
 
