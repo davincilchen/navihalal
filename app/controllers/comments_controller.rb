@@ -14,12 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update(comment_params)
-      redirect_to restaurant_comments_path, notice: "Comment was successfully updated!"
-    else
-      @comments = @restaurant.comments
-      render 'index'
-    end
+    @comment.update(comment_params) && set_restaurant
   end
 
   def destroy
