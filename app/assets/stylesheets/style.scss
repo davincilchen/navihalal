@@ -17,7 +17,7 @@
 
 
 .sidebar-right{
-  position: absolute;
+  position: fixed;
   z-index: 10;
   right: 0%;
 
@@ -87,7 +87,7 @@ div.sidebar {
 }
 
 .sidebar {
-    position: absolute;
+    position: fixed;
     z-index: 10;
     .user-profile {
         border-bottom: 2px solid #DCDCDC;
