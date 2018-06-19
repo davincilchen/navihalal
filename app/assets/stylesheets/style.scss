@@ -365,6 +365,8 @@ label.required:after {
 // footer
 
 #footer {
+    position: fixed;
+    bottom: 0;
     height: 56px;
     width: 100%;
     z-index: 20;
