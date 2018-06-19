@@ -96,6 +96,9 @@ gem 'gon'
 # gem for search
 gem 'ransack', '~> 1.8', '>= 1.8.8'
 
+# good counts
+gem 'acts_as_votable', '~> 0.11.1'
+
 # make notification of following user doing
 # and sort what the user do in restaurant
 gem 'public_activity', :git => "git://github.com/chaps-io/public_activity.git", :branch => "1-6-stable"

@@ -91,35 +91,19 @@ div.sidebar {
     z-index: 10;
     .user-profile {
         border-bottom: 2px solid #DCDCDC;
-        padding-bottom: 2.3vh;
-    }
-    .user-avatar {
+        padding-bottom: 1vh;
         a {
             color: #E8AB0C;
             text-decoration: none;
-        }
-        .avatar-navi {
-            float: left;
-            width: 40%;
-            margin-right: 0;
-        }
-        .user-name {
-            width: 60%;
-            margin-left: 40%;
-            padding: 3% 0 0 6%;
-            span {
-                float: right;
-                padding-top: 21%;
-            }
-            p {
-                font-size: 0.5em;
-            }
-            p:first-of-type {
-                margin-bottom: 0;
-                font-size: 1.2em;
+            img {width: 5vw;}
+            p {margin: 0px;}
+            p:first-child {
+                font-size: 1.2rem;
                 font-weight: 700;
                 padding-left: 0;
             }
+            span {float: right;}
+            p:last-child {font-size: 0.5rem}
         }
     }
     .user-widgit, .user-control {

@@ -1,0 +1,32 @@
+<div class="row comment-user" id="comment-<%= object.id %>">
+  <div class="col-3">
+    <div class="row">
+      <div class="col-4">
+        <%= image_tag object.user.photo.url %>
+      </div>
+      <div class="col-8">
+        <p><%= object.user.name %></p>
+        <p><%= object.updated_at.strftime("%b %d, %Y") %></p>
+      </div>
+    </div>
+  </div>
+  <div class="offset-6 col-3 comment-button">
+      <%= link_to like_restaurant_comment_path(restaurant_id: object.restaurant, id: object), method: :put, class: "btn btn-sm" do %>
+        <span><i class="far fa-thumbs-up"></i></span>
+        <%= object.get_upvotes.size %>
+      <% end %>
+      <%= link_to dislike_restaurant_comment_path(restaurant_id: object.restaurant, id: object), method: :put, class: "btn btn-sm" do %>
+        <span><i class="far fa-thumbs-down"></i></span>
+        <%= object.get_downvotes.size %>
+      <% end %>
+  </div>
+  <div class="col-12" id="comment-content-<%= object.id %>">
+    <p class="comment-content"><%= object.content %></p>
+  </div>
+  <% if object.user == current_user || current_user.admin? %>
+    <div class="col-12">
+      <%= link_to 'Edit', edit_restaurant_comment_path(restaurant_id: object.restaurant, id: object), remote: true, class: "btn btn-outline-success btn-sm" %>
+      <%= link_to 'Delete', restaurant_comment_path(restaurant_id: object.restaurant, id: object), method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
+    </div>
+  <% end %>
+</div>

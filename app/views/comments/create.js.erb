@@ -1,0 +1,5 @@
+<% html = j( render :partial => "shared/a_comment", :locals => { :object => @comment } ) %>
+$("#comment-all").prepend("<%= html %>")
+$("textarea").val('');
+<% count = j( render :partial => "shared/comments_count", :locals => { :restaurant => @restaurant } ) %>
+$("#countsLocation").html("<%= count %>")

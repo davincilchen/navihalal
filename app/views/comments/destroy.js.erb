@@ -1,0 +1,4 @@
+$("#comment-<%= @comment.id %>").remove()
+$("#comments-count").remove()
+<% html = j( render :partial => "shared/comments_count", :locals => { :restaurant => @restaurant } ) %>
+$("#countsLocation").html("<%= html %>")

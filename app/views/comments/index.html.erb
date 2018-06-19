@@ -1,0 +1,93 @@
+<div class="container-fluid comment">
+  <div class="row">
+    <div class="col-md-3 col-sm-0">
+      <div class="comment-restaurant row">
+        <div class="col-12">
+          <%= image_tag @restaurant.photo.url %>
+        </div>
+        <div class="col-12">
+          <h5><%= @restaurant.name %></h5>
+        </div>
+        <div class="col-12">
+          <% @restaurant.tags.uniq.each do |tag| %>
+            <h6 class="badge badge-pill badge-success">
+              <%=tag.name%>
+            </h6>
+          <% end %>
+        </div>
+        <div class="col-12">
+          <p>Collection: <%= @restaurant.collected_users.size %></p>
+        </div>
+        <div class="col-12">
+          <% @restaurant.collected_users.uniq.shuffle.each do |cu| %>
+            <%= link_to user_path(cu), class: "comment-coll-users" do %>
+              <%= image_tag cu.photo.url, title: "#{cu.name}" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-12">
+          <%= link_to "Back", restaurant_path(@restaurant), class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-sm-12">
+      <div class="comment-create row">
+        <script>
+          function countChar(val) {
+            var len = val.value.length;
+            if (len > 160) {
+              val.value = val.value.substring(0, 160);
+            } else {
+              $('#charNum').text(160 - len + ' characters left');
+            }
+          };
+          $('body').click(function (evt) {
+            if (evt.target.id != "field" && evt.target.id != "charNum" ) {
+              $('#charNum').hide();
+            } else {
+              $('#charNum').show();
+            };
+          });
+        </script>
+        <div class="col-12 first-text">
+          <%= form_with(model: [@restaurant, @comment], remote: true) do |f| %>
+            <% if @comment.errors.any? %>
+              <div id="error_explanation" class="form-inline alert alert-danger">
+                <h2 class="alert-heading">There is some errors.</h2>
+                <h4 class="alert-heading">
+                  <%= pluralize(@comment.errors.count, "error") %> prohibited this user from being saved:
+                </h4>
+                <ul>
+                  <% @comment.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group" id="form-text">
+              <%= f.text_area :content, placeholder: 'Type your comment!', class: "form-control", id: "field", onkeyup: "countChar(this)" %>
+            </div>
+            <div id="charNum"></div>
+            <div class="form-group">
+              <%= f.submit 'Send', class: "btn btn-outline-success btn-sm" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-12" id="countsLocation">
+          <%= render 'shared/comments_count', restaurant: @restaurant %>
+        </div>
+        <div class="col-12 comment-show">
+          <% if @restaurant.comments_count == 0 %>
+            <h3>- Give First Comment! -</h3>
+          <% else %>
+            <div class="comment-all" id="comment-all">
+              <% @comments.each do |cs| %>
+                <%= render 'shared/a_comment', object: cs %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
