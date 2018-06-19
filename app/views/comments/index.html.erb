@@ -50,7 +50,7 @@
           });
         </script>
         <div class="col-12 first-text">
-          <%= form_with(model: [@restaurant, @comment], local: true) do |f| %>
+          <%= form_with(model: [@restaurant, @comment], remote: true) do |f| %>
             <% if @comment.errors.any? %>
               <div id="error_explanation" class="form-inline alert alert-danger">
                 <h2 class="alert-heading">There is some errors.</h2>
@@ -69,11 +69,7 @@
             </div>
             <div id="charNum"></div>
             <div class="form-group">
-              <% if params[:id] %>
-                <%= f.submit 'Update', class: "btn btn-outline-success btn-sm" %>
-              <% else %>
-                <%= f.submit 'Send', class: "btn btn-outline-success btn-sm" %>
-              <% end %>
+              <%= f.submit 'Send', class: "btn btn-outline-success btn-sm" %>
             </div>
           <% end %>
         </div>
@@ -84,40 +80,9 @@
           <% if @restaurant.comments_count == 0 %>
             <h3>- Give First Comment! -</h3>
           <% else %>
-            <div class="comment-all">
+            <div class="comment-all" id="comment-all">
               <% @comments.each do |cs| %>
-                <div class="row comment-user" id="comment-<%= cs.id %>">
-                  <div class="col-3">
-                    <div class="row">
-                      <div class="col-4">
-                        <%= image_tag cs.user.photo.url %>
-                      </div>
-                      <div class="col-8">
-                        <p><%= cs.user.name %></p>
-                        <p><%= cs.updated_at.strftime("%b %d, %Y") %></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="offset-6 col-3 comment-button">
-                      <%= link_to like_restaurant_comment_path(restaurant_id: cs.restaurant, id: cs), method: :put, class: "btn btn-sm" do %>
-                        <span><i class="far fa-thumbs-up"></i></span>
-                        <%= cs.get_upvotes.size %>
-                      <% end %>
-                      <%= link_to dislike_restaurant_comment_path(restaurant_id: cs.restaurant, id: cs), method: :put, class: "btn btn-sm" do %>
-                        <span><i class="far fa-thumbs-down"></i></span>
-                        <%= cs.get_downvotes.size %>
-                      <% end %>
-                  </div>
-                  <div class="col-12">
-                    <%= cs.content %>
-                  </div>
-                  <% if cs.user == current_user || current_user.admin? %>
-                    <div class="col-12">
-                      <%= link_to 'Edit', restaurant_comments_path(id: cs.id), class: "btn btn-outline-success btn-sm" %>
-                      <%= link_to 'Delete', restaurant_comment_path(restaurant_id: cs.restaurant, id: cs), method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
-                    </div>
-                  <% end %>
-                </div>
+                <%= render 'shared/a_comment', object: cs %>
               <% end %>
             </div>
           <% end %>

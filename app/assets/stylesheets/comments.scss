@@ -101,6 +101,10 @@
     a:first-child {color: #2900FF;}
     a:last-child {color: #000000A8;}
   }
+  .comment-content {
+    text-align: initial;
+    overflow: auto;
+  }
 }
 .comment-user:last-child {
   border-bottom: none;

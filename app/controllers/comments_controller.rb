@@ -3,28 +3,18 @@ class CommentsController < ApplicationController
   before_action :set_comment, except: [:index, :create]
   
   def index
-    if params[:id]
-      set_comment
-    else
-      @comment = Comment.new
-    end
+    @comment = Comment.new
     @comments = @restaurant.comments.order(updated_at: :desc)
   end
 
   def create
     @comment = @restaurant.comments.build(comment_params)
     @comment.user = current_user
-    @comment.save!
-    redirect_to restaurant_comments_path(@restaurant)
+    @comment.save! && set_restaurant
   end
 
   def update
-    if @comment.update(comment_params)
-      redirect_to restaurant_comments_path, notice: "Comment was successfully updated!"
-    else
-      @comments = @restaurant.comments
-      render 'index'
-    end
+    @comment.update(comment_params) && set_restaurant
   end
 
   def destroy
