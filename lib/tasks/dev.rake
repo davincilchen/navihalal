@@ -6,7 +6,6 @@ namespace :dev do
     Rake::Task['dev:fake_user'].execute
     Rake::Task['dev:fake_followship'].execute
     # Rake::Task['dev:fake_restaurant'].execute
-    Rake::Task['dev:fake_restaurantX'].execute
     Rake::Task['dev:fake_hashtag'].execute
     Rake::Task['dev:fake_meal'].execute
     # Rake::Task['dev:fake_comment'].execute
@@ -45,14 +44,6 @@ namespace :dev do
     puts "now you have #{User.count} users data"
   end
 
-  task fake_restaurantX: :environment do
-    60.times do |i|
-      file = File.new(Rails.root.join('app', 'assets', 'images', "pic_#{rand(72).to_s.rjust(3, '0')}.jpg"))
-      id = i + 1
-      @restaurant = Restaurant.find(id)
-      @restaurant.update(photo: file)
-    end 
-  end
 
   task fake_restaurant: :environment do
     # Restaurant.destroy_all
