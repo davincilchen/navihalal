@@ -2,3 +2,8 @@ $("#comment-<%= @comment.id %>").remove()
 $("#comments-count").remove()
 <% html = j( render :partial => "shared/comments_count", :locals => { :restaurant => @restaurant } ) %>
 $("#countsLocation").html("<%= html %>")
+
+<% if @restaurant.comments_count == 0 %>
+  <% title = j( render :partial => "comment_none_title" ) %>
+  $("#js-comment-show").prepend("<%= title %>");
+<% end %>
