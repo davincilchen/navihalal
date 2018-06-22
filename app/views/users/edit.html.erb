@@ -59,7 +59,7 @@
             <div class="form-group row">
               <%= form.label :birthday, class: "col-sm-12 col-form-label" %>
                 <div class="col-sm-12">
-                  <%= form.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }} %>
+                  <%= form.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: 1920, end_year: Date.today.year} %>
                 </div>
             </div>
           </div>

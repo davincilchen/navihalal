@@ -44,6 +44,7 @@ namespace :dev do
     puts "now you have #{User.count} users data"
   end
 
+
   task fake_restaurant: :environment do
     # Restaurant.destroy_all
     20.times do |i|

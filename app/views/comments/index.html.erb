@@ -76,9 +76,10 @@
         <div class="col-12" id="countsLocation">
           <%= render 'shared/comments_count', restaurant: @restaurant %>
         </div>
-        <div class="col-12 comment-show">
+        <div class="col-12 comment-show" id="js-comment-show">
           <% if @restaurant.comments_count == 0 %>
-            <h3>- Give First Comment! -</h3>
+            <%= render 'comment_none_title' %>
+            <div class="comment-all" id="comment-all"></div>
           <% else %>
             <div class="comment-all" id="comment-all">
               <% @comments.each do |cs| %>
