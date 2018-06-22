@@ -108,12 +108,20 @@
                     <% end %>
                   </div>
                 </h5>
-                <p class="intro"><%= user.intro.truncate(50) %></p>
-                <p class="residence">
-                  <i class="fas fa-flag"></i>
-                  <%= user.residence %>,<br> 
-                  <span><%= user.country %></span>
+                <p class="intro">
+                  <% if user.intro? %>
+                    <%= user.intro.truncate(50) %>
+                  <% else %>
+                    a Newbie for NaviHalal
+                  <% end %>
                 </p>
+                <% if (user.residence? || user.country?) %>
+                  <p class="residence">
+                    <i class="fas fa-flag"></i>
+                    <%= user.residence %>,<br> 
+                    <span><%= user.country %></span>
+                  </p>
+                <% end %>
               </div>
             </div>
           <% end %>

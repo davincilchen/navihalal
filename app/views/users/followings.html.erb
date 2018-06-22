@@ -36,7 +36,13 @@
                         <%= render partial: "shared/following", locals: {user: following}%>
                       </h5>
                       <br>
-                      <p class="intro"><%= truncate(following.intro, length: 100) %></p>
+                      <p class="intro">
+                        <% if following.intro? %>
+                          <%= truncate(following.intro, length: 100) %>
+                        <% else %>
+                          a Newbie for NaviHalal
+                        <% end %>
+                      </p>
                     </div>
                   </div>
                 </div>
