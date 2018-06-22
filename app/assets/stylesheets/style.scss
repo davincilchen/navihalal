@@ -35,10 +35,6 @@
         margin: auto;
       }
     }
-
-    .activity-text {
-    }
-
   }
 }
 
@@ -326,7 +322,6 @@ input[placeholder*=" "] {
 #myTabContent {
     padding: 30px;
     border: 1px solid #DEE2E6;
-    border-bottom: none;
 }
 .form-back {
     border: 1px solid #DEE2E6;
@@ -349,13 +344,14 @@ label.required:after {
 // footer
 
 #footer {
-    position: fixed;
+    position: sticky;
     bottom: 0;
     height: 56px;
     width: 100%;
     z-index: 20;
     text-align: center;
     background-color: #77FFCC;
+    margin-top: 20px;
 }
 #footer p{
     padding: 18px;
