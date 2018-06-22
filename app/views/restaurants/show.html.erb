@@ -81,20 +81,20 @@
         <% end %>
     </div>
     <hr />
+    <!--
     <div class="meals">
-      <%# <p class="">Other Muslim Meals</p> %>
+      <p class="">Other Muslim Meals</p>
         <% @restaurant.meals.uniq.each do |meal| %>
           <p class=""><%#= @restaurant.meals.where(id: meal).count  %> person ordered <%= meal.name %></p> 
         <% end %>
-    <%# </div> %>
+    </div>
+    -->
   </div>
   <div class="col-md-2">
-    <%# <p class="btn btn-success">Check in</p> %>
+    <!--
+    <p class="btn btn-success">Check in</p>
+     -->
     <p><%= link_to 'Comment', restaurant_comments_path(@restaurant), class: "btn btn-success" %></p>
-    <br>
     <%= render 'shared/collect', restaurant: @restaurant %>
   </div>
 </div>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
