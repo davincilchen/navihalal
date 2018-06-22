@@ -68,8 +68,12 @@
               </td>
               <td><%= restaurant.address %></td>
               <td><%= restaurant.tel %></td>
-              <td><%= restaurant.latitude.round(3) %></td>
-              <td><%= restaurant.longitude.round(3) %></td>
+              <% if (restaurant.latitude? || restaurant.longitude?) %>
+                <td><%= restaurant.latitude.round(3) %></td>
+                <td><%= restaurant.longitude.round(3) %></td>
+              <% else %>
+                <td colspan="2">Need to re-compute Lat and Lng</td>
+              <% end %>
               <td><%= restaurant.rest_day %></td>
               <td><%= restaurant.business_hour %></td>
             <%# end %>
