@@ -78,7 +78,7 @@
               <td><%= restaurant.business_hour %></td>
             <%# end %>
               <td>
-                <%= link_to admin_restaurants_path(id: restaurant.id) do%>
+                <%= link_to edit_restaurant_path(restaurant) do%>
                   <%= icon 'far', 'edit' %>
                 <% end %>
                   | 
