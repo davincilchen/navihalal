@@ -37,8 +37,12 @@
             var len = val.value.length;
             if (len > 160) {
               val.value = val.value.substring(0, 160);
+            } else if(len == 0){
+              $('#charNum').text(160 - len + ' characters left');
+              $(':input[type="submit"]').prop('disabled', true);
             } else {
               $('#charNum').text(160 - len + ' characters left');
+              $(':input[type="submit"]').prop('disabled', false);
             }
           };
           $('body').click(function (evt) {
@@ -48,6 +52,7 @@
               $('#charNum').show();
             };
           });
+
         </script>
         <div class="col-12 first-text">
           <%= form_with(model: [@restaurant, @comment], remote: true) do |f| %>
@@ -69,7 +74,7 @@
             </div>
             <div id="charNum"></div>
             <div class="form-group">
-              <%= f.submit 'Send', class: "btn btn-outline-success btn-sm" %>
+              <%= f.submit 'Send', class: "btn btn-outline-success btn-sm", disabled: true %>
             </div>
           <% end %>
         </div>
