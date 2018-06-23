@@ -38,7 +38,7 @@
             if (len > 160) {
               val.value = val.value.substring(0, 160);
             } else if(len == 0){
-              $('#charNum').text(160 - len + ' characters left');
+              $('#charNum').text(160 + ' characters left');
               $(':input[type="submit"]').prop('disabled', true);
             } else {
               $('#charNum').text(160 - len + ' characters left');

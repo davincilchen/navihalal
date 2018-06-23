@@ -39,7 +39,7 @@
     height: 18vh;
     border-radius: 0px; 
   }
-  input[type="submit"] {
+  input[type="submit"], button#backButton {
     float: right;
     width: 9vw;
     height: 4vh;
@@ -50,7 +50,7 @@
     letter-spacing: 2px;
   }
   #form-text {margin-bottom: 0px;}
-  #charNum, #addCharNum {
+  #charNum, .addCharNum {
     color: #d09898;
     background-color: white;
     padding-left: 30px;
@@ -58,7 +58,7 @@
     border-top: none;
     border-bottom: none;
   }
-  #addCharNum {color: #63879D;}
+  .addCharNum {color: #63879D;}
   h6 {
     color: #797979;
     font-size: 20px;
