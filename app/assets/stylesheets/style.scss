@@ -35,10 +35,6 @@
         margin: auto;
       }
     }
-
-    .activity-text {
-    }
-
   }
 }
 
@@ -83,7 +79,7 @@
 }
 
 div.sidebar {
-    max-width: 24%;
+    max-width: 26vw;
 }
 
 .sidebar {
@@ -169,7 +165,6 @@ input[placeholder*=" "] {
     opacity: .8;
 }
 .navi-search {
-    position: fixed;
     left: 5%;
     width: fit-content;
 }
@@ -282,7 +277,6 @@ input[placeholder*=" "] {
 @media screen and (min-width: 960px) {
     .navi-logo {
         margin: 0 auto;
-        position: fixed;
         left: 35%;
         width: fit-content;
         right: 35%;
@@ -326,7 +320,6 @@ input[placeholder*=" "] {
 #myTabContent {
     padding: 30px;
     border: 1px solid #DEE2E6;
-    border-bottom: none;
 }
 .form-back {
     border: 1px solid #DEE2E6;
@@ -349,13 +342,13 @@ label.required:after {
 // footer
 
 #footer {
-    position: fixed;
     bottom: 0;
     height: 56px;
     width: 100%;
     z-index: 20;
     text-align: center;
     background-color: #77FFCC;
+    margin-top: 20px;
 }
 #footer p{
     padding: 18px;

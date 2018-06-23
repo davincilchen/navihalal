@@ -5,11 +5,19 @@
   <div class="col-md-6 row">
     <div class="col-md-12">
       <h2 class="profile-name"><%= object.name %></h2>
-      <p class="intro"><%= object.intro %></p>
-      <p class="residence">
-        <i class="fas fa-flag"></i>
-        <%= object.residence %>, <span><%= object.country %></span>
+      <p class="intro">
+        <% if object.intro? %>
+          <%= object.intro %>
+        <% else %>
+          a Newbie for NaviHalal
+        <% end %>
       </p>
+      <% if (object.residence? || object.country?) %>
+        <p class="residence">
+          <i class="fas fa-flag"></i>
+          <%= object.residence %>, <span><%= object.country %></span>
+        </p>
+      <% end %>
     </div>
   </div>
   <div class="col-md-3 user-contact" id="user-<%=object.id%>">

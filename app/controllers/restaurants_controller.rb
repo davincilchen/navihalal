@@ -103,16 +103,6 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  # DELETE /restaurants/1
-  # DELETE /restaurants/1.json
-  def destroy
-    @restaurant.destroy
-    respond_to do |format|
-      format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   def search
     @restaurants = Restaurant.ransack(name_cont: params[:q]).result(distinct: true)
     @tags = Tag.ransack(name_cont: params[:q]).result(distinct: true)
