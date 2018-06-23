@@ -79,7 +79,7 @@
 }
 
 div.sidebar {
-    max-width: 24%;
+    max-width: 26vw;
 }
 
 .sidebar {
@@ -165,7 +165,6 @@ input[placeholder*=" "] {
     opacity: .8;
 }
 .navi-search {
-    position: fixed;
     left: 5%;
     width: fit-content;
 }
@@ -278,7 +277,6 @@ input[placeholder*=" "] {
 @media screen and (min-width: 960px) {
     .navi-logo {
         margin: 0 auto;
-        position: fixed;
         left: 35%;
         width: fit-content;
         right: 35%;
@@ -344,7 +342,6 @@ label.required:after {
 // footer
 
 #footer {
-    position: sticky;
     bottom: 0;
     height: 56px;
     width: 100%;
