@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_user, except: [:position]
 
   def show
   end

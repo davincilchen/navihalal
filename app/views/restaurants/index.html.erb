@@ -88,10 +88,12 @@
   }
 
   function geo_success(pos) {
+    console.log("geo_success")
     setCurrentPos(pos);
     if (gon.latitude != userCurrentPos.lat && gon.longitude != userCurrentPos.lng){
       setCenter_byUserPos();
       if (gon.is_login) {
+        console.log("different pos")
         $.ajax({
           type: "PATCH",
           dataType: "script",
