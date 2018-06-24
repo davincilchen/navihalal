@@ -218,21 +218,16 @@
 
 
 <script>
-  /*
-  $.ajaxSetup({
-    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
-  });
-  */
+
   var bClick = false;
-
-
   function onBellClick() {
 
     if(!bClick){
-     $.ajax({
+      $.ajax({
         url: '/activities/check',
         method: "PATCH",
         dataType: "json",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         success: function(data){
           //console.log("Success patch activities check ");
           //alert("Success: can not getCheckinStatus!");
@@ -243,9 +238,9 @@
           //alert("ERROR: can not getCheckinStatus!");
         }
 
-      });
-      bClick = true;
-    }
+        });
+        bClick = true;
+      }
 
     /*
     $.ajax({

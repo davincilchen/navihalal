@@ -99,6 +99,7 @@
           dataType: "script",
           url: '/users/position',
           contentType: 'application/json',
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
           data: JSON.stringify({ position:{latitude:pos.coords.latitude
                                           ,longitude:pos.coords.longitude}, _method:'patch' })
           }).done(function( msg ){
