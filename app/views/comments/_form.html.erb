@@ -18,7 +18,7 @@
       $('#addCharNum<%= comment.id %>').show();
     };
   });
-  $("#backButton").on("click", function(event) {
+  $("#cancelButton").on("click", function(event) {
     $("#comment-content-<%= comment.id %>").html("<p><%= comment.content %></p>");
     $("#comment-content-<%= comment.id %>").children("p").addClass("comment-content");
   });
@@ -45,6 +45,6 @@
   </div>
   <div class="form-group">
     <%= f.submit 'Update', class: "btn btn-outline-success btn-sm" %>
-    <button id="backButton" class="btn btn-outline-danger btn-sm">Back</button>
+    <button id="cancelButton" class="btn btn-outline-danger btn-sm">Cancel</button>
   </div>
 <% end %>
