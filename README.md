@@ -2,96 +2,79 @@
 
 > 快速搜尋在附近的餐廳
 
-## NaviHalal 提供了以下功能
-
-<!-- ### 首頁
-
-- 使用Facebook、Spotify帳號與一般註冊的方式加入平台會員。
-- 使用Facebook、Spotify與一般會員帳號登入平台。
-- 會員可點擊大頭貼(預設為可愛動物 or Spotify大頭貼)進入會員專頁。
-- 瀏覽平台所推薦的展演資訊。
-- 瀏覽全台灣各地近期的展演活動。
-- 透過點擊 "看更多" 瀏覽全台灣各地所有的展演活動
-- 透過搜尋 展演名稱、表演者名稱、地點、時間、票價 找到想看的展演活動。
-- 可追蹤展演活動。
-- 透過Google map找到 台北、台中、台南、高雄 的展演場地。
-- 點擊 展演圖片 進入展演資訊專頁。
-
-### 展演資訊專頁
-
-- 瀏覽詳細的展演資訊。
-- 追蹤展演活動。
-- 點擊 表演者名稱 進入表演者專頁。
-
-### 表演者專頁
-
-- 聆聽表演者在Youtube的影片。
-- 聆聽表演者在Spotify的音樂。
-- 瀏覽表演者近期的展演資訊。
-- 追蹤表演者。
-
-### 會員專頁
-
-- 瀏覽已追蹤的展演活動。
-- 瀏覽已追蹤的Artist (若透過Spotify登入，平台會自動幫您追蹤Spotify所追蹤的Artist)。
-- 透過Edit Profile更新 大頭貼、名稱 與 Email帳號。
-- 可在最後一週黃金決策期，收到追蹤活動的Email通知。
-- 可收到追縱Artist近期的表演通知Email。
-
-### 管理者後台
-
-- 管理者可瀏覽所有展演資訊、展演場地、表演者、會員。
-- 管理者可新增展演資訊、展演場地、表演者。
-- 管理者可編輯展演資訊、展演場地、表演者。
-- 管理者可刪除展演資訊。-->
-
 ## 目錄
 
-* [A. Started](#A)
-* [B. Setting](#B)
-    - [B.1 devise.rb](#B.1)
-    - [B.2 facebook.yml](#B.2)
-    <!-- - [B.3 spotify.yml](#B.3) -->
+1. [Information](#information)
+2. [Starting](#starting)
+3. [Setting](#setting)
+    * [devise.rb](#devise)
+    * [facebook.yml](#facebook)
+4. [Use Fake Data](#use-fake-data)
+5. [Website](#website)
+## Information
+**NaviHalal 提供了以下功能**
+### 登入系統
+* 使用者不需登入就看到首頁，但使用者和商家一定要登入才能使用網站其他功能。
+* 使用者能創建帳號、登入、登出
+* 使用者的暱稱不能重覆，若有重覆會跳出錯誤
+* 使用者能編輯自己的名稱、介紹、大頭照、國家、居住地、生日
+### 首頁
+* 使用者不需登入可以瀏覽餐廳，導航自己的位置。
+* 瀏覽餐廳、包含收藏數、hashtag
+* 搜尋餐廳
+* 使用者可以在sidebar進入新增餐廳頁面
+* 使用者可以在首頁搜尋餐廳（左上）
+* 使用者可以在首頁看到追蹤者的相關通知（右上）
+* 追蹤者評論的餐廳
+* 追蹤者收藏的餐廳
+* 使用者可以在首頁使用自己的side bar（左上左）
+* 追蹤者列表
+* 收集的餐廳
+* 個人主頁
+### 新增餐廳
+* 使用者可以藉由提供定位，讓網站自動抓取大約的地址
+* 使用者可以上傳名稱、電話、營業時間、介紹、照片
+### 餐廳show頁面
+* 使用者可以瀏覽餐廳照片和相關餐點照片
+* 使用者可以瀏覽餐廳的資訊 地址、電話、開店時間
+* 使用者可以看到在餐廳底下的留言
+* 使用者可以在餐廳底下留言
+* 使用者看在這個餐廳hashtag的人數
+### 個人頁面
+* 使用者可以查看自己搜集的餐廳
+* 使用者可以查看追蹤好友列表
+### 管理者後台
+* 管理者可瀏覽所有餐廳、用戶、tag
+* 管理者可新增餐廳、tag
+* 管理者可編輯餐廳、tag
+* 管理者可刪除餐廳
+* 管理者可以修改其他使用者的權限
 
-* [C. Get Event & Artist data](#C)
-    - [C.1 執行crawl.rake取得展演資料](#C.1)
-    - [C.2. 執行dev.rake產生測試資料](#C.2)
-* [D. Website](#4)
-
-<h2 id="A">A. Started</h2>
-首先將Rails專案透過git clone下載到本地端(local)
-
+## Starting
+1. 首先將 Rails 專案透過 git clone 下載到本地端(local)︰
+```ruby
+  $ git clone https://github.com/oklalala/navihalal.git
 ```
-  $ git clone 
-```
-
-並執行`bundle install`安裝它。
-
-```
+2. 安裝必要的 gems︰
+```ruby
   $ bundle install
 ```
-
-接下來執行 migration來建立資料表
-
-```
+3. 執行 migration 來建立資料表︰
+``` ruby
   $ rails db:migrate
 ```
-
-安裝內建的餐廳資料，與預設的使用者帳號。
-帳 123@123.123 密 123123
-
-```
+4. 安裝內建的餐廳資料，與預設的使用者帳號︰
+*(Account: 123@123.123, Password: 123123)*
+```ruby
   $ rails db:seed
 ```
-
-將餐廳的經緯度訊息補滿。
-
-```
+5. 將餐廳的經緯度訊息補滿︰
+```ruby
   $ rails geocode:all CLASS=Restaurant SLEEP=3 BATCH=10 LIMIT=100
 ```
-<h2 id="B">B. Setting</h2>
-<h3 id="B.1">B.1 devise.rb</h3>
 
+## Setting
+### devise
 為了讓使用者能用 Facebook 登入，當開發環境為本地端時，請在rails專案資料夾 `config/` 新增 `facebook.yml`檔案，
 並開啟 `config/initializers/devise.rb` 檔案，啟用下方程式碼，才能在本地端透過 `facebook.yml` 載入串接Facebook API所需要的app_id及secret。
 
@@ -102,18 +85,7 @@
   fb_config["secret"]
 ```
 
-<!-- 一樣在`config/initializers/devise.rb`檔案，啟用下方程式碼，才能在本地端透過`spotify.yml`載入串接Spotify API所需要的client_id、client_secret。
-
-```
-  spotify_config = Rails.application.config_for(:spotify)
-  config.omniauth :spotify,
-  spotify_config["client_id"], 
-  spotify_config["client_secret"],
-  scope: 'user-read-private playlist-read-private user-read-email user-follow-modify user-library-modify'
-``` -->
-
-<h3 id="B.2">B.2 facebook.yml</h3>
-
+### facebook
 申請Facebook API金鑰來設定 `facebook.yml` 檔案的內容，請至[facebook for developers](https://developers.facebook.com/apps) 申請並取得app_id、seceret及API token，取得後請在 `facebook.yml` 檔案內輸入以下內容：
 
 ```
@@ -123,37 +95,11 @@ development:
   api_token: 輸入取得的API token
 ```
 
-<!-- <h3 id="B.3">B.3 spotify.yml</h3>
-
-申請Spotify API金鑰來設定 `spotify.yml` 檔案的內容，請至[Spotify Developer](https://developer.spotify.com/my-applications/) 申請並取得client_id及client_secret，取得後請在 `spotify.yml` 檔案內輸入以下內容：
-
-```
-development:
-  client_id: 輸入取得的client_id
-  client_secret: 輸入取得的client_secret
-``` -->
-
-
-
-<h2 id="C">C. 取的種子與測試資料</h2>
-<h3 id="C.1">C.1 執行db:seed取得展演資料</h3>
-
-取得內建的admin user，帳號 admin@example.com、密碼 12345678
-
-```
-  $ rails db:seed
-```
-
-<h3 id="C.2">C.2. 執行dev.rake產生測試資料</h3>
-產生測試資料(使用者、追蹤表演者、追蹤展演資訊)
-
-```
+## Use Fake Data
+使用 dev.rake 建立假資料，內容包括使用者、追隨清單、hashtag、收藏的餐廳︰
+```ruby
   $ rails dev:fake_all
 ```
 
-
-
-<h2 id="D">D. Website</h2>
-
-[NaviHalal 音樂展演資訊平台]()
- -->
+## Website
+[NaviHalal 在台清真生活交流平台](https://www.navihalal.xyz)
