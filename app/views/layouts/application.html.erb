@@ -240,6 +240,13 @@
 
         });
         bClick = true;
+
+        if(gon.activities_count>0){
+          var bellNum = document.getElementsByClassName("bell-num");
+          bellNum[0].innerHTML = "";
+          bellNum[0].style.fontSize = "0%";
+          bellNum[1].innerHTML = "";
+        }
       }
 
     /*
@@ -255,10 +262,6 @@
       });
     */
 
-    
-    var bellNum = document.getElementsByClassName("bell-num");
-    bellNum[0].innerHTML = "";
-    bellNum[0].style.fontSize = "0%";
-    bellNum[1].innerHTML = "";
+
   }
 </script>
