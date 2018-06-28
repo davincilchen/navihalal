@@ -40,6 +40,7 @@
   var useDefaultCenter = true;
   var handler = null; //google map handler
   var restaurantMap = {};
+  var user_marker = 0;
   var userCurrentPos = {
     lat: 0.0,
     lng: 0.0
@@ -93,6 +94,9 @@
     if (gon.latitude != userCurrentPos.lat && gon.longitude != userCurrentPos.lng){
       setCenter_byUserPos();
       if (gon.is_login) {
+        if(user_marker !== 0){
+          handler.removeMarker(user_marker);
+        }
         console.log("different pos")
         $.ajax({
           type: "PATCH",
@@ -143,6 +147,10 @@
   function getDirectionUrl(destination){
     if(hasUserCurrentPos()){
       origin = userCurrentPos.lat+','+userCurrentPos.lng;
+      return createGoogleMapDirUrl(origin, destination);
+    }
+    else if (gon.latitude != 0.0 && gon.longitude != 0.0){
+       origin = gon.latitude+','+gon.longitude;
       return createGoogleMapDirUrl(origin, destination);
     }
     else{
@@ -204,11 +212,15 @@
 
     if(useDefaultCenter){
       if(gon.latitude != 0.0 && gon.longitude != 0.0){
-        var marker = handler.addMarker({
+        user_marker = handler.addMarker({
           lat: gon.latitude,
           lng: gon.longitude
         });
-        handler.map.centerOn(marker);
+        //user_marker = handler.addMarker({
+        //  lat: 25.055,
+        //  lng: 121.5
+        //});
+        handler.map.centerOn(user_marker);
         handler.getMap().setCenter(new google.maps.LatLng(gon.latitude, gon.longitude));
         handler.getMap().setZoom(14);
        }
