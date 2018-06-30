@@ -19,6 +19,7 @@
       display: block;
       text-align: left;
    }
+   td p {margin: 0;}
    .avatar-navi {display: inline-block;}
  }
   .table-bordered {
@@ -38,7 +39,7 @@
     form {
       margin-top: 4vh;
       margin-left: 10%;
-      input[type="submit"] {margin-left: 40%;}
+      input[type="submit"] {margin-left: 10vw;}
     }
   }
   // Admin tag end
