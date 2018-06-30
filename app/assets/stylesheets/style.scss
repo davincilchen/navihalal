@@ -206,7 +206,7 @@ input[placeholder*=" "] {
             padding-left: 2vw;
             .row {
                 border-top: 2px solid #5cb85c;
-                img {max-width: 10vw;}
+                img {width: 10vw;}
                 .search-follow {
                     display: inline;
                     .search-follow-child {
@@ -235,10 +235,7 @@ input[placeholder*=" "] {
                     i {color: #E8A90F;}
                 }
             }
-            span {
-                padding: 0 1vw;
-                a {float: right;}
-            }
+            span a {float: right;}
             #pills-tabContent {
                 padding-left: 0;
                 width: 56.5vw;
@@ -399,6 +396,42 @@ label.required:after {
         width: 100%;
         margin-bottom: 4%;
     }
-    //
+    // Restaurant Show end
+
+    // Search Result
+    .result {
+        .result-main {
+            margin-bottom: 4vh;
+            width: 77vw;
+            margin-left: -6vw;
+            .nav-pills {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .tab-content {
+                margin-top: 3vh;
+                padding-left: 0;
+                .row {
+                    padding: 3vh 0;
+                    margin-top: 2vh;
+                    img {width: 100%;}
+                    h5 span {
+                        display: block;
+                        a.btn {
+                            float: none;
+                            margin-top: 2vh;
+                        }
+                    }
+                }
+                ul.nav.nav-pills {
+                    border-top: 2px solid rgb(222, 236, 224);
+                    padding-top: 3vh;
+                    margin-left: 5vw;
+                    li.nav-item {width: 100%;}
+                }
+            }
+        }
+    }
+    // Search Result end
 }
 /* mobile style end */
