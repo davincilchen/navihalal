@@ -35,8 +35,6 @@
       <a class="navbar-brand p-0 text-success navi-logo " href="<%= root_path %>">NaviHalal</a>
 
       <!--  ============================================= -->
-      <ul class="mr-auto">
-      </ul>
         
       <% if current_user %>
         <%= form_for(current_user, url: check_activities_path, html: { method: :patch })  do |f|%>

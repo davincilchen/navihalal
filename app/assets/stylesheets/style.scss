@@ -79,7 +79,7 @@
 }
 
 div.sidebar {
-    max-width: 26vw;
+    width: 26vw;
 }
 
 .sidebar {
@@ -353,3 +353,38 @@ label.required:after {
 #footer p{
     padding: 18px;
 }
+/* footer end */
+
+/* mobile style */
+@media (max-width:480px) {
+    .navi-search {
+        width: 36%;
+        margin-left: 0px;
+    }
+    .navbar-brand {margin: 0;}
+    .navbar {padding: 0.5rem 0;}
+    button span.notify-bell span.fa-stack-2x {font-size: 2em;}
+    div.sidebar {
+        width: 50%;
+        .card-body {
+            padding: .75rem 3vw 1.25rem 5vw;
+            .user-sign {
+                width: 95%;
+            }
+            img.rounded-circle {width: 16vw;}
+            li.add-restaurant {
+                a {font-size: .75em;}
+            }
+        }
+    }
+    #footer {
+        margin-top: 0;
+        position: fixed;
+        height: 5vh;
+        p {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+/* mobile style end */
