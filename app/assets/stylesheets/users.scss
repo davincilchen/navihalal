@@ -100,7 +100,7 @@
     border: 1px solid;
     border-bottom: none;
     border-radius: 5px;
-    max-width: 10vw;
+    width: 10vw;
     color: #FFF;
     background: #BCE8B6;
     margin: 0 auto;
@@ -168,6 +168,29 @@
       top: 60%;
       a {font-size: .75em;}
     }
+  }
+  .user-edit {
+    box-shadow: none;
+    .form-label-test {width: 26vw;}
+    select {
+      width: 60%;
+      margin-left: 20%;
+      text-align-last: center;
+    }
+    .user-edit-avatar button {
+      position: absolute;
+      left: 70%;
+      top: 5%;
+    }
+    img {
+      width: 60%;
+      margin: 0 20%;
+    }
+    .user-edit-submit {
+      margin: 0 36%;
+      padding: 0;
+    }
+    .col-12 a.btn.btn-outline-primary {margin: 2% 39%;}
   }
 }
 /* style mobile end */
