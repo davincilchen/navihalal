@@ -20,7 +20,7 @@
         <%= object.get_downvotes.size %>
       <% end %>
   </div>
-  <div class="col-12" id="comment-content-<%= object.id %>">
+  <div class="col-12 content-size" id="comment-content-<%= object.id %>">
     <p class="comment-content"><%= object.content %></p>
   </div>
   <% if object.user == current_user || current_user.admin? %>
