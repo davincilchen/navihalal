@@ -24,11 +24,7 @@
                 <h5>
                   <%= link_to restaurant.name, restaurant, class: "search-link" %>
                   <span>
-                    <% if restaurant.is_collected?(current_user) %>
-                      <%= link_to 'UnCollect', uncollect_restaurant_path(restaurant), method: :post, class: "btn btn-outline-success btn-sm" %>
-                    <% else %>
-                      <%= link_to 'Collect', collect_restaurant_path(restaurant), method: :post, class: "btn btn-success btn-sm" %>
-                    <% end %>
+                    <%= render 'shared/collect', restaurant: restaurant %>
                   </span>
                 </h5>
                 <p>
@@ -75,11 +71,7 @@
                         <h5>
                           <%= link_to tr.name, tr, class: "search-link" %>
                           <span>
-                            <% if tr.is_collected?(current_user) %>
-                              <%= link_to 'UnCollect', uncollect_restaurant_path(tr), method: :post, class: "btn btn-outline-success btn-sm" %>
-                            <% else %>
-                              <%= link_to 'Collect', collect_restaurant_path(tr), method: :post, class: "btn btn-success btn-sm" %>
-                            <% end %>
+                            <%= render 'shared/collect', restaurant: tr %>
                           </span>
                         </h5>
                         <p><%= tr.address.slice(0..1) %><span class="re-tel"><%= tr.tel %></span></p>
