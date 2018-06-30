@@ -357,6 +357,7 @@ label.required:after {
 
 /* mobile style */
 @media (max-width:480px) {
+    // navi-bar
     .navi-search {
         width: 36%;
         margin-left: 0px;
@@ -377,6 +378,7 @@ label.required:after {
             }
         }
     }
+    // navi-bar end
     #footer {
         margin-top: 0;
         position: fixed;
@@ -386,5 +388,10 @@ label.required:after {
             margin: 0;
         }
     }
+    // form of restaurant
+    div.form-container {padding-bottom: 15%;}
+    h1.form-header {font-size: 1.5rem;}
+    #myTabContent #home form select {width: 70% !important;}
+    // form of restaurant end
 }
 /* mobile style end */
