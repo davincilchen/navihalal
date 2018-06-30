@@ -2,7 +2,8 @@
 @import 'tags';
 @import 'devise';
 @import 'users';
-
+@import 'comments';
+@import './admin/admin';
 
 .follow-button {
     margin-left: 2vw;
