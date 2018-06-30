@@ -157,3 +157,17 @@
   /* end */
 }
 /* end */
+
+/* style mobile */
+@media (max-width:480px) {
+  .user-page .row .user-contact {border-left: none;}
+  .user-content {
+    .search-tag {
+      position: absolute;
+      left: -50%;
+      top: 60%;
+      a {font-size: .75em;}
+    }
+  }
+}
+/* style mobile end */
