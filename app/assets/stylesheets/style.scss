@@ -241,7 +241,6 @@ input[placeholder*=" "] {
                 padding-left: 0;
                 width: 56.5vw;
             }
-            .re-tel {margin-left: 5vw;}
             .search-link {
                 color: #70D941;
                 &:hover {
@@ -434,5 +433,13 @@ label.required:after {
         }
     }
     // Search Result end
+
+    // tag
+    h5.tag-link a {
+        display: inline-block;
+        margin-bottom: 2vh;
+    }
+    .result .result-main .tab-content .row h5 span a.btn {font-size: .7em;}
+    // tag end
 }
 /* mobile style end */
