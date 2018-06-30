@@ -1,100 +1,102 @@
-<br />
-<div class="rest-main row">
-  <div class="col-md-8">
+<div class="container mobile-container">
+  <br />
+  <div class="rest-main row">
+    <div class="col-md-8">
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div id="carousel-img" class="carousel-item active">
-          <%= image_tag @restaurant.photo.url, alt:@restaurant.name, class:"img-fluid", style:'width:100%' %>
-        </div>
-        <% if !@meals.empty?%>
-          <% @meals.each do |meal| %>
-            <div class="carousel-item">
-              <%= image_tag meal.photo.url, alt:meal.name, class:"img-fluid", style:'width:100%'  %>
-            </div>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div id="carousel-img" class="carousel-item active">
+            <%= image_tag @restaurant.photo.url, alt:@restaurant.name, class:"img-fluid", style:'width:100%' %>
+          </div>
+          <% if !@meals.empty?%>
+            <% @meals.each do |meal| %>
+              <div class="carousel-item">
+                <%= image_tag meal.photo.url, alt:meal.name, class:"img-fluid", style:'width:100%'  %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
-  </div>
 
-  <div class="col-md-4">
-    <div class="card text-success border-success" style="height: 100%">
-      <h3 class="card-header"><%= @restaurant.name %></h3>
-      <h5 class="card-title"><%= @restaurant.address %></h5>
-      <h5 class="card-text"><%= @restaurant.tel %></h5>
-      <%# <p class="card-text">6 Favorites</p> %>
-      <%# <p class="card-text">5 Check-ins</p> %>
-      <%# <p class="card-text"><%= @restaurant.comments.count Comments</p> %>
-      <p class="card-text" style="padding: 0;"><%= @restaurant.collected_users.count %> users collected</p>
-      <p class="card-text"><%= @restaurant.meals.count + 1 %> Photos</p>
-      <p class="card-text">Muslim Tips: 
-        <% @restaurant.tags.uniq.each do |tag| %> 
-          <%= link_to(tag) do %>
-            <span class="badge badge-pill badge-success"><%= tag.name %></span>
+    <div class="col-md-4">
+      <div class="card text-success border-success" style="height: 100%">
+        <h3 class="card-header"><%= @restaurant.name %></h3>
+        <h5 class="card-title"><%= @restaurant.address %></h5>
+        <h5 class="card-text"><%= @restaurant.tel %></h5>
+        <%# <p class="card-text">6 Favorites</p> %>
+        <%# <p class="card-text">5 Check-ins</p> %>
+        <%# <p class="card-text"><%= @restaurant.comments.count Comments</p> %>
+        <p class="card-text" style="padding: 0;"><%= @restaurant.collected_users.count %> users collected</p>
+        <p class="card-text"><%= @restaurant.meals.count + 1 %> Photos</p>
+        <p class="card-text">Muslim Tips: 
+          <% @restaurant.tags.uniq.each do |tag| %> 
+            <%= link_to(tag) do %>
+              <span class="badge badge-pill badge-success"><%= tag.name %></span>
+            <% end %>
           <% end %>
-        <% end %>
-      </p>
-      <%# <a href="#" class="btn text-right"><i class="fas fa-camera-retro fa-3x text-success" ></i> %>
-      </a>
+        </p>
+        <%# <a href="#" class="btn text-right"><i class="fas fa-camera-retro fa-3x text-success" ></i> %>
+        </a>
+      </div>
     </div>
+    
   </div>
-  
-</div>
-<br />
-<div class="row text-success">
-  <div class="col-md-5">
-    <div class="row">
-      <div class="col-auto mr-auto">Feed</div>
-      <div class="col-auto">(<%= @restaurant.hashtags.count %>)</div>
-    </div>
-      <% @restaurant.hashtags.each do |hashtag| %>
-        <hr />
-        <div class="row">
-          <div class="col-md-3 text-right">
-            <%= image_tag hashtag.user.photo.url, width: "70px", class: "rounded" %>
+  <br />
+  <div class="row text-success">
+    <div class="col-md-5 col-xs-12">
+      <div class="row">
+        <div class="col-auto mr-auto">Feed</div>
+        <div class="col-auto">(<%= @restaurant.hashtags.count %>)</div>
+      </div>
+        <% @restaurant.hashtags.each do |hashtag| %>
+          <hr />
+          <div class="row">
+            <div class="col-md-3 text-right">
+              <%= image_tag hashtag.user.photo.url, width: "70px", class: "rounded" %>
+            </div>
+            <div class="col-md-9">
+              <%= render partial: "shared/following", locals: {user: hashtag.user}%>
+              <p class="text-success">has tagged as 
+                <span class="badge badge-pill badge-success"><%= hashtag.tag.name %></span>
+              </p>
+            </div>
           </div>
-          <div class="col-md-9">
-            <%= render partial: "shared/following", locals: {user: hashtag.user}%>
-            <p class="text-success">has tagged as 
-              <span class="badge badge-pill badge-success"><%= hashtag.tag.name %></span>
-            </p>
-          </div>
-        </div>
-      <% end %>
-  </div>
-  <div class="col-md-5">
-    <div class="tips">
-      <p class="">Other Muslim Tips</p>
-        <% @restaurant.tags.uniq.each do |tag| %>
-          <p class=""><%= @restaurant.hashtags.where(tag_id:tag).count %> person says <%= tag.name %></p> 
         <% end %>
     </div>
-    <hr />
-    <!--
-    <div class="meals">
-      <p class="">Other Muslim Meals</p>
-        <% @restaurant.meals.uniq.each do |meal| %>
-          <p class=""><%#= @restaurant.meals.where(id: meal).count  %> person ordered <%= meal.name %></p> 
-        <% end %>
+    <div class="col-md-5 col-xs-12">
+      <div class="tips">
+        <p class="">Other Muslim Tips</p>
+          <% @restaurant.tags.uniq.each do |tag| %>
+            <p class=""><%= @restaurant.hashtags.where(tag_id:tag).count %> person says <%= tag.name %></p> 
+          <% end %>
+      </div>
+      <hr />
+      <!--
+      <div class="meals">
+        <p class="">Other Muslim Meals</p>
+          <% @restaurant.meals.uniq.each do |meal| %>
+            <p class=""><%#= @restaurant.meals.where(id: meal).count  %> person ordered <%= meal.name %></p> 
+          <% end %>
+      </div>
+      -->
     </div>
-    -->
-  </div>
-  <div class="col-md-2">
-    <!--
-    <p class="btn btn-success">Check in</p>
-     -->
-    <p><%= link_to 'Comment', restaurant_comments_path(@restaurant), class: "btn btn-success" %></p>
-    <%= render 'shared/collect', restaurant: @restaurant %>
+    <div class="col-md-2 col-xs-12">
+      <!--
+      <p class="btn btn-success">Check in</p>
+      -->
+      <p><%= link_to 'Comment', restaurant_comments_path(@restaurant), class: "btn btn-success" %></p>
+      <%= render 'shared/collect', restaurant: @restaurant %>
+    </div>
   </div>
 </div>

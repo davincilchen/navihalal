@@ -389,9 +389,16 @@ label.required:after {
         }
     }
     // form of restaurant
-    div.form-container {padding-bottom: 15%;}
+    div.mobile-container {padding-bottom: 15%;}
     h1.form-header {font-size: 1.5rem;}
     #myTabContent #home form select {width: 70% !important;}
     // form of restaurant end
+
+    // Restaurant Show
+    .mobile-container .col-md-3.text-right img.rounded {
+        width: 100%;
+        margin-bottom: 4%;
+    }
+    //
 }
 /* mobile style end */
