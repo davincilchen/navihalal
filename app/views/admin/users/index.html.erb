@@ -26,7 +26,9 @@
           <% @users.each do |user| %>
             <tr>
               <%= link_to user_path(user) do %>
-                <td data-th="Name"><%= user.name %></td>
+                <td data-th="Name">
+                  <p class="user-detail"><%= user.name %></p>
+                </td>
                 <td data-th="Photo">
                   <%= link_to(user_path(user)) do %>
                     <div class="avatar-navi">
@@ -34,7 +36,9 @@
                     </div>
                   <% end %>
                 </td>
-                <td data-th="E-mail"><%= user.email %></td>
+                <td data-th="E-mail">
+                  <p class="user-detail"><%= user.email %></p>
+                </td>
               <% end %>
                 <td data-th="Role">
                   <%= form_for [:admin, user] do |f| %>

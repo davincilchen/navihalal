@@ -18,10 +18,15 @@
       margin: 0.5em 1em;
       display: block;
       text-align: left;
-   }
-   td p {margin: 0;}
-   .avatar-navi {display: inline-block;}
- }
+    }
+    td p {margin: 0;}
+    td p.user-detail {
+      font-size: 5vw;
+      width: 70vw;
+      overflow: scroll;
+    }
+    .avatar-navi {display: inline-block;}
+  }
   .table-bordered {
     border: none;
     td:first-child {border-top: none;}
