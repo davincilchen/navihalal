@@ -376,6 +376,14 @@ label.required:after {
             }
         }
     }
+    .sidebar .user-profile a p:first-child {
+        font-size: .8rem;
+        text-align: center;
+    }
+    .sidebar .user-profile a p:last-child {
+        text-align: center;
+        font-size: 0.7rem;
+    }
     // navi-bar end
     #footer {
         margin-top: 0;
