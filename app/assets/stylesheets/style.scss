@@ -357,12 +357,19 @@ label.required:after {
 @media (max-width:480px) {
     // navi-bar
     .navi-search {
-        width: 36%;
+        width: 40%;
         margin-left: 0px;
     }
-    .navbar-brand {margin: 0 auto;}
     .navbar {padding: 0.5rem 0;}
-    button span.notify-bell span.fa-stack-2x {font-size: 2em;}
+    nav.navbar form.navi-search div.easy-autocomplete {width: 40vw !important;}
+    nav.navbar a.navbar-brand {
+        font-size: 1em;
+        margin: 0 auto;
+    }
+    nav.navbar form.edit_user {
+        font-size: .75em;
+        width: 14%;
+    }
     div.sidebar {
         width: 50%;
         .card-body {
@@ -450,5 +457,8 @@ label.required:after {
     }
     .result .result-main .tab-content .row h5 span a.btn {font-size: .7em;}
     // tag end
+}
+@media (max-width:400px) {
+    nav.navbar a.navbar-brand {font-size: .75em;}
 }
 /* mobile style end */
