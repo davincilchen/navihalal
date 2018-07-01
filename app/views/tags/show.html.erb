@@ -1,16 +1,16 @@
 <div class="container result tag">
    <div class="row result-main">
      <div class="tab-content tag-content" id="v-pills-tabContent">
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-12">
           <h2><%= @tag.name %></h2>
           <% @tag.restaurants.each do |tr| %>
             <div class="row">
-              <div class="col-3">
+              <div class="col-md-3 col-xs-12">
                   <%= link_to tr do %>
                     <%= image_tag tr.photo.url, class: "img-responsive center-block" %>
                   <% end %>
               </div>
-              <div class="col-9">
+              <div class="col-md-9 col-xs-12">
                 <h5>
                   <%= link_to tr.name, tr, class: "search-link" %>
                   <%= render 'shared/collect', restaurant: tr %>
@@ -22,7 +22,11 @@
                     <% end %>
                   <% end %>
                 </h5>
-                <p><%= tr.address.slice(0..1) %><span class="re-tel"><%= tr.tel %></span></p>
+                <p>
+                  <%= tr.address.slice(0..1) %>
+                  <br>
+                  <span class="re-tel"><%= tr.tel %></span>
+                </p>
                 <p><%= tr.business_hour %></p>
               </div>
             </div>

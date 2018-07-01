@@ -2,7 +2,7 @@
   <div class="container user-page">
     <%= render "shared/user_profile", object: @user %>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 col-xs-12">
         <ul class="list-group">
           <li class="list-group-item list-group-item-action list-link">
             <%= link_to 'Profile', user_path(@user) %>
@@ -15,14 +15,14 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-9 user-content">
+      <div class="col-md-9 col-xs-12 user-content">
         <div class="row">
           <% @followings.each do |following| %>
             <div class="col-12">
-              <div class="restaurant-item">
+              <div class="restaurant-item following-item">
                 <div class="row">
-                  <div class="col-4">
-                    <div class="restaurant-image">
+                  <div class="col-md-4 col-xs-12">
+                    <div class="restaurant-image following-image">
                       <% if following.photo? %>
                         <%= image_tag following.photo.url, class: "img-responsive center-block" %>
                       <% else %>
@@ -30,8 +30,8 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="col-8">
-                    <div class="restaurant-caption">
+                  <div class="col-md-8 col-xs-12">
+                    <div class="restaurant-caption following-caption">
                       <h5>
                         <%= render partial: "shared/following", locals: {user: following}%>
                       </h5>

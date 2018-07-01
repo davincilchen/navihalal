@@ -1,64 +1,66 @@
-<h1>後台</h1>
+<div class="container mobile-container">
+  <h1>後台</h1>
 
-<div>
-  <%= link_to 'Tags', admin_tags_path %>
-  |
-  <%= link_to 'Restaurants', admin_restaurants_path %>
-  |
-  <%= link_to 'Users', admin_users_path %>
-</div>
-
-<%= form_for [:admin, @tag], html: {class: 'form-inline'} do |f| %>
-  <div class="form-group mb-2">
-    <%= f.text_field :name, placeholder: "tag Name", class: "form-control" %>
+  <div>
+    <%= link_to 'Tags', admin_tags_path %>
+    |
+    <%= link_to 'Restaurants', admin_restaurants_path %>
+    |
+    <%= link_to 'Users', admin_users_path %>
   </div>
-  <div class="form-group mx-sm-3 mb-2">
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
-  <div class="form-group">
-    <% if @tag.errors.any? %>
-      <%= @tag.errors.full_messages.to_sentence %>
-    <% end %>
-  </div>
-<% end %>
-  <br>
 
-  <div class="row">
+  <%= form_for [:admin, @tag], html: {class: 'form-inline'} do |f| %>
+    <div class="form-group mb-2">
+      <%= f.text_field :name, placeholder: "tag Name", class: "form-control" %>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+    <div class="form-group">
+      <% if @tag.errors.any? %>
+        <%= @tag.errors.full_messages.to_sentence %>
+      <% end %>
+    </div>
+  <% end %>
+    <br>
 
-    <div class="col-md-12">
+    <div class="row">
 
-      <table class="table table-striped table-bordered ">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>tag Name</th>
-            <th>Edit | Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @tags.each do |tag| %>
-          <tr>
-            <th scope="row"><%= tag.id %></th>
-            <td><%= tag.name %></td>
-            <span>
-              <td>
-                <%= link_to admin_tags_path(id: tag.id) do%>
-                  <%= icon 'far', 'edit' %>
-                <% end %>
-                <% unless tag.sorted? %>
-                  | 
-                  <%= link_to admin_tag_path(tag), method: :delete, data: {confirm: "Are you sure?"} do %>
-                    <%= icon 'far', 'trash-alt' %>
+      <div class="col-md-12 col-xs-12">
+
+        <table class="table table-striped table-bordered rwd-table ">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>tag Name</th>
+              <th>Edit | Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @tags.each do |tag| %>
+            <tr>
+              <th data-th="ID" scope="row"><%= tag.id %></th>
+              <td data-th="Name"><%= tag.name %></td>
+              <span>
+                <td data-th="Option">
+                  <%= link_to admin_tags_path(id: tag.id) do%>
+                    <%= icon 'far', 'edit' %>
                   <% end %>
-                <% end %>
-               </td>
-             </span>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+                  <% unless tag.sorted? %>
+                    | 
+                    <%= link_to admin_tag_path(tag), method: :delete, data: {confirm: "Are you sure?"} do %>
+                      <%= icon 'far', 'trash-alt' %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </span>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
 
     </div>
-
   </div>
 </div>

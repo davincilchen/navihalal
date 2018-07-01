@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Halal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= Gon::Base.render_data %>
@@ -34,8 +35,6 @@
       <a class="navbar-brand p-0 text-success navi-logo " href="<%= root_path %>">NaviHalal</a>
 
       <!--  ============================================= -->
-      <ul class="mr-auto">
-      </ul>
         
       <% if current_user %>
         <%= form_for(current_user, url: check_activities_path, html: { method: :patch })  do |f|%>

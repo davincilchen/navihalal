@@ -1,98 +1,104 @@
-<h1>後台</h1>
+<div class="container mobile-container">
+  <h1>後台</h1>
 
-<div>
-  <%= link_to 'Tags', admin_tags_path %>
-  |
-  <%= link_to 'Restaurants', admin_restaurants_path %>
-  |
-  <%= link_to 'Users', admin_users_path %>
-</div>
-
-<%= form_tag import_admin_restaurants_path, multipart: true, html: {class: 'form-inline'} do%>
-  <div class="form-group mb-2">
-    <%= file_field_tag :file %>
+  <div>
+    <%= link_to 'Tags', admin_tags_path %>
+    |
+    <%= link_to 'Restaurants', admin_restaurants_path %>
+    |
+    <%= link_to 'Users', admin_users_path %>
   </div>
-  <div class="form-group mb-2">
-    <%= submit_tag "Upload Restaurants"%>
-  </div>
-  <div class="form-group">
-    <%# if @restaurants.errors.any? %>
-      <%#= @restaurants.errors.full_messages.to_sentence %>
-    <%# end %>
-  </div>
-<% end %>
 
-<div class="row">
-  <div class="col-md-12">
-    <br>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th style="width: 10%">Name</th>
-          <th style="width: 10%">Intro</th>
-          <th style="width: 3%">Photo</th>
-          <th style="width: 5%">Open</th>
-          <th style="width: 5%">Close</th>
-          <th style="width: 3%">Provider</th>
-          <th style="width: 16%">Address</th>
-          <th style="width: 10%">Tel</th>
-          <th style="width: 1%">lat</th>
-          <th style="width: 1%">lon</th>
-          <th style="width: 3%">Rest</th>
-          <th style="width: 12%">Business_hour</th>
-          <th>  </th>
-        </tr>
-      </thead>
+  <%= form_tag import_admin_restaurants_path, multipart: true, html: {class: 'form-inline'} do%>
+    <div class="form-group mb-2">
+      <%= file_field_tag :file %>
+    </div>
+    <div class="form-group mb-2">
+      <%= submit_tag "Upload Restaurants"%>
+    </div>
+    <div class="form-group">
+      <%# if @restaurants.errors.any? %>
+        <%#= @restaurants.errors.full_messages.to_sentence %>
+      <%# end %>
+    </div>
+  <% end %>
 
-      <tbody>
-        <% @restaurants.each do |restaurant| %>
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <br>
+      <table class="table table-striped table-bordered table-hover rwd-table">
+        <thead>
           <tr>
-            <%#= link_to restaurant_path(restaurant) do %>
-              <td><%= restaurant.name %></td>
-              <td><%= restaurant.intro %></td>              
-              <td>
-                <%= link_to(restaurant_path(restaurant)) do %>
-                  <div class="avatar-navi">
-                    <%= image_tag restaurant.photo.url, class: "img-fluid rounded" %>
-                  </div>
-                <% end %>
-              </td>
-              <td><%= restaurant.open_hour %></td>
-              <td><%= restaurant.close_hour %></td>
-              <td>
-                <% if restaurant.user_id %>
-                  <%= restaurant.user.name%>
-                <% else %>
-                  <%= "seed" %>
-                <% end %>
-              </td>
-              <td><%= restaurant.address %></td>
-              <td><%= restaurant.tel %></td>
-              <% if (restaurant.latitude? || restaurant.longitude?) %>
-                <td><%= restaurant.latitude.round(3) %></td>
-                <td><%= restaurant.longitude.round(3) %></td>
-              <% else %>
-                <td colspan="2">Need to re-compute Lat and Lng</td>
-              <% end %>
-              <td><%= restaurant.rest_day %></td>
-              <td><%= restaurant.business_hour %></td>
-            <%# end %>
-              <td>
-                <%= link_to edit_restaurant_path(restaurant) do%>
-                  <%= icon 'far', 'edit' %>
-                <% end %>
-                  | 
-                <%= link_to admin_restaurant_path(restaurant), method: :delete, data: {confirm: "Are you sure?"} do %>
-                  <%= icon 'far', 'trash-alt' %>
-                <% end %>
-              </td>
+            <th style="width: 10%">Name</th>
+            <th style="width: 10%">Intro</th>
+            <th style="width: 3%">Photo</th>
+            <th style="width: 5%">Open</th>
+            <th style="width: 5%">Close</th>
+            <th style="width: 3%">Provider</th>
+            <th style="width: 16%">Address</th>
+            <th style="width: 10%">Tel</th>
+            <th style="width: 1%">lat</th>
+            <th style="width: 1%">lon</th>
+            <th style="width: 3%">Rest</th>
+            <th style="width: 12%">Business_hour</th>
+            <th>  </th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
 
-    <div class="text-center">
-      <%#= paginate @restaurants %>
+        <tbody>
+          <% @restaurants.each do |restaurant| %>
+            <tr>
+              <%#= link_to restaurant_path(restaurant) do %>
+                <td data-th="Name"><%= restaurant.name %></td>
+                <td data-th="Intro"><%= restaurant.intro %></td>              
+                <td data-th="Photo">
+                  <%= link_to(restaurant_path(restaurant)) do %>
+                    <div class="avatar-navi">
+                      <%= image_tag restaurant.photo.url, class: "img-fluid rounded" %>
+                    </div>
+                  <% end %>
+                </td>
+                <td data-th="Open"><%= restaurant.open_hour %></td>
+                <td data-th="Close"><%= restaurant.close_hour %></td>
+                <td data-th="Provider">
+                  <% if restaurant.user_id %>
+                    <%= restaurant.user.name%>
+                  <% else %>
+                    <%= "seed" %>
+                  <% end %>
+                </td>
+                <td data-th="Address">
+                  <p><%= restaurant.address %></p>
+                </td>
+                <td data-th="Tel"><%= restaurant.tel %></td>
+                <% if (restaurant.latitude? || restaurant.longitude?) %>
+                  <td data-th="Lat"><%= restaurant.latitude.round(3) %></td>
+                  <td data-th="Lon"><%= restaurant.longitude.round(3) %></td>
+                <% else %>
+                  <td data-th="Alert" colspan="2">Need to re-compute Lat and Lng</td>
+                <% end %>
+                <td data-th="Rest"><%= restaurant.rest_day %></td>
+                <td data-th="Business_hour">
+                  <p><%= restaurant.business_hour %></p>
+                </td>
+              <%# end %>
+                <td data-th="Option">
+                  <%= link_to edit_restaurant_path(restaurant) do%>
+                    <%= icon 'far', 'edit' %>
+                  <% end %>
+                    | 
+                  <%= link_to admin_restaurant_path(restaurant), method: :delete, data: {confirm: "Are you sure?"} do %>
+                    <%= icon 'far', 'trash-alt' %>
+                  <% end %>
+                </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="text-center">
+        <%#= paginate @restaurants %>
+      </div>
     </div>
   </div>
 </div>

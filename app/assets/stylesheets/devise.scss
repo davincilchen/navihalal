@@ -16,10 +16,6 @@
   margin: 20px auto;
 }
 
-#email-login {
-
-}
-
 #email-login .email-login {
   margin: auto 20px;
 }
@@ -31,6 +27,10 @@
 
 #email-login input[type="submit"]:hover {
   background-color: gray;
+}
+
+#email-login input.forget-button {
+  margin-left: 47%;
 }
 
 #oauth-login .oauth-login {
@@ -99,3 +99,21 @@
 }
 
 /////////////////*Sign up*////////////////
+
+// Style Mobile
+@media (max-width:480px) {
+  #email-login input[type="submit"] {
+    position: absolute;
+    right: 33%;
+  }
+  #email-login input.forget-button {
+    white-space: normal;
+    width: 43vw;
+    margin-left: 0;
+    right: 27%;
+  }
+  .mobile-container-signup {
+    padding-bottom: 30%;
+  }
+}
+// Style Mobile end

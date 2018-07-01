@@ -100,7 +100,7 @@
     border: 1px solid;
     border-bottom: none;
     border-radius: 5px;
-    max-width: 10vw;
+    width: 10vw;
     color: #FFF;
     background: #BCE8B6;
     margin: 0 auto;
@@ -157,3 +157,49 @@
   /* end */
 }
 /* end */
+
+/* style mobile */
+@media (max-width:480px) {
+  .user-page .row .user-contact {border-left: none;}
+  .user-page hr {margin-top: 12vh;}
+  .user-content {
+    .search-tag {
+      position: absolute;
+      left: -50%;
+      top: 60%;
+      a {font-size: .75em;}
+    }
+  }
+  .user-edit {
+    box-shadow: none;
+    .form-label-test {width: 26vw;}
+    select {
+      width: 60%;
+      margin-left: 20%;
+      text-align-last: center;
+    }
+    .user-edit-avatar button {
+      position: absolute;
+      left: 70%;
+      top: 5%;
+    }
+    img {
+      width: 60%;
+      margin: 0 20%;
+    }
+    .user-edit-submit {
+      margin: 0 36%;
+      padding: 0;
+    }
+    .col-12 a.btn.btn-outline-primary {margin: 2% 39%;}
+  }
+  .following-item {
+    .following-image img {
+      max-height: 30vh;
+      width: auto;
+      margin-left: 20%;
+    }
+    .following-caption {margin-top: 10vh;}
+  }
+}
+/* style mobile end */

@@ -2,7 +2,8 @@
 @import 'tags';
 @import 'devise';
 @import 'users';
-
+@import 'comments';
+@import './admin/admin';
 
 .follow-button {
     margin-left: 2vw;
@@ -17,7 +18,7 @@
 
 
 .sidebar-right{
-  position: fixed;
+  position: absolute;
   z-index: 10;
   right: 0%;
 
@@ -79,7 +80,7 @@
 }
 
 div.sidebar {
-    max-width: 26vw;
+    width: 26vw;
 }
 
 .sidebar {
@@ -188,6 +189,7 @@ input[placeholder*=" "] {
         border-radius: 2vw;
         box-shadow: 0 15px 20px #DEE2E6;
         padding: 4vh 4vh 4px 4vh;
+        min-height: 30vh;
         .nav-link {
             color: #2BB44A;
             border: 1px solid rgba(0, 0, 0, 0.125);
@@ -206,7 +208,7 @@ input[placeholder*=" "] {
             padding-left: 2vw;
             .row {
                 border-top: 2px solid #5cb85c;
-                img {max-width: 10vw;}
+                img {width: 10vw;}
                 .search-follow {
                     display: inline;
                     .search-follow-child {
@@ -235,15 +237,11 @@ input[placeholder*=" "] {
                     i {color: #E8A90F;}
                 }
             }
-            span {
-                padding: 0 1vw;
-                a {float: right;}
-            }
+            span a {float: right;}
             #pills-tabContent {
                 padding-left: 0;
                 width: 56.5vw;
             }
-            .re-tel {margin-left: 5vw;}
             .search-link {
                 color: #70D941;
                 &:hover {
@@ -353,3 +351,96 @@ label.required:after {
 #footer p{
     padding: 18px;
 }
+/* footer end */
+
+/* mobile style */
+@media (max-width:480px) {
+    // navi-bar
+    .navi-search {
+        width: 36%;
+        margin-left: 0px;
+    }
+    .navbar-brand {margin: 0 auto;}
+    .navbar {padding: 0.5rem 0;}
+    button span.notify-bell span.fa-stack-2x {font-size: 2em;}
+    div.sidebar {
+        width: 50%;
+        .card-body {
+            padding: .75rem 3vw 1.25rem 5vw;
+            .user-sign {
+                width: 95%;
+            }
+            img.rounded-circle {width: 16vw;}
+            li.add-restaurant {
+                a {font-size: .75em;}
+            }
+        }
+    }
+    // navi-bar end
+    #footer {
+        margin-top: 0;
+        position: fixed;
+        height: 5vh;
+        p {
+            padding: 0;
+            margin: 0;
+        }
+    }
+    // form of restaurant
+    div.mobile-container {padding-bottom: 15%;}
+    h1.form-header {font-size: 1.5rem;}
+    #myTabContent #home form select {width: 70% !important;}
+    // form of restaurant end
+
+    // Restaurant Show
+    .mobile-container .col-md-3.text-right img.rounded {
+        width: 100%;
+        margin-bottom: 4%;
+    }
+    // Restaurant Show end
+
+    // Search Result
+    .result {
+        .result-main {
+            margin-bottom: 4vh;
+            width: 77vw;
+            margin-left: -6vw;
+            .nav-pills {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .tab-content {
+                margin-top: 3vh;
+                padding-left: 0;
+                .row {
+                    padding: 3vh 0;
+                    margin-top: 2vh;
+                    img {width: 100%;}
+                    h5 span {
+                        display: block;
+                        a.btn {
+                            float: none;
+                            margin-top: 2vh;
+                        }
+                    }
+                }
+                ul.nav.nav-pills {
+                    border-top: 2px solid rgb(222, 236, 224);
+                    padding-top: 3vh;
+                    margin-left: 5vw;
+                    li.nav-item {width: 100%;}
+                }
+            }
+        }
+    }
+    // Search Result end
+
+    // tag
+    h5.tag-link a {
+        display: inline-block;
+        margin-bottom: 2vh;
+    }
+    .result .result-main .tab-content .row h5 span a.btn {font-size: .7em;}
+    // tag end
+}
+/* mobile style end */
