@@ -457,6 +457,17 @@ label.required:after {
     }
     .result .result-main .tab-content .row h5 span a.btn {font-size: .7em;}
     // tag end
+
+    // Restaurant Marker Modal
+    div.modal-body {
+        img#siteModal-img, div#siteModal-availableTime {width: 60vw;} 
+        img#siteModal-img {margin-left: 13%;}
+        div#siteModal-availableTime {
+            margin: 0 auto;
+            font-size: .75em !important;
+        }
+    }
+    // Restaurant Marker Modal end
 }
 @media (max-width:400px) {
     nav.navbar a.navbar-brand {font-size: .75em;}
