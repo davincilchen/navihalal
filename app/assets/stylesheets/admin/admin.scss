@@ -35,12 +35,21 @@
   .table-striped tbody tr:nth-of-type(odd) {background-color: #FFF;}
 
   // Admin tag
-  .mobile-container {
-    form {
-      margin-top: 4vh;
-      margin-left: 10%;
-      input[type="submit"] {margin-left: 10vw;}
-    }
+  form#new_tag {
+    margin-top: 4vh;
+    margin-left: 10%;
+    input[type="submit"] {margin-left: 10vw;}
   }
   // Admin tag end
+
+  // Admin Users
+  form.edit_user {
+    width: 60%;
+    margin: 0;
+    input[type="submit"] {
+      margin: 0;
+      display: block;
+    }
+  }
+  // Admin Users end
 }
