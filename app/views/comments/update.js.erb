@@ -1,2 +1,3 @@
 $("#comment-content-<%= @comment.id %>").children().remove();
-$("#comment-content-<%= @comment.id %>").html("<%= @comment.content %>");
+$("#comment-content-<%= @comment.id %>").html("<p><%= j(@comment.content) %></p>");
+$("#comment-content-<%= @comment.id %>").children("p").addClass("comment-content");
