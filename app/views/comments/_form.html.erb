@@ -19,7 +19,7 @@
     };
   });
   $("#cancelButton").on("click", function(event) {
-    $("#comment-content-<%= comment.id %>").html("<p><%= comment.content %></p>");
+    $("#comment-content-<%= comment.id %>").html("<p><%= j(comment.content) %></p>");
     $("#comment-content-<%= comment.id %>").children("p").addClass("comment-content");
   });
 </script>

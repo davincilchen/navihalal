@@ -1,2 +1,4 @@
 <% html = j( render :partial => "form", :locals => { :restaurant => @restaurant, :comment => @comment } ) %>
+var contentHeight = $('#comment-content-<%= @comment.id %>').children('p').height()
 $("#comment-content-<%= @comment.id %>").html("<%= html %>");
+$('#comment-content-<%= @comment.id %>').children('form').children('#form-text').children('textarea').height(contentHeight)

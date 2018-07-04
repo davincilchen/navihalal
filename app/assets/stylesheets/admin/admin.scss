@@ -48,12 +48,14 @@
   // Admin tag end
 
   // Admin Users
-  form.edit_user {
-    width: 60%;
-    margin: 0;
-    input[type="submit"] {
+  .rwd-table {
+    form.edit_user {
+      width: 60%;
       margin: 0;
-      display: block;
+      input[type="submit"] {
+        margin: 0;
+        display: block;
+      }
     }
   }
   // Admin Users end
