@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def collection
-    @restaurants = current_user.collected_restaurants
+    @restaurants = @user.collected_restaurants
   end
 
   def followings
