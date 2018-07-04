@@ -31,14 +31,13 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group row">
-              <div class="offset-sm-2"></div>
-              <div class="col-sm-4 user-edit-avatar">
-                <%= form.label :photo, "Your Profile Photo", class: "col-form-label" %>
-                <br>
-                <button>
-                  <i class="fas fa-upload"></i>
-                  <%= form.file_field :photo %>
-                </button>
+              <div class="offset-sm-2 offset-xs-0"></div>
+              <div class="col-sm-4 col-xs-12 user-edit-avatar">
+                <%= form.label :photo, class: "col-form-label" do %>
+                  <figure><i class="fas fa-upload"></i></figure>
+                  <span>Your Profile Photo</span>
+                <% end %>
+                <%= form.file_field :photo %>
               </div>
                 <div class="col-sm-6">
                   <%= image_tag @user.photo.url if @user.photo? %>
