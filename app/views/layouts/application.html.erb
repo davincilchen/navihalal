@@ -32,7 +32,7 @@
     <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline navi-search " } do |form| %>
         <%= form.text_field :q, placeholder: "🔍 Keyword eg: seafood", data: { behavior: "autocomplete" }, class: "form-control" %>
       <% end %>
-      <a class="navbar-brand p-0 text-success navi-logo " href="<%= root_path %>">NaviHalal</a>
+      <a class="navbar-brand p-0 text-success navi-logo " href="<%= root_path %>" data-turbolinks="false">NaviHalal</a>
 
       <!--  ============================================= -->
         
