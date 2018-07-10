@@ -37,7 +37,7 @@
         <%# <p class="card-text">6 Favorites</p> %>
         <%# <p class="card-text">5 Check-ins</p> %>
         <%# <p class="card-text"><%= @restaurant.comments.count Comments</p> %>
-        <p class="card-text" style="padding: 0;"><%= @restaurant.collected_users.count %> users collected</p>
+        <p class="card-text" id="user-collect" style="padding: 0;"><%= @restaurant.collected_users.count %> users collected</p>
         <p class="card-text"><%= @restaurant.meals.count + 1 %> Photos</p>
         <p class="card-text">Muslim Tips: 
           <% @restaurant.tags.uniq.each do |tag| %> 
